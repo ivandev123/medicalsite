@@ -11,10 +11,12 @@ import CallToAction from "@/components/CallToAction.vue";
 import OurAchievements from "@/components/views/categories/OurAchievements.vue";
 import GuaranteesAndBenefits from "@/components/views/categories/GuaranteesAndBenefits.vue";
 import TypesOfTreatment from "@/components/views/categories/TypesOfTreatment.vue";
+import ChambersInOurClinic from "@/components/ChambersInOurClinic.vue";
 
 export default defineComponent({
   name: "Categories",
   components: {
+    ChambersInOurClinic,
     TypesOfTreatment,
     GuaranteesAndBenefits,
     OurAchievements,
@@ -36,6 +38,7 @@ export default defineComponent({
   <OurAchievements/>
   <GuaranteesAndBenefits/>
   <TypesOfTreatment/>
+  <ChambersInOurClinic/>
 </template>
 
 <style scoped lang="scss">
