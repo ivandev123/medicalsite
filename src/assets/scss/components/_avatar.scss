@@ -1,0 +1,32 @@
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 180px;
+  background: #24C8BC;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 115px;
+    height: 115px;
+    background: #24C8BC;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    position: absolute;
+    top: -11px;
+    left: -16px;
+  }
+
+  & > img {
+    width: 158px;
+    height: 158px;
+    border: 8px solid #FFFFFF;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+  }
+}

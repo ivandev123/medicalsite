@@ -1,0 +1,256 @@
+<script>
+import {defineComponent} from 'vue'
+import LogoIcon from "@/components/icons/LogoIcon.vue";
+import FacebookIcon from "@/components/icons/networks/FacebookIcon.vue";
+import InstagramIcon from "@/components/icons/networks/InstagramIcon.vue";
+import VKIcon from "@/components/icons/networks/VKIcon.vue";
+import TwitterIcon from "@/components/icons/networks/TwitterIcon.vue";
+import TelegramIcon from "@/components/icons/networks/TelegramIcon.vue";
+import YouTubeIcon from "@/components/icons/networks/YouTubeIcon.vue";
+
+export default defineComponent({
+  name: "Footer",
+  components: {YouTubeIcon, TelegramIcon, TwitterIcon, VKIcon, InstagramIcon, FacebookIcon, LogoIcon}
+})
+</script>
+
+<template>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__body">
+        <div class="footer__up">
+          <div class="footer__contact-info">
+            <div class="footer__logo" @click="$router.push('/')">
+              <LogoIcon/>
+            </div>
+            <div class="footer__networks">
+              <FacebookIcon/>
+              <InstagramIcon/>
+              <VKIcon/>
+              <TwitterIcon/>
+              <TelegramIcon/>
+              <YouTubeIcon/>
+            </div>
+
+            <div class="footer__contacts">
+              <a href="tel:+7 (495) 988 3345" class="footer__contact">+7 (495) 988 3345</a>
+              <a href="tel:+7 (495) 988 3345" class="footer__contact">+7 (495) 988 3345</a>
+              <a href="tel:+7 (495) 988 3345" class="footer__contact">+7 (495) 988 3345</a>
+              <a href="mailto:medicalsite@mail.ru" class="footer__contact">medicalsite@mail.ru</a>
+            </div>
+          </div>
+          <nav class="footer__info footer__info_mt-30">
+            <div class="footer__item">
+              <span>Лечение наркомании</span>
+
+              <ul>
+                <li>
+                  Реабилитация наркозависимых
+                  <ul>
+                    <li>Реабилитация в стационаре</li>
+                    <li>Реабилитация амбулаторно</li>
+                  </ul>
+                </li>
+                <li>
+                  Лечение зависимости
+                  <ul>
+                    <li>Лечение солевой зависимости</li>
+                    <li>Лечение спайсовой зависимости</li>
+                    <li>Лечение наркозависимости у подростков</li>
+                    <li>Лечение токсикомании</li>
+                    <li>Лечение зависимости от мефедрона</li>
+                    <li>Лечение от лирики</li>
+                    <li>Лечение зависимости от марихуаны</li>
+                    <li>Лечение зависимости от кокаина</li>
+                    <li>Лечение зависимости от кодеина</li>
+                    <li>Лечение зависимости от бутирата</li>
+                    <li>Лечение зависимости от героина</li>
+                    <li>Лечение амфетаминовой зависимости</li>
+                    <li>Лечение метадоновой зависимости</li>
+                    <li>Лечение зависимости от гашиша</li>
+                    <li>Лечение зависимости от Альфа ПВП</li>
+                  </ul>
+                </li>
+                <li>
+                  Программы реабилитации
+                  <ul>
+                    <li>Ресоциализация наркозависимых</li>
+                    <li>Курс лечения 28 дней</li>
+                    <li>Программа 7Н</li>
+                    <li>Программа 12 шагов</li>
+                    <li>Программа Day Top</li>
+                    <li>Метод Шичко</li>
+                    <li>Терапия созависимости</li>
+                    <li>Анонимная реабилитация</li>
+                  </ul>
+                </li>
+                <li>
+                  Бесплатно
+                  <ul>
+                    <li>Бесплатное лечение наркозависимости</li>
+                    <li>Реабилитационный центр для наркозависимых бесплатно</li>
+                  </ul>
+                </li>
+                <li>
+                  Наркологические услуги
+                  <ul>
+                    <li>Снятие ломки</li>
+                    <li>Детоксикация наркоманов</li>
+                    <li>Ультрабыстрая опиоидная детоксикация</li>
+                    <li>Кодирование от наркомании</li>
+                    <li>По Довженко</li>
+                    <li>Вшивание</li>
+                    <li>Лазером</li>
+                    <li>Сдача теста на наркотики</li>
+                    <li>Консультация психотерапевта</li>
+                    <li>Нарколог на дом</li>
+                    <li>Капельница от наркотиков</li>
+                    <li>Кодирование от курения</li>
+                    <li>Наркологическая помощь</li>
+                    <li>Помощь при передозировке</li>
+                    <li>Принудительное лечение наркозависимости</li>
+                  </ul>
+                </li>
+                <li>
+                  Лечение алкоголизма
+                  <ul>
+                    <li>Нарколог на дом</li>
+                    <li>Консультация нарколога</li>
+                    <li>Принудительное лечение алкоголизма</li>
+                    <li>Медикаментозное лечение в стационаре</li>
+                  </ul>
+                </li>
+                <li>
+                  Программы реабилитации
+                  <ul>
+                    <li>28 дней</li>
+                    <li>12 шагов</li>
+                    <li>7 навыков</li>
+                    <li>DayTop</li>
+                    <li>Метод Шичко</li>
+                  </ul>
+                </li>
+                <li>
+                  Вывод из запоя
+                  <ul>
+                    <li>Капельница от запоя</li>
+                    <li>Капельница от похмелья</li>
+                    <li>Частный вытрезвитель</li>
+                    <li>В стационаре</li>
+                  </ul>
+                </li>
+                <li>
+                  Реабилитация алкоголиков
+                  <ul>
+                    <li>Реабилитация в стационаре</li>
+                    <li>Реабилитация амбулаторно</li>
+                  </ul>
+                </li>
+                <li>
+                  Кодирование от алкоголя
+                  <ul>
+                    <li>Подшивание от алкоголизма</li>
+                    <li>Вшивание ампулы</li>
+                    <li>Кодирование гипнозом</li>
+                    <li>Кодирование от алкоголя Двойной блок</li>
+                    <li>Кодирование от алкоголя таблетками Эспераль</li>
+                    <li>Кодирование от алкоголя таблетками Налтрексон</li>
+                    <li>Кодирование от алкоголя таблетками Аквилонг</li>
+                    <li>Кодирование от алкоголизма таблетками Вивитрол</li>
+                    <li>Кодирование от алкоголизма по методу Довженко</li>
+                    <li>Снятие кодировки</li>
+                    <li>Справка о кодировке</li>
+                    <li>Кодирование уколом</li>
+                    <li>Кодирование на дому</li>
+                    <li>Психологическое кодирование</li>
+                    <li>Метод Довженко</li>
+                    <li>Метод Торпедо</li>
+                  </ul>
+                </li>
+                <li>
+                  Прочие виды лечения алкоголизма
+                  <ul>
+                    <li>Лечение абстинентного синдрома</li>
+                    <li>Раскодирование от алкоголизма</li>
+                    <li>Психологическое кодирование</li>
+                    <li>Лечение подросткового алкоголизма</li>
+                    <li>Лечение женского алкоголизма</li>
+                    <li>Бесплатное лечение</li>
+                    <li>Помощь алкоголикам</li>
+                    <li>Хронический алкоголизм</li>
+                    <li>Лечение иглоукалыванием</li>
+                    <li>Пивной алкоголизм</li>
+                    <li>Анонимное лечение</li>
+                    <li>Лечение гипнозом</li>
+                    <li>Лечение лазером</li>
+                    <li>Детоксикация</li>
+                  </ul>
+                </li>
+                <li>
+                  Другие зависимости
+                  <ul>
+                    <li>Лечение булимии</li>
+                    <li>Лечение анорексии</li>
+                  </ul>
+                </li>
+                <li>
+                  Лечение игромании
+                  <ul>
+                    <li>Лечение игромании гипнозом</li>
+                    <li>Лечение интернет-зависимости</li>
+                    <li>Лечение зависимости от компьютерных игр</li>
+                    <li>Лечение лудомании (ставки на спорт)</li>
+                    <li>Лечение зависимости от социальных сетей</li>
+                    <li>Лечение интернет-зависимости у подростков</li>
+                  </ul>
+                </li>
+                <li>
+                  Прочие услуги
+                  <ul>
+                    <li>Лечебная реабилитация</li>
+                    <li>Кодирование</li>
+                    <li>Курс психотерапии</li>
+                    <li>Принудительное лечение</li>
+                    <li>Помощь психолога при лудомании</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="footer__item">
+              <span>Полезная информация</span>
+
+              <ul>
+                <li>История клиники</li>
+                <li>Специалисты</li>
+                <li>Сертификаты и лицензии</li>
+                <li>Цены</li>
+                <li>Отзывы</li>
+                <li>Фото</li>
+                <li>Статьи</li>
+                <li>СМИ о нас</li>
+                <li>Акции</li>
+                <li>Видео лекции</li>
+                <li>Блог</li>
+                <li>Контакты</li>
+                <li>Контролирующие органы</li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="footer__line"/>
+        <div class="footer__down">
+          <div class="footer__down-up">
+            <div class="footer__site-title">Название 2023</div> |
+            <a href="#">Политика конфиденциальности</a> |
+            <a href="#">Пользовательское соглашение</a>
+          </div>
+          <div class="footer__down-license">Лицензия № ЛО-61-01-005955 от 04.08.2017г</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<style scoped lang="scss">
+@import "@/assets/scss/components/layouts/footer";
+</style>

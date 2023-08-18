@@ -1,0 +1,47 @@
+.modal {
+  &__content {
+    &_my-24 {
+      margin: 24px 0;
+    }
+
+    &_mt-30 {
+      margin-top: 30px;
+    }
+
+    &_mt-24 {
+      margin-top: 24px;
+    }
+
+    &_mt-12 {
+      margin-top: 12px;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 20px;
+
+    &.little {
+      font-size: 16px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 16px;
+
+    &_mt-4 {
+      margin-top: 4px;
+    }
+  }
+
+  &__privacy-policy {
+    text-align: center;
+
+    & > a {
+      color: #24c8bc;
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,131 @@
+.our-advantages {
+  margin-top: 90px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+
+    & > span > span {
+      color: #24C8BC;
+    }
+  }
+
+  &__content {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+
+    &_mt-35 {
+      margin-top: 35px;
+    }
+  }
+
+  &__advantage {
+    padding: 30px;
+    box-shadow: 0 2px 15px #24C8BC;
+    position: relative;
+
+    &::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(89.93deg, #24C8BC 38.96%, rgba(255, 91, 91, 0) 220.08%);
+      transition: all .35s ease;
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+    }
+
+    &::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: #24c8bc;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .35s ease;
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+    }
+
+    &:hover {
+      &.our-advantages {
+        &__advantage {
+          &::after {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+      }
+
+      & .our-advantages {
+        &__advantage {
+          &-icon {
+            margin-left: 12.5px;
+
+            &::before {
+              opacity: 1;
+              transition: all .35s ease;
+            }
+          }
+        }
+      }
+    }
+
+    &-picture {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      max-width: 256px;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+    }
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      margin-left: 0;
+      width: 70px;
+      height: 70px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: all .3s ease;
+      position: relative;
+      z-index: 3;
+
+      &::before {
+        content: '';
+        width: calc(100% + 25px);
+        height: calc(100% + 25px);
+        background-color: rgba(255, 255, 255, .2);
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        border-radius: 50%;
+        transition: all .35s ease;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
+    }
+
+    &-title {
+      max-width: 200px;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      color: #FFFFFF;
+      position: relative;
+      z-index: 3;
+    }
+  }
+}

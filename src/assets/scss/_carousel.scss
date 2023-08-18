@@ -1,0 +1,27 @@
+.carousel {
+  &__viewport {
+    border-radius: 12px;
+  }
+
+  &__pagination {
+    margin: 40px 0 0;
+
+    &-button {
+      &:after {
+        width: 10px;
+        height: 10px;
+        border-radius: 20px;
+        background-color: #C2C2C2;
+        transition: ease .25s;
+      }
+
+      &--active {
+        &:after {
+          width: 18px;
+          background-color: #24C8BC;
+          transition: .25s;
+        }
+      }
+    }
+  }
+}

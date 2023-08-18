@@ -1,0 +1,16 @@
+.our-certificates {
+  margin-top: 20px;
+
+  &__content {
+    &_mt-50 {
+      margin-top: 50px;
+    }
+  }
+
+  &__item {
+    & > img {
+      width: 100%;
+      height: 420px;
+    }
+  }
+}

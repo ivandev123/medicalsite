@@ -1,0 +1,64 @@
+.slider-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 64px;
+  height: 40px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+
+  &__line {
+    width: 1px;
+  }
+
+  &__prev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 10px 0 0 10px;
+    transition: .25s;
+
+    &:hover {
+      background: radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, #F7F7F7 100%);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      transition: .25s;
+
+      & > svg {
+        fill: #FF6100;
+      }
+    }
+
+    & > svg {
+      transform: rotateZ(90deg);
+    }
+  }
+
+  &__next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+    transition: .25s;
+
+    &:hover {
+      background: radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, #F7F7F7 100%);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      transition: .25s;
+
+      & > svg {
+        fill: #FF6100;
+      }
+    }
+
+    & > svg {
+      transform: rotateZ(-90deg);
+    }
+  }
+}

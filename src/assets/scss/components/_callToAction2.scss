@@ -1,0 +1,45 @@
+.call-to-action2 {
+  display: flex;
+  margin-top: 150px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 8px 24px 89.4px -11.6px rgba(22, 52, 80, 0.1);
+  background: #FFFFFF;
+
+  &__title {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1;
+
+    &_mb-8 {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 18px;
+    line-height: 1.5;
+
+    &_mb-16 {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__left {
+    flex: 0 0 75%;
+    padding: 0 15px;
+    max-width: 75%;
+  }
+
+  &__picture {
+    flex: 0 0 25%;
+    padding: 0 15px;
+    max-width: 25%;
+
+    & > img {
+      margin: -150px 0 0 auto;
+      height: 400px;
+      object-fit: cover;
+    }
+  }
+}

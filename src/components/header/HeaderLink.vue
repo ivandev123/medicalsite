@@ -1,0 +1,52 @@
+<script>
+import {defineComponent} from 'vue'
+
+export default defineComponent({
+  name: "HeaderLink",
+  props: ['name', 'dropdown']
+})
+</script>
+
+<template>
+  <div class="header-link">
+    <div class="header-link__title">
+      {{ name }}
+      <svg width="12" height="12" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M93.5 174.5L256.5 337.5L419.5 174.5" stroke="black" stroke-width="24" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="header-link__dropdown">
+      <div class="header-link__dropdown-body">
+        <template v-for="link in dropdown" :key="link.id">
+          <RouterLink
+              class="header-link__dropdown-link"
+              :to="link.path"
+              v-if="!link?.dropdown"
+          >
+            {{ link.name }}
+          </RouterLink>
+          <div class="header-link__dropdown-link link2" v-else>
+            {{ link.name }}
+            <svg width="12" height="12" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M93.5 174.5L256.5 337.5L419.5 174.5" stroke="black" stroke-width="24" stroke-linecap="round"/>
+            </svg>
+            <div class="header-link__dropdown second-dropdown">
+              <RouterLink
+                  class="header-link__dropdown-link"
+                  v-for="link2 in link.dropdown"
+                  :key="link2.id"
+                  :to="link2.path"
+              >
+                {{ link2.name }}
+              </RouterLink>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+@import "@/assets/scss/components/header/headerLink";
+</style>

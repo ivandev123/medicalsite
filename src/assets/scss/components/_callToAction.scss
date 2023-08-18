@@ -1,0 +1,44 @@
+.call-to-action {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 130px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 8px 24px 89px -11.6px rgba(22, 52, 80, 0.1);
+
+  &__picture {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0 15px;
+  }
+
+  &__image {
+    margin-top: -130px;
+    height: 398px;
+    object-fit: cover;
+  }
+
+  &__info {
+    flex: 0 0 75%;
+    padding: 30px;
+    max-width: 75%;
+  }
+
+  &__title {
+    font-size: 48px;
+    line-height: 1.2;
+
+    &_mb-8 {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    line-height: 1.2;
+
+    &_mb-40 {
+      margin-bottom: 40px;
+    }
+  }
+}

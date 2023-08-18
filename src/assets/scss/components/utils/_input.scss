@@ -1,0 +1,139 @@
+.input {
+  width: 100%;
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    position: absolute;
+    top: calc(50% - 9px);
+    right: 12px;
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__body {
+    width: 100%;
+    position: relative;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  &.number {
+    & .input {
+      &__body {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  & input {
+    padding: 10px 12px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    border-radius: 10px;
+    transition: .25s;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #262626;
+
+    &.number {
+      padding-right: 25px;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
+
+    &.pr-12 {
+      padding-right: 12px;
+    }
+
+    &::placeholder {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      color: #9DA0AF;
+    }
+
+    &:focus {
+      border: 1px solid #24C8BC;
+      transition: .25s;
+    }
+
+    &:disabled {
+      padding: 0 !important;
+      background: transparent;
+      border: none;
+      border-radius: unset;
+    }
+
+    &.error {
+      border: 1px solid #FF0000 !important;
+    }
+  }
+
+  &.active {
+    & input {
+      border: 1px solid #24C8BC;
+      transition: .25s;
+    }
+  }
+
+  &__arrows {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5px;
+    position: absolute;
+    right: 14px;
+  }
+
+  &__arrow {
+    &-plus {
+      cursor: pointer;
+    }
+
+    &-minus {
+      transform: rotateZ(180deg);
+      cursor: pointer;
+    }
+  }
+
+  &.with-icon {
+    & input {
+      padding: 10px 12px 10px 44px;
+    }
+
+    & img {
+      width: 19px;
+      height: 19px;
+      position: absolute;
+      top: 11px;
+      left: 13px;
+      cursor: pointer;
+    }
+  }
+
+  &__error {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FF0000;
+
+    &_mt-8 {
+      margin-top: 8px;
+    }
+  }
+}
