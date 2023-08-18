@@ -3,10 +3,11 @@ import {defineComponent} from 'vue'
 import Header from "@/components/layouts/Header.vue";
 import NavAside from "@/components/layouts/InfoLayout/NavAside.vue";
 import Footer from "@/components/layouts/Footer.vue";
+import FooterCallToAction from "@/components/layouts/FooterCallToAction.vue";
 
 export default defineComponent({
   name: "InfoLayout",
-  components: {Footer, NavAside, Header}
+  components: {FooterCallToAction, Footer, NavAside, Header}
 })
 </script>
 
@@ -23,6 +24,7 @@ export default defineComponent({
         </div>
       </div>
     </main>
+    <FooterCallToAction/>
     <Footer/>
   </div>
 </template>

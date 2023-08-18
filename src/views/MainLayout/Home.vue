@@ -58,7 +58,7 @@ export default defineComponent({
     <HeadDoctorsMessage/>
     <OperatingProcedure/>
     <OurSpecialists/>
-    <OurCertificates/>
+    <OurCertificates :page-width="pageWidth"/>
     <CallToAction/>
   </div>
   <Reviews :page-width="pageWidth"/>

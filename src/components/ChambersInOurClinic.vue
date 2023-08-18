@@ -14,7 +14,7 @@
           v-for="item in 3"
           :key="item"
       >
-        <div class="chambers-in-our-clinic__item-image">
+        <div class="chambers-in-our-clinic__item-image" @click="openImg">
           <img src="@/assets/images/our-service.jpg" alt="image">
         </div>
 
@@ -39,7 +39,12 @@
 
 <script>
 export default {
-  name: "ChambersInOurClinic"
+  name: "ChambersInOurClinic",
+  methods: {
+    openImg() {
+      window.open('/img/our-service.347c4a7a.jpg', "_blank")
+    }
+  }
 }
 </script>
 

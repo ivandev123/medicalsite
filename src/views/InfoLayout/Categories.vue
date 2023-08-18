@@ -12,17 +12,38 @@ import OurAchievements from "@/components/views/categories/OurAchievements.vue";
 import GuaranteesAndBenefits from "@/components/views/categories/GuaranteesAndBenefits.vue";
 import TypesOfTreatment from "@/components/views/categories/TypesOfTreatment.vue";
 import ChambersInOurClinic from "@/components/ChambersInOurClinic.vue";
+import OurCertificates from "@/components/OurCertificates.vue";
+import Reviews from "@/components/Reviews.vue";
+import InformationalArticles from "@/components/InformationalArticles.vue";
 
 export default defineComponent({
   name: "Categories",
   components: {
+    InformationalArticles,
+    Reviews,
+    OurCertificates,
     ChambersInOurClinic,
     TypesOfTreatment,
     GuaranteesAndBenefits,
     OurAchievements,
     CallToAction,
     OurSpecialists,
-    StagesOfTreatment, OurPrograms, PrimaryDiagnosis, HowToDetermine, CategoriesBanner, Breadcrumbs}
+    StagesOfTreatment, OurPrograms, PrimaryDiagnosis, HowToDetermine, CategoriesBanner, Breadcrumbs
+  },
+  data() {
+    return {
+      pageWidth: 0,
+    }
+  },
+  methods: {
+    setWidth() {
+      this.pageWidth = window.innerWidth
+    },
+  },
+  created() {
+    this.setWidth()
+    window.onresize = () => this.setWidth()
+  }
 })
 </script>
 
@@ -39,6 +60,9 @@ export default defineComponent({
   <GuaranteesAndBenefits/>
   <TypesOfTreatment/>
   <ChambersInOurClinic/>
+  <OurCertificates type="small" :page-width="pageWidth"/>
+  <Reviews/>
+  <InformationalArticles/>
 </template>
 
 <style scoped lang="scss">
