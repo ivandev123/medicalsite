@@ -87,10 +87,33 @@ export default {
         z-index: 2;
       }
 
+      &::after {
+        content: '';
+        width: 60px;
+        height: 60px;
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+        background-image: url('@/assets/svg/loop.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% auto;
+        transition: all .3s ease;
+        visibility: hidden;
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+      }
+
       &:hover {
-        &::before {
+        &::before,
+        &::after {
           visibility: visible;
           opacity: 1;
+        }
+
+        &::after {
+          transform: translate(-50%, -50%) scale(1);
         }
       }
 
