@@ -6,19 +6,27 @@ import { Carousel, Slide } from "vue3-carousel";
 
 export default defineComponent({
   name: "InformationalArticles",
-  props: ['pageWidth'],
+  props: ['pageWidth', 'type'],
   components: {Button, SliderButtons, Carousel, Slide},
   computed: {
     getCountSlides() {
+      const getCount = (firstNum, secondNum) => {
+        return !this.type ? firstNum : this.type === 'small' ? secondNum : 0
+      }
+
+      const getWidthValid = (firstNum, secondNum) => {
+        return this.pageWidth < firstNum || this.pageWidth < secondNum && this.type === 'small'
+      }
+
       if (this.pageWidth < 598) {
         return 1
-      } else if (this.pageWidth < 900) {
+      } else if (getWidthValid(900, 1180)) {
         return 2
-      } else if (this.pageWidth < 1200) {
+      } else if (this.pageWidth < 1220) {
         return 3
       }
 
-      return 4
+      return getCount(4, 3)
     }
   }
 })

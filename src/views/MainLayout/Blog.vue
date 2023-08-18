@@ -1,7 +1,11 @@
-<script setup>
-
+<script>
 import Breadcrumbs from "@/components/utils/Breadcrumbs.vue";
 import PreviewOfInfoArticles from "@/components/views/blog/PreviewOfInfoArticles.vue";
+
+export default {
+  name: 'Blog',
+  components: { Breadcrumbs, PreviewOfInfoArticles }
+}
 </script>
 
 <template>

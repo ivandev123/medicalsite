@@ -4,6 +4,10 @@ import Home from "@/views/MainLayout/Home.vue";
 import InfoLayout from "@/layouts/InfoLayout.vue";
 import Categories from "@/views/InfoLayout/Categories.vue";
 import Blog from "@/views/MainLayout/Blog.vue";
+import BlogArticle from "@/views/MainLayout/BlogArticle.vue";
+import HistoryOfTheClinic from "@/views/MainLayout/HistoryOfTheClinic.vue";
+import Specialists from "@/views/InfoLayout/Specialists.vue";
+import Certificates from "@/views/InfoLayout/Certificates.vue";
 
 const routes = [
   {
@@ -17,7 +21,21 @@ const routes = [
       },
       {
         path: 'blog',
-        component: Blog
+
+        children: [
+          {
+            path: '',
+            component: Blog
+          },
+          {
+            path: ':id',
+            component: BlogArticle
+          }
+        ]
+      },
+      {
+        path: 'history',
+        component: HistoryOfTheClinic
       }
     ]
   },
@@ -29,6 +47,14 @@ const routes = [
       {
         path: 'categories',
         component: Categories,
+      },
+      {
+        path: 'specialists',
+        component: Specialists,
+      },
+      {
+        path: 'certificates',
+        component: Certificates,
       }
     ]
   }

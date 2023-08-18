@@ -4,13 +4,19 @@ import Button from "@/components/utils/Button.vue";
 
 export default defineComponent({
   name: "OurSpecialists",
+  props: {
+    title: {
+      type: String,
+      default: 'Наши специалисты'
+    }
+  },
   components: {Button}
 })
 </script>
 
 <template>
   <div class="our-specialists">
-    <h2 class="our-specialists__title">Наши специалисты</h2>
+    <h2 class="our-specialists__title">{{ title }}</h2>
 
     <div class="our-specialists__content our-specialists__content_mt-50">
       <div

@@ -1,10 +1,16 @@
 <script>
 import {defineComponent} from 'vue'
 import Button from "@/components/utils/Button.vue";
+import OrderConsultationModal from "@/components/modals/OrderConsultationModal.vue";
 
 export default defineComponent({
   name: "NavAside",
-  components: {Button}
+  components: {OrderConsultationModal, Button},
+  data() {
+    return {
+      showOrderConsultationModal: false,
+    }
+  }
 })
 </script>
 
@@ -46,9 +52,15 @@ export default defineComponent({
     <div class="sidebar__line"/>
 
     <div class="sidebar__button">
-      <Button name="Бесплатная консультация" width="100%" bg="orange"/>
+      <Button
+          name="Бесплатная консультация"
+          width="100%"
+          bg="orange"
+          @click="showOrderConsultationModal = true"
+      />
     </div>
   </aside>
+  <OrderConsultationModal @close="showOrderConsultationModal = false" v-if="showOrderConsultationModal"/>
 </template>
 
 <style scoped lang="scss">
