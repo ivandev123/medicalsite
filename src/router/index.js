@@ -3,6 +3,7 @@ import MainLayout from "@/layouts/MainLayout.vue";
 import Home from "@/views/MainLayout/Home.vue";
 import InfoLayout from "@/layouts/InfoLayout.vue";
 import Categories from "@/views/InfoLayout/Categories.vue";
+import Blog from "@/views/MainLayout/Blog.vue";
 
 const routes = [
   {
@@ -13,6 +14,10 @@ const routes = [
       {
         path: '',
         component: Home,
+      },
+      {
+        path: 'blog',
+        component: Blog
       }
     ]
   },
