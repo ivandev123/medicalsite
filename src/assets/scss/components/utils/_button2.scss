@@ -1,0 +1,15 @@
+.button2 {
+  width: 100%;
+  background: transparent;
+  border-radius: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #4B535A;
+  transition: .25s;
+
+  &.active {
+    background: #FFFFFF;
+    color: #FF6100;
+    transition: .25s;
+  }
+}
