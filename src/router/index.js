@@ -9,6 +9,7 @@ import HistoryOfTheClinic from "@/views/MainLayout/HistoryOfTheClinic.vue";
 import Specialists from "@/views/InfoLayout/Specialists.vue";
 import Certificates from "@/views/InfoLayout/Certificates.vue";
 import Reviews from "@/views/InfoLayout/Reviews.vue";
+import Photo from "@/views/InfoLayout/Photo.vue";
 
 const routes = [
   {
@@ -60,6 +61,10 @@ const routes = [
       {
         path: 'reviews',
         component: Reviews,
+      },
+      {
+        path: 'photo',
+        component: Photo,
       }
     ]
   }

@@ -15,8 +15,17 @@
       />
     </div>
 
-    <div class="reviews-page__content reviews-page__content_mt-20">
-      <TextReview/>
+    <div class="reviews-page__texts reviews-page__texts_mt-20" v-if="activeReviewType === 'text'">
+      <TextReview
+          v-for="item in 8"
+          :key="item"
+      />
+    </div>
+    <div class="reviews-page__videos reviews-page__videos_mt-20" v-if="activeReviewType === 'video'">
+      <VideoReview
+          v-for="item in 8"
+          :key="item"
+      />
     </div>
   </div>
 </template>
@@ -25,13 +34,14 @@
 
 import Button2 from "@/components/utils/Button2.vue";
 import TextReview from "@/assets/scss/components/reviews/TextReview.vue";
+import VideoReview from "@/assets/scss/components/reviews/VideoReview.vue";
 
 export default {
   name: "Reviews",
-  components: {TextReview, Button2},
+  components: {VideoReview, TextReview, Button2},
   data() {
     return {
-      activeReviewType: 'text' //text, video
+      activeReviewType: 'video' //text, video
     }
   }
 }
@@ -45,10 +55,23 @@ export default {
     }
   }
 
-  &__content {
+  &__texts,
+  &__videos {
     &_mt-20 {
       margin-top: 20px;
     }
+  }
+
+  &__texts {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  &__videos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
   }
 }
 </style>
