@@ -10,6 +10,7 @@ import Specialists from "@/views/InfoLayout/Specialists.vue";
 import Certificates from "@/views/InfoLayout/Certificates.vue";
 import Reviews from "@/views/InfoLayout/Reviews.vue";
 import Photo from "@/views/InfoLayout/Photo.vue";
+import Price from "@/views/InfoLayout/Price.vue";
 
 const routes = [
   {
@@ -65,6 +66,10 @@ const routes = [
       {
         path: 'photo',
         component: Photo,
+      },
+      {
+        path: 'price',
+        component: Price,
       }
     ]
   }
