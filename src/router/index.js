@@ -12,6 +12,7 @@ import Reviews from "@/views/InfoLayout/Reviews.vue";
 import Photo from "@/views/InfoLayout/Photo.vue";
 import Price from "@/views/InfoLayout/Price.vue";
 import MassMediaAboutUs from "@/views/MainLayout/MassMediaAboutUs.vue";
+import Stock from "@/views/MainLayout/Stock.vue";
 
 const routes = [
   {
@@ -44,6 +45,10 @@ const routes = [
       {
         path: 'media',
         component: MassMediaAboutUs
+      },
+      {
+        path: 'stock',
+        component: Stock
       }
     ]
   },
