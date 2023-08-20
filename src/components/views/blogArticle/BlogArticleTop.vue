@@ -97,7 +97,7 @@ export default {
     padding: 0 10px;
     height: 35px;
     border-radius: 25px;
-    background-color: #7169FE;
+    background-color: #24c8bc;
     position: absolute;
     top: 25px;
     z-index: 10;
