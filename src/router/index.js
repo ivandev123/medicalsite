@@ -13,6 +13,10 @@ import Photo from "@/views/InfoLayout/Photo.vue";
 import Price from "@/views/InfoLayout/Price.vue";
 import MassMediaAboutUs from "@/views/MainLayout/MassMediaAboutUs.vue";
 import Stock from "@/views/MainLayout/Stock.vue";
+import StockArticle from "@/views/MainLayout/StockArticle.vue";
+import VideoLectures from "@/views/InfoLayout/VideoLectures.vue";
+import RegulatoryBodies from "@/views/MainLayout/RegulatoryBodies.vue";
+import HelpfulInfo from "@/views/MainLayout/HelpfulInfo.vue";
 
 const routes = [
   {
@@ -48,7 +52,25 @@ const routes = [
       },
       {
         path: 'stock',
-        component: Stock
+
+        children: [
+          {
+            path: '',
+            component: Stock,
+          },
+          {
+            path: ':id',
+            component: StockArticle,
+          }
+        ]
+      },
+      {
+        path: 'regulatory-bodies',
+        component: RegulatoryBodies,
+      },
+      {
+        path: 'helpful-info',
+        component: HelpfulInfo
       }
     ]
   },
@@ -80,6 +102,10 @@ const routes = [
       {
         path: 'price',
         component: Price,
+      },
+      {
+        path: 'video-lectures',
+        component: VideoLectures,
       }
     ]
   }

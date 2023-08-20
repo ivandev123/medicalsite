@@ -6,13 +6,19 @@
         <img src="@/assets/images/video-play.png" alt="play">
       </a>
     </div>
-    <div class="video-review__info">Отзыв матери о реабилитационном центре "Арма"</div>
+    <div class="video-review__info" v-if="showDesc">Отзыв матери о реабилитационном центре "Арма"</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "VideoReview"
+  name: "VideoReview",
+  props: {
+    showDesc: {
+      type: Boolean,
+      default: true
+    }
+  }
 }
 </script>
 
