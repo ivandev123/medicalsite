@@ -11,6 +11,7 @@ import Certificates from "@/views/InfoLayout/Certificates.vue";
 import Reviews from "@/views/InfoLayout/Reviews.vue";
 import Photo from "@/views/InfoLayout/Photo.vue";
 import Price from "@/views/InfoLayout/Price.vue";
+import MassMediaAboutUs from "@/views/MainLayout/MassMediaAboutUs.vue";
 
 const routes = [
   {
@@ -39,6 +40,10 @@ const routes = [
       {
         path: 'history',
         component: HistoryOfTheClinic
+      },
+      {
+        path: 'media',
+        component: MassMediaAboutUs
       }
     ]
   },

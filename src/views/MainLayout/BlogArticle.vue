@@ -1,5 +1,7 @@
 <template>
-  <BlogArticleTop/>
+  <article class="container">
+    <BlogArticleTop/>
+  </article>
 </template>
 
 <script>
@@ -11,6 +13,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 
 </style>
