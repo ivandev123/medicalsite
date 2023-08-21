@@ -17,6 +17,7 @@ import StockArticle from "@/views/MainLayout/StockArticle.vue";
 import VideoLectures from "@/views/InfoLayout/VideoLectures.vue";
 import RegulatoryBodies from "@/views/MainLayout/RegulatoryBodies.vue";
 import HelpfulInfo from "@/views/MainLayout/HelpfulInfo.vue";
+import Contacts from "@/views/MainLayout/Contacts.vue";
 
 const routes = [
   {
@@ -71,6 +72,10 @@ const routes = [
       {
         path: 'helpful-info',
         component: HelpfulInfo
+      },
+      {
+        path: 'contacts',
+        component: Contacts
       }
     ]
   },
