@@ -18,6 +18,8 @@ import VideoLectures from "@/views/InfoLayout/VideoLectures.vue";
 import RegulatoryBodies from "@/views/MainLayout/RegulatoryBodies.vue";
 import HelpfulInfo from "@/views/MainLayout/HelpfulInfo.vue";
 import Contacts from "@/views/MainLayout/Contacts.vue";
+import PrivacyPolicy from "@/views/MainLayout/PrivacyPolicy.vue";
+import TermsOfUse from "@/views/MainLayout/TermsOfUse.vue";
 
 const routes = [
   {
@@ -76,6 +78,14 @@ const routes = [
       {
         path: 'contacts',
         component: Contacts
+      },
+      {
+        path: 'policy',
+        component: PrivacyPolicy
+      },
+      {
+        path: 'terms',
+        component: TermsOfUse
       }
     ]
   },

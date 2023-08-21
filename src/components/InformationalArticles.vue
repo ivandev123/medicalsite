@@ -7,7 +7,21 @@ import ArticleItem from "@/components/ArticleItem.vue";
 
 export default defineComponent({
   name: "InformationalArticles",
-  props: ['pageWidth', 'type'],
+  props: {
+    // 'pageWidth', 'title', 'type'
+    pageWidth: {
+      type: Number,
+      default: 0
+    },
+    title: {
+      type: String,
+      default: 'Новости клиники'
+    },
+    type: {
+      type: String,
+      default: ''
+    },
+  },
   components: {ArticleItem, Button, SliderButtons, Carousel, Slide},
   computed: {
     getCountSlides() {
@@ -36,7 +50,7 @@ export default defineComponent({
 <template>
   <div class="informational-articles">
     <div class="informational-articles__title informational-articles__title_mb-42">
-      <h2>Новости клиники</h2>
+      <h2>{{ title }}</h2>
 
       <div class="informational-articles__title-right">
         <Button name="Больше новостей" @click="$router.push('/blog')"/>
