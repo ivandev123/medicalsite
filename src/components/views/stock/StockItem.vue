@@ -5,7 +5,7 @@
     <div class="stock-item__info">
       <div class="stock-item__title">Акция – бесплатная консультация</div>
       <p class="stock-item__description">Бесплатная консультация у любого специалиста до конца лета.</p>
-      <Button name="Подробнее" bg="orange"/>
+      <Button name="Подробнее" bg="orange" @click="$router.push(`/stock/1`)"/>
       <div class="stock-item__date">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 467.029 467.03" style="enable-background:new 0 0 467.029 467.03;" xml:space="preserve">
             <g>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <StockArticleTop/>
-    <InformationalArticles/>
+    <InformationalArticles :page-width="pageWidth"/>
   </div>
   <FooterCallToAction/>
 </template>
@@ -14,5 +14,19 @@ import InformationalArticles from "@/components/InformationalArticles.vue";
 export default {
   name: "StockArticle",
   components: {InformationalArticles, StockArticleTop, FooterCallToAction},
+  data() {
+    return {
+      pageWidth: 0,
+    }
+  },
+  methods: {
+    setWidth() {
+      this.pageWidth = window.innerWidth
+    },
+  },
+  created() {
+    this.setWidth()
+    window.onresize = () => this.setWidth()
+  }
 }
 </script>

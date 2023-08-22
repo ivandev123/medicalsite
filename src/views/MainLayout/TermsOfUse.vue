@@ -16,6 +16,8 @@ export default {
 
 <style scoped lang="scss">
 .terms-of-use {
+  padding-bottom: 50px;
+
   &__text {
     font-size: 18px;
 

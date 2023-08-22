@@ -628,77 +628,77 @@ export default [
             {
                 id: 1,
                 name: 'История клиники',
-                path: '/path'
+                path: '/history'
             },
             {
                 id: 2,
                 name: 'Специалисты',
-                path: '/path'
+                path: '/specialists'
             },
             {
                 id: 3,
                 name: 'Сертификаты и лицензии',
-                path: '/path'
+                path: '/certificates'
             },
             {
                 id: 4,
                 name: 'Цены',
-                path: '/path'
+                path: '/price'
             },
             {
                 id: 5,
                 name: 'Отзывы',
-                path: '/path'
+                path: '/reviews'
             },
             {
                 id: 6,
                 name: 'Фото',
-                path: '/path'
+                path: '/photo'
             },
             {
                 id: 7,
                 name: 'Статьи',
-                path: '/path'
+                path: '/blog'
             },
             {
                 id: 8,
                 name: 'СМИ о нас',
-                path: '/path'
+                path: '/media'
             },
             {
                 id: 9,
                 name: 'Акции',
-                path: '/path'
+                path: '/stock'
             },
             {
                 id: 10,
                 name: 'Видео лекции',
-                path: '/path'
+                path: '/video-lectures'
             },
             {
                 id: 11,
                 name: 'Контролирующие органы',
-                path: '/path'
+                path: '/regulatory-bodies'
             },
             {
                 id: 12,
                 name: 'Полезная информация',
-                path: '/path'
+                path: '/helpful-info'
             },
             {
                 id: 13,
                 name: 'Контакты',
-                path: '/path'
+                path: '/contacts'
             },
             {
                 id: 14,
                 name: 'Политика конфиденциальности',
-                path: '/path'
+                path: '/policy'
             },
             {
                 id: 15,
                 name: 'Пользовательское соглашение',
-                path: '/path'
+                path: '/terms'
             },
         ]
     },

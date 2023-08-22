@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ChambersInOurClinic/>
-    <OurCertificates/>
+    <OurCertificates :page-width="pageWidth"/>
   </div>
 </template>
 
@@ -11,7 +11,21 @@ import OurCertificates from "@/components/OurCertificates.vue";
 
 export default {
   name: "HistoryOfTheClinic",
-  components: {OurCertificates, ChambersInOurClinic}
+  components: {OurCertificates, ChambersInOurClinic},
+  data() {
+    return {
+      pageWidth: 0,
+    }
+  },
+  methods: {
+    setWidth() {
+      this.pageWidth = window.innerWidth
+    },
+  },
+  created() {
+    this.setWidth()
+    window.onresize = () => this.setWidth()
+  }
 }
 </script>
 

@@ -16,6 +16,8 @@ export default {
 
 <style scoped lang="scss">
 .privacy-policy {
+  padding-bottom: 50px;
+
   &__text {
     font-size: 18px;
 

@@ -5,11 +5,12 @@
 
       <div class="stock-page__content stock-page__content_mt-20">
         <StockItem
-            v-for="item in 10"
+            v-for="item in 6"
             :key="item"
         />
       </div>
-      <InformationalArticles/>
+      <Pagination :count="10"/>
+      <InformationalArticles :page-width="pageWidth"/>
     </div>
   </div>
   <FooterCallToAction/>
@@ -19,10 +20,25 @@
 import FooterCallToAction from "@/components/layouts/FooterCallToAction.vue";
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import StockItem from "@/components/views/stock/StockItem.vue";
+import Pagination from "@/components/utils/Pagination.vue";
 
 export default {
   name: "Stock",
-  components: {StockItem, InformationalArticles, FooterCallToAction}
+  components: {Pagination, StockItem, InformationalArticles, FooterCallToAction},
+  data() {
+    return {
+      pageWidth: 0,
+    }
+  },
+  methods: {
+    setWidth() {
+      this.pageWidth = window.innerWidth
+    },
+  },
+  created() {
+    this.setWidth()
+    window.onresize = () => this.setWidth()
+  }
 }
 </script>
 

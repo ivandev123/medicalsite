@@ -1,6 +1,6 @@
 <template>
   <div class="avatar">
-    <img alt="avatar" :src="avatar">
+    <img alt="avatar" :src="require('@/assets' + avatar)">
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   props: {
     avatar: {
       type: String,
-      default: '@/assets/images/home/reviews/avatar.png'
+      default: '/images/avatar.jpg'
     }
   }
 }

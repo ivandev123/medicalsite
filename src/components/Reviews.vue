@@ -15,7 +15,7 @@
       <Slide v-for="review in reviews" :key="review.id">
         <div class="reviews__item">
           <div class="reviews__up">
-            <Avatar :avatar="review.image"/>
+            <Avatar/>
             <div class="reviews__description">
               <div class="reviews__quotes reviews__quotes_down">
                 <svg width="44" height="38" viewBox="0 0 44 38" fill="none" xmlns="http://www.w3.org/2000/svg">

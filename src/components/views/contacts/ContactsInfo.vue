@@ -104,19 +104,26 @@
         <div class="contacts-info__item-info">
           <h3 style="line-height: 1.2;">Посетите одну из наших наркологических клиник</h3>
           <p>и только потом принимайте решение о лечении</p>
-          <Button name="Записаться на консультацию" padding="14px 20px" font-size="16px"/>
+          <Button name="Записаться на консультацию" padding="14px 20px" font-size="16px" @click="showOrderConsultationModal = true"/>
         </div>
       </div>
     </div>
   </div>
+  <OrderConsultationModal @close="showOrderConsultationModal = false" v-if="showOrderConsultationModal"/>
 </template>
 
 <script>
 import Button from "@/components/utils/Button.vue";
+import OrderConsultationModal from "@/components/modals/OrderConsultationModal.vue";
 
 export default {
   name: "ContactsInfo",
-  components: {Button}
+  components: {OrderConsultationModal, Button},
+  data() {
+    return {
+      showOrderConsultationModal: false,
+    }
+  }
 }
 </script>
 

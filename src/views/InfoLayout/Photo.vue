@@ -9,7 +9,7 @@
       />
     </div>
     <Reviews/>
-    <InformationalArticles type="small"/>
+    <InformationalArticles type="small" :page-width="pageWidth"/>
   </div>
 </template>
 

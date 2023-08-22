@@ -14,11 +14,11 @@ export default {
           v-for="item in 10"
           :key="item"
       >
-        <div class="preview-of-info-articles__item-image">
+        <div class="preview-of-info-articles__item-image" @click="$router.push(`/blog/${item}`)">
           <img src="@/assets/images/image-article.webp" alt="image">
         </div>
         <div class="preview-of-info-articles__item-info">
-          <h3 class="preview-of-info-articles__item-title preview-of-info-articles__item-title_mb-25">
+          <h3 class="preview-of-info-articles__item-title preview-of-info-articles__item-title_mb-25" @click="$router.push(`/blog/${item}`)">
             Goodman GSX13: The Popular Central Air Conditioner for Canadian Homes
           </h3>
           <p class="preview-of-info-articles__item-desc preview-of-info-articles__item-desc_mb-25">
@@ -26,7 +26,10 @@ export default {
             That’s why we’re here to help you navigate the many options available on the market and recommend the best products for
           </p>
 
-          <div class="preview-of-info-articles__item-more preview-of-info-articles__item-more_mb-20">Read More »</div>
+          <div
+              class="preview-of-info-articles__item-more preview-of-info-articles__item-more_mb-20"
+              @click="$router.push(`/blog/${item}`)"
+          >Read More »</div>
         </div>
         <div class="preview-of-info-articles__item-meta">
           <span>HVAC TRUST</span>

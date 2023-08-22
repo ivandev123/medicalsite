@@ -1,6 +1,6 @@
 <template>
   <BlockOfVideoLectures/>
-  <InformationalArticles type="small"/>
+  <InformationalArticles type="small" :page-width="pageWidth"/>
 </template>
 
 <script>
@@ -9,7 +9,21 @@ import BlockOfVideoLectures from "@/components/views/videoLectures/BlockOfVideoL
 
 export default {
   name: "VideoLectures",
-  components: {BlockOfVideoLectures, InformationalArticles}
+  components: {BlockOfVideoLectures, InformationalArticles},
+  data() {
+    return {
+      pageWidth: 0,
+    }
+  },
+  methods: {
+    setWidth() {
+      this.pageWidth = window.innerWidth
+    },
+  },
+  created() {
+    this.setWidth()
+    window.onresize = () => this.setWidth()
+  }
 }
 </script>
 

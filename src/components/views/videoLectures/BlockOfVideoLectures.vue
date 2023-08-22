@@ -20,7 +20,7 @@ import Pagination from "@/components/utils/Pagination.vue";
 
 export default {
   name: "BlockOfVideoLectures",
-  components: {Pagination, VideoReview}
+  components: {Pagination, VideoReview},
 }
 </script>
 
