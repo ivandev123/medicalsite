@@ -1,0 +1,27 @@
+stages:
+  - build
+  - deploy
+
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build . -t node_for_publish_dev --no-cache
+
+
+
+deploy:
+  before_script:
+    - docker container rm node_for_publish_dev -f
+  image: docker:latest
+  stage: deploy
+  services:
+    - docker:dind
+  script:
+    - docker run -d --rm --name node_for_publish_$STATUS -P node_for_publish_dev:latest
+    - echo 'you can find me on http://158.160.25.77:80/'
+ 
+
