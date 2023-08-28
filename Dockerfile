@@ -2,8 +2,9 @@ FROM node:8.11
 
 WORKDIR /opt/app
 
+
 RUN npm install
 
 EXPOSE 80
 
-CMD [ "npm", "serve", "run" ]
+CMD [ "npm", "run", "serve"]
