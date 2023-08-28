@@ -21,7 +21,7 @@ deploy:
   services:
     - docker:dind
   script:
-    - docker run -d --name node_for_publish_dev -P node_for_publish_dev:latest
+    - docker run -d --name node_for_publish_dev -p 0.0.0.0:80:8080 node_for_publish_dev:latest
     - echo 'you can find me on http://158.160.25.77:80/'
  
 
