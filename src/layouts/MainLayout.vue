@@ -5,7 +5,7 @@ import Footer from "@/components/layouts/Footer.vue";
 
 export default defineComponent({
   name: "MainLayout",
-  components: {Footer, Header}
+  components: {Footer, Header},
 })
 </script>
 

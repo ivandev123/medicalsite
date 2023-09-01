@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="padding-bottom: 50px;">
     <ChambersInOurClinic/>
     <OurCertificates :page-width="pageWidth"/>
   </div>

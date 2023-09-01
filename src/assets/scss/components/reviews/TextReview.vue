@@ -1,22 +1,30 @@
 <template>
   <div class="text-review">
     <div class="text-review__info">
-      <div class="text-review__name">Елена</div>
-      <div class="text-review__date">22 марта 2022</div>
+      <div class="text-review__name">{{ review.name }}</div>
+      <div class="text-review__date">{{ `${+getDate[2]} ${months[+getDate[1]]} ${getDate[0]}` }}</div>
+<!--      <div class="text-review__date">22 марта 2022</div>-->
     </div>
 
-    <p class="text-review__text">
-      Меня зовут Елена. Я — зависимая. Если бы кто-то сказал мне много лет назад, что я зависимая, то я восприняла бы это как приговор.
-      Сегодня я понимаю, что с этим можно жить.
-      И не просто влачить свое жалкое существование, постоянно в чем-то себя ограничивая, а жить в полном смысле этого слова.
-      Жить и радоваться жизни, ничего не употребляя, оставаясь счастливым, радостным и свободным человеком.
-    </p>
+    <p class="text-review__text">{{ review.content }}</p>
   </div>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
-  name: "TextReview"
+  name: "TextReview",
+  props: ['review'],
+  computed: {
+    ...mapState(['months']),
+
+    getDate() {
+      return this.review.created_at
+          .split('T')[0]
+          .split('-')
+    }
+  }
 }
 </script>
 

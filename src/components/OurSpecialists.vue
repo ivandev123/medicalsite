@@ -1,6 +1,7 @@
 <script>
 import {defineComponent} from 'vue'
 import Button from "@/components/utils/Button.vue";
+import {mapState} from "vuex";
 
 export default defineComponent({
   name: "OurSpecialists",
@@ -10,7 +11,13 @@ export default defineComponent({
       default: 'Наши специалисты'
     }
   },
-  components: {Button}
+  components: {Button},
+  computed: {
+    ...mapState('specialists', ['specialists']),
+  },
+  mounted() {
+    if (!this.specialists.length) this.$store.dispatch('specialists/getSpecialists')
+  }
 })
 </script>
 
@@ -21,25 +28,25 @@ export default defineComponent({
     <div class="our-specialists__content our-specialists__content_mt-50">
       <div
           class="our-specialists__item"
-          v-for="item in 4"
+          v-for="item in specialists.splice(0, 4)"
           :key="item"
       >
         <div class="our-specialists__item-avatar">
-          <img src="@/assets/images/specialist.jpg" alt="specialist">
+          <img alt="specialist" :src="item.image">
         </div>
 
         <div class="our-specialists__item-info">
-          <div class="our-specialists__item-fullname">Вашкин Дмитрий Владимирович</div>
-          <div class="our-specialists__item-job">Главный врач</div>
+          <div class="our-specialists__item-fullname">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</div>
+          <div class="our-specialists__item-job">{{ item.job }}</div>
           <div class="our-specialists__item-experience">
             <div class="our-specialists__item-experience-years">
               <span>Стаж работы</span>
-              <span>23 года</span>
+              <span>{{ item.work_experience }}</span>
             </div>
             <div/>
             <div class="our-specialists__item-experience-years">
               <span>Стаж в клинике</span>
-              <span>16 лет</span>
+              <span>{{ item.experience_in_clinic }}</span>
             </div>
           </div>
         </div>

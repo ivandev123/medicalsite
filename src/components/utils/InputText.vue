@@ -8,6 +8,7 @@
           :style="`height: ${height}; border-radius: ${br}; padding: ${padding};`"
           :placeholder="placeholder"
           v-model="inputValue"
+          @input="$emit('set-value', inputValue)"
       >
     </div>
   </div>
@@ -20,6 +21,11 @@ export default {
   data() {
     return {
       inputValue: ''
+    }
+  },
+  watch: {
+    defaultValue() {
+      this.inputValue = this.defaultValue
     }
   },
   mounted() {

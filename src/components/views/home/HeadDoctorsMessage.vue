@@ -11,11 +11,6 @@ export default defineComponent({
       showOrderConsultationModal: false,
     }
   },
-  methods: {
-    sendFormOrderConsultation() {
-      // this.showOrderConsultationModal = false
-    }
-  }
 })
 </script>
 
@@ -43,7 +38,6 @@ export default defineComponent({
   </div>
   <OrderConsultationModal
       @close="showOrderConsultationModal = false"
-      @send-form="sendFormOrderConsultation"
       v-if="showOrderConsultationModal"
   />
 </template>

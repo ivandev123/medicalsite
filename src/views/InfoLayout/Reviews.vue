@@ -17,8 +17,9 @@
 
     <div class="reviews-page__texts reviews-page__texts_mt-20" v-if="activeReviewType === 'text'">
       <TextReview
-          v-for="item in 8"
-          :key="item"
+          v-for="review in reviews.text"
+          :key="review.id"
+          :review="review"
       />
     </div>
     <div class="reviews-page__videos reviews-page__videos_mt-20" v-if="activeReviewType === 'video'">
@@ -35,14 +36,22 @@
 import Button2 from "@/components/utils/Button2.vue";
 import TextReview from "@/assets/scss/components/reviews/TextReview.vue";
 import VideoReview from "@/assets/scss/components/reviews/VideoReview.vue";
+import { getReviews } from "@/api";
 
 export default {
   name: "Reviews",
   components: {VideoReview, TextReview, Button2},
   data() {
     return {
-      activeReviewType: 'video' //text, video
+      activeReviewType: 'text', //text, video
+      reviews: {
+        text: [],
+        video: []
+      },
     }
+  },
+  mounted() {
+    getReviews().then(response => this.reviews.text = response)
   }
 }
 </script>

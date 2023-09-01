@@ -30,12 +30,6 @@ export default defineComponent({
       return headerLinks
     }
   },
-  methods: {
-    sendFormOrderConsultation() {
-      // this.showOrderConsultationModal = false
-
-    }
-  }
 })
 </script>
 
@@ -75,7 +69,6 @@ export default defineComponent({
 
   <OrderConsultationModal
       @close="showOrderConsultationModal = false"
-      @send-form="sendFormOrderConsultation"
       v-if="showOrderConsultationModal"
   />
 </template>

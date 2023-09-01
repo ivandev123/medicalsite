@@ -43,7 +43,6 @@ export default defineComponent({
       :type="type"
       :class="bg"
       :style="`max-width: ${width}; padding: ${padding}; border-radius: ${br}; font-size: ${fontSize};`"
-      @click.prevent="$emit('click')"
   >{{ name }}</button>
 </template>
 

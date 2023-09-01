@@ -4,9 +4,9 @@
 
     <div class="our-certificates__content our-certificates__content_mt-50">
       <Carousel class="our-certificates__carousel" :items-to-show="getCountSlides" :autoplay="10000" :wrap-around="true" :transition="500">
-        <Slide v-for="item in 10" :key="item">
+        <Slide v-for="item in certificates" :key="item">
           <RouterLink class="our-certificates__item" to="">
-            <img src="@/assets/images/certificate.jpg" alt="certificate">
+            <img alt="certificate" :src="item.image">
           </RouterLink>
         </Slide>
 
@@ -21,6 +21,7 @@
 <script>
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination } from 'vue3-carousel';
+import { getCertificates } from "@/api";
 
 export default {
   name: "OurCertificates",
@@ -39,6 +40,11 @@ export default {
     Carousel,
     Slide,
     Pagination,
+  },
+  data() {
+    return {
+      certificates: [],
+    }
   },
   computed: {
     getCountSlides() {
@@ -60,6 +66,9 @@ export default {
 
       return getCount(4, 3)
     }
+  },
+  mounted() {
+    getCertificates().then(response => this.certificates = response)
   }
 }
 </script>

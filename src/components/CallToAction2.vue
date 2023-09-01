@@ -18,7 +18,6 @@
   </div>
   <OrderConsultationModal
       @close="showOrderConsultationModal = false"
-      @send-form="sendFormOrderConsultation"
       v-if="showOrderConsultationModal"
   />
 </template>
@@ -35,12 +34,6 @@ export default {
       showOrderConsultationModal: false,
     }
   },
-  methods: {
-    sendFormOrderConsultation() {
-      // this.showOrderConsultationModal = false
-
-    }
-  }
 }
 </script>
 
