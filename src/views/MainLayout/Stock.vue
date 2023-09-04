@@ -5,8 +5,9 @@
 
       <div class="stock-page__content stock-page__content_mt-20">
         <StockItem
-            v-for="item in 6"
-            :key="item"
+            v-for="stock in stocks"
+            :key="stock.id"
+            :stock="stock"
         />
       </div>
       <Pagination :count="10"/>
@@ -21,6 +22,7 @@ import FooterCallToAction from "@/components/layouts/FooterCallToAction.vue";
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import StockItem from "@/components/views/stock/StockItem.vue";
 import Pagination from "@/components/utils/Pagination.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "Stock",
@@ -31,13 +33,21 @@ export default {
     }
   },
   methods: {
+    ...mapActions('stocks', ['getStocks']),
+
     setWidth() {
       this.pageWidth = window.innerWidth
     },
   },
+  computed: {
+    ...mapState('stocks', ['stocks']),
+  },
   created() {
     this.setWidth()
     window.onresize = () => this.setWidth()
+  },
+  mounted() {
+    this.getStocks()
   }
 }
 </script>

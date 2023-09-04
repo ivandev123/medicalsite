@@ -28,6 +28,14 @@ export async function getBlogArticle(blogArticleId) {
   return await getAsync(`/blog/${blogArticleId}`)
 }
 
+export async function getStocks() {
+  return await getAsync('/stocks')
+}
+
+export async function getStock(id) {
+  return await getAsync(`/stocks/${id}`)
+}
+
 //////////POST
 export async function makeAnAppointment(form) {
   return await postAsync('/feedback', form)

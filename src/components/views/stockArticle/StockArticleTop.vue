@@ -1,15 +1,17 @@
 <template>
   <article class="stock-article-top">
-    <h1>Название акции</h1>
+    <h1>{{ stock.title }}</h1>
 
     <div class="stock-article-top__content stock-article-top__content_mt-20">
-      <img src="@/assets/images/stock-article-top-image.png" alt="article image">
-      <div class="stock-article-top__info">
-        <p>Скидка при прохождении курса лечения в нашей клинике.</p>
-        <p>Получите скидку на реабилитацию 10 000 рублей этим летом! Выгодная скидка на вторичную реабилитацию в нашем центре, после полного прохождения <a href="/uslugi-tseny/lechenie-alkogolizma/">курса лечения алкоголизма</a>.</p>
-        <p>Удобное расположение, квалифицированный штат специалистов и эффективные методы реабилитации помогут вам избавиться от зависимости! Успейте до конца лета!</p>
-        <p>Подробности акции по телефону <a href="tel:88633033580">8 (863) 303-35-80</a> или в чате <a href="https://web.whatsapp.com/send/?phone=79286161265" rel="noindex">WhatsApp</a>.</p>
-      </div>
+      <img alt="article image" :src="stock.image">
+
+      <div v-html="stock.content"/>
+<!--      <div class="stock-article-top__info">-->
+<!--        <p>Скидка при прохождении курса лечения в нашей клинике.</p>-->
+<!--        <p>Получите скидку на реабилитацию 10 000 рублей этим летом! Выгодная скидка на вторичную реабилитацию в нашем центре, после полного прохождения <a href="/uslugi-tseny/lechenie-alkogolizma/">курса лечения алкоголизма</a>.</p>-->
+<!--        <p>Удобное расположение, квалифицированный штат специалистов и эффективные методы реабилитации помогут вам избавиться от зависимости! Успейте до конца лета!</p>-->
+<!--        <p>Подробности акции по телефону <a href="tel:88633033580">8 (863) 303-35-80</a> или в чате <a href="https://web.whatsapp.com/send/?phone=79286161265" rel="noindex">WhatsApp</a>.</p>-->
+<!--      </div>-->
     </div>
     <div class="stock-article-top__date stock-article-top__date_mt-10">
       <p><strong>Срок действия акции:</strong></p>
@@ -21,15 +23,33 @@
             </g>
           <g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/>
         </svg>
-        <time>01.07.2023 — 31.08.2023</time>
+        <time>{{ getDate(stock.start_stock) }} — {{ getDate(stock.end_stock) }}</time>
       </div>
     </div>
   </article>
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
+
 export default {
-  name: "StockArticleTop"
+  name: "StockArticleTop",
+  methods: {
+    ...mapActions('stocks', ['getStock']),
+
+    getDate(date) {
+      return date
+          ?.split('-')
+          .reverse()
+          .join('.')
+    }
+  },
+  computed: {
+    ...mapState('stocks', ['stock']),
+  },
+  mounted() {
+    this.getStock(+this.$route.params.id)
+  }
 }
 </script>
 
@@ -45,6 +65,7 @@ export default {
 
     & > img {
       margin: 0 20px 20px 0;
+      border-radius: 20px;
       float: left;
       object-fit: cover;
     }

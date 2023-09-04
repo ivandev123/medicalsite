@@ -74,6 +74,7 @@ export default defineComponent({
             :title="article.title"
             :date="article.created_at"
             :views="article.views"
+            @click="$router.push(`/stock/${article.id}`)"
         />
       </Slide>
     </Carousel>

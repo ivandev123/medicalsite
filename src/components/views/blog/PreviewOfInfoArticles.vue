@@ -36,7 +36,10 @@ export default {
           <img alt="image" :src="article.image">
         </div>
         <div class="preview-of-info-articles__item-info">
-          <h3 class="preview-of-info-articles__item-title preview-of-info-articles__item-title_mb-25" @click="$router.push(`/blog/${item}`)">
+          <h3
+              class="preview-of-info-articles__item-title preview-of-info-articles__item-title_mb-25"
+              @click="$router.push(`/blog/${article.id}`)"
+          >
             {{ article.title }}
           </h3>
           <p class="preview-of-info-articles__item-desc preview-of-info-articles__item-desc_mb-25">

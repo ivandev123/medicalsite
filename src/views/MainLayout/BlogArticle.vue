@@ -100,7 +100,7 @@ export default {
   }
 
   &__content {
-    width: 100%;
+    width: calc(100% - 360px);
   }
 
   &__inner {

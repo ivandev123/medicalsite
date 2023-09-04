@@ -1,11 +1,11 @@
 <template>
   <div class="stock-item">
-    <img src="@/assets/images/stock-item-image.png" alt="image" class="stock-item__image">
+    <img alt="image" class="stock-item__image" :src="stock.image">
 
     <div class="stock-item__info">
-      <div class="stock-item__title">Акция – бесплатная консультация</div>
-      <p class="stock-item__description">Бесплатная консультация у любого специалиста до конца лета.</p>
-      <Button name="Подробнее" bg="orange" @click="$router.push(`/stock/1`)"/>
+      <div class="stock-item__title">{{ stock.title }}</div>
+      <p class="stock-item__description">{{ stock.description }}</p>
+      <Button name="Подробнее" bg="orange" @click="$router.push(`/stock/${stock.id}`)"/>
       <div class="stock-item__date">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 467.029 467.03" style="enable-background:new 0 0 467.029 467.03;" xml:space="preserve">
             <g>
@@ -13,7 +13,8 @@
             </g>
           <g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/>
         </svg>
-        <time>01.07.2023 — 31.08.2023</time>
+        <time>{{ getDate(stock.start_stock) }} — {{ getDate(stock.end_stock) }}</time>
+<!--        31.08.2023-->
       </div>
     </div>
   </div>
@@ -24,7 +25,16 @@ import Button from "@/components/utils/Button.vue";
 
 export default {
   name: "StockItem",
-  components: {Button}
+  components: {Button},
+  props: ['stock'],
+  methods: {
+    getDate(date) {
+      return date
+          .split('-')
+          .reverse()
+          .join('.')
+    }
+  }
 }
 </script>
 
