@@ -4,11 +4,11 @@
 
     <div class="blog-author__content blog-author__content_mt-20">
       <div class="blog-author__avatar">
-        <img src="@/assets/images/avatar.jpg" alt="avatar">
+        <img alt="avatar" :src="author_avatar">
       </div>
       <div class="blog-author__info">
-        <h3>Дарья Тихонова</h3>
-        <p>Практикующий акушер-гинеколог и репродуктолог, врач УЗД</p>
+        <h3>{{ author }}</h3>
+        <p>{{ author_job }}</p>
       </div>
     </div>
   </div>
@@ -16,7 +16,8 @@
 
 <script>
 export default {
-  name: "BlogAuthor"
+  name: "BlogAuthor",
+  props: ['author', 'author_job', 'author_avatar'],
 }
 </script>
 

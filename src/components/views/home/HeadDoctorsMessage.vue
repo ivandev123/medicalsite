@@ -26,13 +26,19 @@ export default defineComponent({
       </h2>
       <div class="head-doctors-message__subtitle">Главный врач</div>
 
+      <div class="head-doctors-message__content">
       <div class="head-doctors-message__text">
         <p>Химическая зависимость — это тяжелая смертельная болезнь. Каждый день употребления наркотиков приближает человека к критической черте.</p>
         <p>К сожалению, на дому вылечить зависимость невозможно. Также не существует «волшебной таблетки», после которой больной резко исцелится. Если вы хотите помочь близкому в беде, не тратьте драгоценное время на сомнительные советы из интернета и на шарлатанов!</p>
         <p>Мы придерживаемся простого взгляда: медицинская помощь должна быть профессиональной. Индивидуальный подход, комплексная терапия и бережная психологическая поддержка — <span>вот надежный путь к выздоровлению!</span></p>
       </div>
+
+      <div class="head-doctors-message__picture top">
+        <img src="../../../assets/images/header-doctor.png" alt="Главврач">
+      </div>
+      </div>
     </div>
-    <div class="head-doctors-message__picture">
+    <div class="head-doctors-message__picture right">
       <img src="../../../assets/images/header-doctor.png" alt="Главврач">
     </div>
   </div>

@@ -1,6 +1,24 @@
 <script>
+import {mapActions, mapState} from "vuex";
+
 export default {
-  name: 'PreviewOfInfoArticles'
+  name: 'PreviewOfInfoArticles',
+  methods: {
+    ...mapActions('blog', ['getBlogArticles']),
+
+    getDate(date) {
+      return date
+          .split('T')[0]
+          .split('-')
+    }
+  },
+  computed: {
+    ...mapState('blog', ['blogArticles']),
+    ...mapState(['months']),
+  },
+  mounted() {
+    this.getBlogArticles()
+  }
 }
 </script>
 
@@ -11,30 +29,29 @@ export default {
     <div class="preview-of-info-articles__content preview-of-info-articles__content_mt-30">
       <article
           class="preview-of-info-articles__item"
-          v-for="item in 10"
-          :key="item"
+          v-for="article in blogArticles"
+          :key="article.id"
       >
-        <div class="preview-of-info-articles__item-image" @click="$router.push(`/blog/${item}`)">
-          <img src="@/assets/images/image-article.webp" alt="image">
+        <div class="preview-of-info-articles__item-image" @click="$router.push(`/blog/${article.id}`)">
+          <img alt="image" :src="article.image">
         </div>
         <div class="preview-of-info-articles__item-info">
           <h3 class="preview-of-info-articles__item-title preview-of-info-articles__item-title_mb-25" @click="$router.push(`/blog/${item}`)">
-            Goodman GSX13: The Popular Central Air Conditioner for Canadian Homes
+            {{ article.title }}
           </h3>
           <p class="preview-of-info-articles__item-desc preview-of-info-articles__item-desc_mb-25">
-            At HVAC Trust, we understand that choosing the right central air conditioner for your home is an important decision.
-            That’s why we’re here to help you navigate the many options available on the market and recommend the best products for
+            {{ article.description }}
           </p>
 
           <div
               class="preview-of-info-articles__item-more preview-of-info-articles__item-more_mb-20"
-              @click="$router.push(`/blog/${item}`)"
+              @click="$router.push(`/blog/${article.id}`)"
           >Read More »</div>
         </div>
         <div class="preview-of-info-articles__item-meta">
-          <span>HVAC TRUST</span>
-          <span>February 1, 2023</span>
-          <span>No Comments</span>
+          <span>{{ article.author }}</span>
+          <span>{{ +getDate(article.created_at)[2] }} {{ months[+getDate(article.created_at)[1]] }}, {{ getDate(article.created_at)[0] }}</span>
+          <span>{{ article.comments_count ? article.comments_count : 'Без комментариев' }}</span>
         </div>
       </article>
     </div>
@@ -150,6 +167,10 @@ export default {
         font-size: 12px;
         line-height: 1.3em;
         color: #adadad;
+
+        &:nth-child(2) {
+          text-transform: capitalize;
+        }
 
         &:not(:first-child) {
           &::before {

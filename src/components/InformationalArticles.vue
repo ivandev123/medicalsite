@@ -4,9 +4,11 @@ import Button from "@/components/utils/Button.vue";
 import SliderButtons from "@/components/utils/SliderButtons.vue";
 import { Carousel, Slide } from "vue3-carousel";
 import ArticleItem from "@/components/ArticleItem.vue";
+import {mapActions, mapState} from "vuex";
 
 export default defineComponent({
   name: "InformationalArticles",
+  components: {ArticleItem, Button, SliderButtons, Carousel, Slide},
   props: {
     // 'pageWidth', 'title', 'type'
     pageWidth: {
@@ -22,8 +24,12 @@ export default defineComponent({
       default: ''
     },
   },
-  components: {ArticleItem, Button, SliderButtons, Carousel, Slide},
+  methods: {
+    ...mapActions('blog', ['getBlogArticles'])
+  },
   computed: {
+    ...mapState('blog', ['blogArticles']),
+
     getCountSlides() {
       const getCount = (firstNum, secondNum) => {
         return !this.type ? firstNum : this.type === 'small' ? secondNum : 0
@@ -43,6 +49,9 @@ export default defineComponent({
 
       return getCount(4, 3)
     }
+  },
+  mounted() {
+    this.getBlogArticles()
   }
 })
 </script>
@@ -59,8 +68,13 @@ export default defineComponent({
     </div>
 
     <Carousel ref="carousel" :items-to-show="getCountSlides">
-      <Slide v-for="article in 5" :key="article.id">
-        <ArticleItem/>
+      <Slide v-for="article in blogArticles" :key="article.id">
+        <ArticleItem
+            :image="article.image"
+            :title="article.title"
+            :date="article.created_at"
+            :views="article.views"
+        />
       </Slide>
     </Carousel>
   </div>

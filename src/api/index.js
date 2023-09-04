@@ -20,6 +20,14 @@ export async function getSpecialists() {
   return await getAsync('/specialists');
 }
 
+export async function getBlogArticles() {
+  return await getAsync('/blog');
+}
+
+export async function getBlogArticle(blogArticleId) {
+  return await getAsync(`/blog/${blogArticleId}`)
+}
+
 //////////POST
 export async function makeAnAppointment(form) {
   return await postAsync('/feedback', form)

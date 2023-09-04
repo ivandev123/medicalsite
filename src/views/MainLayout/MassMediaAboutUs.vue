@@ -10,7 +10,7 @@
             v-for="item in 10"
             :key="item"
         >
-          <ArticleItem :show-count-views="false"/>
+          <ArticleItem/>
         </a>
       </div>
 

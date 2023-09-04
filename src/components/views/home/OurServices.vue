@@ -31,7 +31,7 @@ export default {
     ...mapState('services', ['services']),
   },
   mounted() {
-    if (!this.services.length) this.$store.dispatch('services/getServices')
+    if (!this.services?.length) this.$store.dispatch('services/getServices')
   }
 }
 </script>

@@ -28,7 +28,7 @@ export default defineComponent({
     <div class="our-specialists__content our-specialists__content_mt-50">
       <div
           class="our-specialists__item"
-          v-for="item in specialists.splice(0, 4)"
+          v-for="item in specialists?.splice(0, 4)"
           :key="item"
       >
         <div class="our-specialists__item-avatar">

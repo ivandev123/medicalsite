@@ -65,3 +65,11 @@
     }
   }
 }
+
+@media screen and (max-width: 1084px) {
+  .operating-procedure {
+    &__content {
+      grid-template-columns: 1fr;
+    }
+  }
+}

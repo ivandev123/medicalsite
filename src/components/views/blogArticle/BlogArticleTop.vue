@@ -1,17 +1,18 @@
 <template>
   <div class="blog-article-top">
     <header class="blog-article-top__body">
-      <img src="@/assets/images/blog-article-top.jpg" alt="image">
+      <img alt="image" :src="data.image">
 
       <div class="blog-article-top__content">
         <div class="blog-article-top__title">
-          <h1>Фитбол для беременных: когда можно заниматься, какие упражнения рекомендуются</h1>
+          <h1>{{ data.title }}</h1>
         </div>
 
         <div class="blog-article-top__meta left">
           <div class="blog-article-top__meta-body">
-            <img src="@/assets/images/avatar.jpg" alt="avatar" class="blog-article-top__avatar">
-            Дарья Тихонова - 02.12.2021
+            <img alt="avatar" class="blog-article-top__avatar" :src="data.author_avatar">
+            Дарья Тихонова - {{ getDate?.reverse().join('.') }}
+<!--            Дарья Тихонова - 02.12.2021-->
           </div>
         </div>
         <div class="blog-article-top__meta right">
@@ -19,13 +20,13 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none">
               <path d="M5.25 18C3.45507 18 2 16.5449 2 14.75V6.25C2 4.45507 3.45507 3 5.25 3H18.75C20.5449 3 22 4.45507 22 6.25V14.75C22 16.5449 20.5449 18 18.75 18H12.9648L7.57814 21.8173C7.12752 22.1366 6.50337 22.0301 6.18407 21.5795C6.06432 21.4105 6 21.2085 6 21.0016L5.9992 18H5.25Z" fill="#FFFFFF"/>
             </svg>
-            0
+            {{ data.comments_count }}
           </div>
           <div class="blog-article-top__views">
             <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 576 512">
               <path d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z" fill="#FFFFFF"/>
             </svg>
-            132
+            {{ data.views }}
           </div>
           <div class="blog-article-top__time">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 467.029 467.03" style="enable-background:new 0 0 467.029 467.03;" xml:space="preserve">
@@ -34,18 +35,18 @@
             </g>
               <g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/>
           </svg>
-            4 мин
+            {{ getReadingTime }}
           </div>
         </div>
       </div>
     </header>
 
     <div class="blog-article-top__author">
-      <img src="@/assets/images/avatar.jpg" alt="avatar" class="blog-article-top__author-avatar">
+      <img alt="avatar" class="blog-article-top__author-avatar" :src="data.author_avatar">
 
       <div class="blog-article-top__author-info">
-        <div class="blog-article-top__author-fullname">Дарья Тихонова</div>
-        <div class="blog-article-top__author-job">Практикующий акушер-гинеколог и репродуктолог, врач УЗД</div>
+        <div class="blog-article-top__author-fullname">{{ data.author }}</div>
+        <div class="blog-article-top__author-job">{{ data.author_job }}</div>
       </div>
     </div>
   </div>
@@ -54,6 +55,20 @@
 <script>
 export default {
   name: "BlogArticleTop",
+  props: ['data'],
+  computed: {
+    getDate() {
+      return this.data?.created_at
+          ?.split('T')[0]
+          .split('-')
+    },
+    getReadingTime() {
+      const hours = Math.floor(this.data.reading_time / 60) + ' ч. '
+      const minutes = this.data.reading_time % 60 + ' м.'
+
+      return hours + minutes
+    }
+  }
 }
 </script>
 
@@ -123,6 +138,7 @@ export default {
       font-weight: 700;
       font-size: 13px;
       color: #fff;
+      white-space: nowrap;
     }
 
     &-body {

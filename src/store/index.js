@@ -1,11 +1,13 @@
 import { createStore } from 'vuex'
 import services from "@/store/modules/services";
 import specialists from "@/store/modules/specialists";
+import blog from "@/store/modules/blog";
 
 export default createStore({
   modules: {
     services,
     specialists,
+    blog,
   },
   state: {
     months: [
@@ -21,7 +23,7 @@ export default createStore({
       "октября",
       "ноября",
       "декабря",
-    ]
+    ],
   },
   getters: {
   },
