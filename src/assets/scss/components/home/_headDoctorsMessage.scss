@@ -22,6 +22,7 @@
         display: flex;
         align-items: center;
         gap: 15px 45px;
+        line-height: 1.1;
       }
     }
 
@@ -67,6 +68,10 @@
 
     &.top {
       display: none;
+
+      & > img {
+        margin: 0 auto;
+      }
     }
   }
 }
@@ -81,28 +86,6 @@
         }
       }
     }
-
-    //&__content {
-    //  display: flex;
-    //  flex-direction: column-reverse;
-    //  row-gap: 20px;
-    //}
-    //
-    //&__picture {
-    //  &.right {
-    //    display: none;
-    //  }
-    //
-    //  &.top {
-    //    display: block;
-    //    margin: 0 auto;
-    //  }
-    //}
-
-    //&__left {
-    //  flex: 0 0 100%;
-    //  max-width: 100%;
-    //}
   }
 }
 
@@ -117,6 +100,42 @@
       flex: 0 0 30%;
       max-width: 30%;
       min-width: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .head-doctors-message {
+    &__subtitle {
+      margin-bottom: 10px;
+    }
+
+    &__left {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    &__picture {
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      &.top {
+        display: block;
+      }
+
+      &.right {
+        display: none;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+    }
+
+    &__text {
+      padding: 50px 7.2%;
     }
   }
 }

@@ -6,13 +6,14 @@
         <span>Ростове-на-Дону</span>
       </h1>
 
-      <div class="index-top-form__subtitle">Медицинские услуги опытных врачей</div>
+      <h2 class="index-top-form__subtitle">Медицинские услуги опытных врачей</h2>
 
       <form>
-        <p>Получи консультацию <span>бесплатно</span></p>
+        <h2>Получи консультацию <span>бесплатно</span></h2>
 
         <div class="index-top-form__fields">
           <InputText
+              style="grid-area: name;"
               placeholder="Ваше имя"
               padding="0 25px"
               height="50px"
@@ -21,6 +22,7 @@
               @set-value="setName"
           />
           <InputText
+              style="grid-area: phone;"
               placeholder="Ваш телефон"
               padding="0 25px"
               height="50px"
@@ -30,11 +32,13 @@
               @set-value="setPhone"
           />
           <Button
+              style="grid-area: button;"
               type="submit"
               name="Записаться на приём"
-              bg="orange"
+              height="50px"
               width="100%"
               br="24px"
+              bg="orange"
               @click.prevent="sendForm"
           />
         </div>

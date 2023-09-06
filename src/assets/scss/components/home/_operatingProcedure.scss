@@ -73,3 +73,32 @@
     }
   }
 }
+
+@media screen and (max-width: 750px) {
+  .operating-procedure {
+    &__subtitle {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .operating-procedure {
+    &__item {
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+
+      &-number {
+        margin: 0 auto;
+        transform: unset;
+        position: static;
+      }
+
+      &-content {
+        margin-left: 0;
+        padding: 0 30px;
+      }
+    }
+  }
+}

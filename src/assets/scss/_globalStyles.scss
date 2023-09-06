@@ -274,3 +274,41 @@ main {
     padding: 0 15px;
   }
 }
+
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 38px;
+  }
+}
+
+@media screen and (max-width: 428px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 29px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  h1 {
+    font-size: 34px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 368px) {
+  h1 {
+    font-size: 31px;
+  }
+}

@@ -54,7 +54,7 @@ export default defineComponent({
   <PrimaryDiagnosis/>
   <OurPrograms/>
   <StagesOfTreatment/>
-  <OurSpecialists/>
+  <OurSpecialists class="little"/>
   <CallToAction/>
   <OurAchievements/>
   <GuaranteesAndBenefits/>

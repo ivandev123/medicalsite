@@ -31,7 +31,7 @@
       content: '';
       width: 100%;
       height: 100%;
-      background-image: linear-gradient(89.93deg, #24C8BC 38.96%, rgba(255, 91, 91, 0) 220.08%);
+      background-image: linear-gradient(89.93deg, #24C8BC 42%, rgba(255, 91, 91, 0) 220.08%);
       transition: all .35s ease;
       position: absolute;
       z-index: 2;
@@ -134,6 +134,34 @@
   .our-advantages {
     &__content {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 900px) {
+  .our-advantages {
+    &__advantage {
+      &::before {
+        background-image: linear-gradient(89.93deg, #24C8BC 55%, rgba(255, 91, 91, 0) 220.08%);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .our-advantages {
+    &__content {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) and (min-width: 440px) {
+  .our-advantages {
+    &__advantage {
+      &::before {
+        background-image: linear-gradient(89.93deg, #24C8BC 52%, rgba(255, 91, 91, 0) 220.08%);
+      }
     }
   }
 }

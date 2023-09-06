@@ -42,10 +42,10 @@ export default defineComponent({
     <div class="operating-procedure__content">
       <div
           class="operating-procedure__item"
-          v-for="procedure in procedures"
+          v-for="(procedure, idx) in procedures"
           :key="procedure.id"
       >
-        <div class="operating-procedure__item-number">01</div>
+        <div class="operating-procedure__item-number">{{ `0${idx + 1}` }}</div>
         <div class="operating-procedure__item-content">
           {{ procedure.title }}
           <span>{{ procedure.description }}</span>

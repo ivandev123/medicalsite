@@ -7,8 +7,7 @@
   box-shadow: 8px 24px 89px -11.6px rgba(22, 52, 80, 0.1);
 
   &__picture {
-    flex: 0 0 25%;
-    max-width: 25%;
+    width: 290px;
     padding: 0 15px;
   }
 
@@ -19,9 +18,9 @@
   }
 
   &__info {
-    flex: 0 0 75%;
+    flex: 0 0 calc(100% - 290px);
     padding: 30px;
-    max-width: 75%;
+    max-width: calc(100% - 290px);
   }
 
   &__title {
@@ -39,6 +38,21 @@
 
     &_mb-40 {
       margin-bottom: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 739px) {
+  .call-to-action {
+    margin-top: 30px;
+
+    &__picture {
+      display: none;
+    }
+
+    &__info {
+      flex: 0 0 100%;
+      max-width: 100%;
     }
   }
 }

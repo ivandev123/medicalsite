@@ -63,14 +63,13 @@ export default {
 
   &__title {
     margin-bottom: 40px;
-    padding: 0 100px;
     font-size: 42px;
   }
 
   &__inputs {
     display: flex;
     align-items: center;
-    column-gap: 30px;
+    column-gap: 3.8%;
   }
 
   &__textarea {
@@ -79,6 +78,31 @@ export default {
 
   &__button {
     margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .footer-call-to-action {
+    &__inputs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: "name phone" "mail mail";
+      gap: 15px;
+
+      & > .input {
+        &:nth-child(1) {
+          grid-area: name;
+        }
+
+        &:nth-child(2) {
+          grid-area: phone;
+        }
+
+        &:nth-child(3) {
+          grid-area: mail;
+        }
+      }
+    }
   }
 }
 </style>

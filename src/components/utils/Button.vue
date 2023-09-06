@@ -25,6 +25,10 @@ export default defineComponent({
       type: String,
       default: 'fit-content'
     },
+    height: {
+      type: String,
+      default: 'fit-content'
+    },
     padding: {
       type: String,
       default: '11px 16px'
@@ -42,7 +46,7 @@ export default defineComponent({
       class="button"
       :type="type"
       :class="bg"
-      :style="`max-width: ${width}; padding: ${padding}; border-radius: ${br}; font-size: ${fontSize};`"
+      :style="`max-width: ${width}; height: ${height}; padding: ${padding}; border-radius: ${br}; font-size: ${fontSize};`"
   >{{ name }}</button>
 </template>
 

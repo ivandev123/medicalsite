@@ -41,19 +41,20 @@ export default defineComponent({
           <div class="our-specialists__item-experience">
             <div class="our-specialists__item-experience-years">
               <span>Стаж работы</span>
-              <span>{{ item.work_experience }}</span>
+<!--              <span>{{ item.work_experience }}</span>-->
+              <span>20 лет</span>
             </div>
             <div/>
             <div class="our-specialists__item-experience-years">
               <span>Стаж в клинике</span>
-              <span>{{ item.experience_in_clinic }}</span>
+<!--              <span>{{ item.experience_in_clinic }}</span>-->
+              <span>4 года</span>
             </div>
           </div>
         </div>
         <Button class="our-specialists__item-button" name="Смотреть профиль" padding="14px 0" width="100%" font-size="16px"/>
       </div>
     </div>
-
   </div>
 </template>
 

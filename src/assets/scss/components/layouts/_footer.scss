@@ -44,7 +44,7 @@
   &__contact-info {
     display: flex;
     align-items: center;
-    column-gap: 75px;
+    gap: 20px 75px;
   }
 
   &__contacts {
@@ -94,7 +94,7 @@
   &__info {
     display: flex;
     justify-content: space-between;
-    column-gap: 25px;
+    gap: 15px 25px;
 
     &_mt-30 {
       margin-top: 30px;
@@ -222,6 +222,70 @@
     &__info {
       grid-template-columns: 1fr;
       text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 955px) {
+  .footer {
+    &__item {
+      &:first-child {
+        column-count: 3;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .footer {
+    &__item {
+      &:first-child {
+        column-count: 2;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .footer {
+    &__contact {
+      &-info {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "logo networks" "contacts contacts";
+      }
+    }
+
+    &__logo {
+      grid-area: logo;
+      margin: 0 auto;
+    }
+
+    &__networks {
+      grid-area: networks;
+    }
+
+    &__contacts {
+      grid-area: contacts;
+    }
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .footer {
+    &__item {
+      &:first-child {
+        column-count: 1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .footer {
+    &__info {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

@@ -1,5 +1,6 @@
 .about-clinic {
   display: flex;
+  row-gap: 15px;
 
   &__left {
     flex: 0 0 45%;
@@ -56,6 +57,22 @@
     &__right {
       flex: 0 0 55%;
       max-width: 55%;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .about-clinic {
+    flex-direction: column;
+
+    &__left {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    &__right {
+      flex: 0 0 100%;
+      max-width: 100%;
     }
   }
 }

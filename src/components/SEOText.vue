@@ -21,7 +21,7 @@
         <p>
           <em>
             Позвоните на телефон для получения бесплатной консультации
-            <a href="tel:88633033580">8 (863) 303-35-80</a>.
+            <a href="tel:88633033580">8 (863) 303-35-80</a>
           </em>
         </p>
       </div>
@@ -229,6 +229,99 @@ export default {
 
       &:hover {
         color: #ff954b;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1037px) {
+  .seo-text {
+    &__attention {
+      padding: 20px 15px 20px 94px;
+
+      &::before {
+        left: 20px;
+      }
+
+      &::after {
+        left: 34.85px;
+      }
+
+      & a {
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .seo-text {
+    &__right {
+      &-image {
+        float: unset;
+
+        &::before {
+          top: -20px;
+          right: 60px;
+          //left: 275px;
+        }
+
+        & > img {
+          margin: 20px 80px 40px auto;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 536px) {
+  .seo-text {
+    &__right {
+      &-image {
+        &::before {
+          right: 0;
+        }
+
+        & > img {
+          margin: 20px 20px 40px auto;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .seo-text {
+    &__right {
+      &-image {
+        & > img {
+          width: 93.5%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 404px) {
+  .seo-text {
+    &__attention {
+      padding: 20px 15px 20px 25px;
+
+      &::before,
+      &::after {
+        transform: unset;
+        top: unset;
+        left: unset;
+      }
+
+      &::before {
+        bottom: 15px;
+        right: 15px;
+      }
+
+      &::after {
+        bottom: 30px;
+        right: 30px;
       }
     }
   }

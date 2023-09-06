@@ -1,10 +1,6 @@
 .our-specialists {
   margin-top: 50px;
 
-  &__title {
-
-  }
-
   &__content {
     display: flex;
     //grid-template-columns: repeat(4, 1fr);
@@ -63,6 +59,7 @@
 
     &-experience {
       display: flex;
+      justify-content: center;
       align-items: center;
 
       & > div:not([class]) {
@@ -98,4 +95,46 @@
       opacity: 0;
     }
   }
+
+  &.little {
+    & .our-specialists {
+      &__item {
+        &-fullname {
+          font-size: 21px;
+        }
+
+        &-job {
+          font-size: 15px;
+        }
+
+        &-experience {
+
+          &-years {
+            & > span {
+              padding: 0 18px;
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
+@media screen and (max-width: 890px) {
+  .our-specialists {
+    &:not(.little) {
+      & .our-specialists {
+        &__content {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__item {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
