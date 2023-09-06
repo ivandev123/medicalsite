@@ -105,4 +105,13 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 460px) {
+  .footer-call-to-action {
+    &__inputs {
+      grid-template-columns: 1fr;
+      grid-template-areas: "name name" "phone phone" "mail mail";
+    }
+  }
+}
 </style>

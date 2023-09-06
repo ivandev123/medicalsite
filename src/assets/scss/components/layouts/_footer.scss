@@ -258,15 +258,24 @@
 
     &__logo {
       grid-area: logo;
-      margin: 0 auto;
     }
 
     &__networks {
       grid-area: networks;
+
+      & > svg {
+        margin-left: auto;
+      }
     }
 
     &__contacts {
       grid-area: contacts;
+    }
+
+    &__contact {
+      &:nth-child(even) {
+        text-align: right;
+      }
     }
   }
 }
