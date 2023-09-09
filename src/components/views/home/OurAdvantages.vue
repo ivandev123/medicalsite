@@ -8,7 +8,8 @@
       </svg>
     </h2>
 
-    <div class="our-advantages__content our-advantages__content_mt-35">
+    <Preloader style="margin-top: 35px;" v-if="!advantages.length"/>
+    <div class="our-advantages__content our-advantages__content_mt-35" v-if="advantages.length">
       <RouterLink
           class="our-advantages__advantage"
           to="/"
@@ -16,10 +17,10 @@
           :key="advantage.id"
       >
         <div class="our-advantages__advantage-picture">
-          <img src="../../../assets/images/advantage.jpg" alt="image">
+          <img alt="image" :src="advantage.image">
         </div>
         <div class="our-advantages__advantage-icon">
-          <img alt="advantage icon" :src="require(`@/assets/svg/ourAdvantages/${advantage.icon}`)">
+          <img alt="advantage icon" :src="advantage.icon">
         </div>
         <div class="our-advantages__advantage-title">{{ advantage.title }}</div>
       </RouterLink>
@@ -28,49 +29,20 @@
 </template>
 
 <script>
+import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
+
 export default {
   name: "OurAdvantages",
-  data() {
-    return {
-      advantages: [
-        {
-          id: 1,
-          title: 'Собственный автопарк',
-          icon: 'advantage1.svg',
-          bgIcon: '',
-        },
-        {
-          id: 2,
-          title: 'Медицинская лицензия',
-          icon: 'advantage2.svg',
-          bgIcon: '',
-        },
-        {
-          id: 3,
-          title: 'Работаем 24/7 Без выходных',
-          icon: 'advantage3.svg',
-          bgIcon: '',
-        },
-        {
-          id: 4,
-          title: 'Клиника в центре города',
-          icon: 'advantage4.svg',
-          bgIcon: '',
-        },
-        {
-          id: 5,
-          title: 'Врачи разной специализации',
-          icon: 'advantage5.svg',
-          bgIcon: '',
-        },
-        {
-          id: 6,
-          title: 'Помогаем вам больше 8 лет',
-          icon: 'advantage6.svg',
-          bgIcon: '',
-        },
-      ]
-    }
+  components: {Preloader},
+  methods: {
+    ...mapActions('ourAdvantages', ['getAdvantages']),
+  },
+  computed: {
+    ...mapState('ourAdvantages', ['advantages']),
+  },
+  mounted() {
+    this.getAdvantages()
   }
 }
 </script>

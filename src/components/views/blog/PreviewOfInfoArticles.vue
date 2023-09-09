@@ -1,8 +1,10 @@
 <script>
 import {mapActions, mapState} from "vuex";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: 'PreviewOfInfoArticles',
+  components: {Preloader},
   methods: {
     ...mapActions('blog', ['getBlogArticles']),
 
@@ -26,7 +28,8 @@ export default {
   <div class="preview-of-info-articles">
     <h1 class="preview-of-info-articles__title">Статьи</h1>
 
-    <div class="preview-of-info-articles__content preview-of-info-articles__content_mt-30">
+    <Preloader style="margin-top: 30px;" v-if="!blogArticles.length"/>
+    <div class="preview-of-info-articles__content preview-of-info-articles__content_mt-30" v-if="blogArticles.length">
       <article
           class="preview-of-info-articles__item"
           v-for="article in blogArticles"

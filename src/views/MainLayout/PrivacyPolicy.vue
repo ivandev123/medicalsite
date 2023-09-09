@@ -3,14 +3,18 @@
     <div class="container">
       <h1>Политика конфиденциальности</h1>
 
+      <Preloader/>
       <p class="privacy-policy__text">Текстовый блок</p>
     </div>
   </div>
 </template>
 
 <script>
+import Preloader from "@/components/Preloader.vue";
+
 export default {
-  name: "PrivacyPolicy"
+  name: "PrivacyPolicy",
+  components: {Preloader}
 }
 </script>
 

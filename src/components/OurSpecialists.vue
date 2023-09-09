@@ -1,7 +1,8 @@
 <script>
 import {defineComponent} from 'vue'
 import Button from "@/components/utils/Button.vue";
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
+import Preloader from "@/components/Preloader.vue";
 
 export default defineComponent({
   name: "OurSpecialists",
@@ -11,12 +12,15 @@ export default defineComponent({
       default: 'Наши специалисты'
     }
   },
-  components: {Button},
+  components: {Preloader, Button},
+  methods: {
+    ...mapActions('specialists', ['getSpecialists']),
+  },
   computed: {
     ...mapState('specialists', ['specialists']),
   },
   mounted() {
-    if (!this.specialists.length) this.$store.dispatch('specialists/getSpecialists')
+    this.getSpecialists()
   }
 })
 </script>
@@ -25,34 +29,42 @@ export default defineComponent({
   <div class="our-specialists">
     <h2 class="our-specialists__title">{{ title }}</h2>
 
-    <div class="our-specialists__content our-specialists__content_mt-50">
+    <Preloader style="margin-top: 50px;" v-if="!specialists.length"/>
+    <div class="our-specialists__content our-specialists__content_mt-50" v-if="specialists.length">
       <div
           class="our-specialists__item"
-          v-for="item in specialists?.splice(0, 4)"
-          :key="item"
+          v-for="specialist in specialists"
+          :key="specialist.id"
       >
         <div class="our-specialists__item-avatar">
-          <img alt="specialist" :src="item.image">
+          <img alt="specialist" :src="specialist.image">
         </div>
 
         <div class="our-specialists__item-info">
-          <div class="our-specialists__item-fullname">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</div>
-          <div class="our-specialists__item-job">{{ item.job }}</div>
+          <div class="our-specialists__item-fullname">{{ `${specialist.name} ${specialist.surname} ${specialist.patronymic}` }}</div>
+          <div class="our-specialists__item-job">{{ specialist.job }}</div>
           <div class="our-specialists__item-experience">
             <div class="our-specialists__item-experience-years">
               <span>Стаж работы</span>
 <!--              <span>{{ item.work_experience }}</span>-->
-              <span>20 лет</span>
+              <span>{{ specialist.work_experience }}</span>
             </div>
             <div/>
             <div class="our-specialists__item-experience-years">
               <span>Стаж в клинике</span>
 <!--              <span>{{ item.experience_in_clinic }}</span>-->
-              <span>4 года</span>
+              <span>{{ specialist.experience_in_clinic }}</span>
             </div>
           </div>
         </div>
-        <Button class="our-specialists__item-button" name="Смотреть профиль" padding="14px 0" width="100%" font-size="16px"/>
+        <Button
+            class="our-specialists__item-button"
+            name="Смотреть профиль"
+            padding="14px 0"
+            width="100%"
+            font-size="16px"
+            @click="$router.push(`/specialist/${specialist.id}`)"
+        />
       </div>
     </div>
   </div>

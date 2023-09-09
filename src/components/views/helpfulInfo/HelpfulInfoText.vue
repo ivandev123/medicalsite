@@ -2,6 +2,7 @@
   <div class="helpful-info">
     <h2>{{ title }}</h2>
 
+    <Preloader style="margin-top: 20px;"/>
     <div class="helpful-info__content helpful-info__content_mt-20">
       <p>
         <a href="#">Перечень жизненно необходимых и важнейших лекарственных препаратов</a>
@@ -30,8 +31,11 @@
 </template>
 
 <script>
+import Preloader from "@/components/Preloader.vue";
+
 export default {
   name: "HelpfulInfoText",
+  components: {Preloader},
   props: ['title']
 }
 </script>

@@ -5,12 +5,41 @@
         <h2 class="footer-call-to-action__title">Записаться на консультацию</h2>
 
         <div class="footer-call-to-action__inputs">
-          <InputText placeholder="Ваше имя" padding="10px 30px" height="50px" br="24px"/>
-          <InputText placeholder="Ваш телефон" padding="10px 30px" height="50px" br="24px" :default-value="form.phone" v-mask="'+7 (###) ###-##-##'"/>
-          <InputText placeholder="Ваша почта" padding="10px 30px" height="50px" br="24px"/>
+          <InputText
+              placeholder="Ваше имя"
+              padding="10px 30px"
+              height="50px"
+              br="24px"
+              :default-value="form.name"
+              @set-value="setName"
+          />
+          <InputText
+              placeholder="Ваш телефон"
+              padding="10px 30px"
+              height="50px"
+              br="24px"
+              :default-value="form.phone"
+              v-mask="'+7 (###) ###-##-##'"
+              @set-value="setPhone"
+          />
+          <InputText
+              placeholder="Ваша почта"
+              padding="10px 30px"
+              height="50px"
+              br="24px"
+              :default-value="form.email"
+              @set-value="setEmail"
+          />
         </div>
-        <MyTextarea style="height: 154px; resize: vertical;" placeholder="Ваш вопрос" class="footer-call-to-action__textarea"/>
+        <MyTextarea
+            style="height: 154px; resize: vertical;"
+            placeholder="Ваш вопрос"
+            class="footer-call-to-action__textarea"
+            :default-value="form.message"
+            @set-value="setMessage"
+        />
         <Button
+            type="submit"
             class="footer-call-to-action__button"
             name="Отправить"
             padding="16px"
@@ -18,7 +47,7 @@
             br="24px"
             bg="white2"
             font-size="16px"
-            @click="formSent = true"
+            @click.prevent="sendForm"
         />
       </form>
     </div>
@@ -32,6 +61,7 @@ import {mask} from "vue-the-mask";
 import MyTextarea from "@/components/utils/MyTextarea.vue";
 import Button from "@/components/utils/Button.vue";
 import AnnouncementModal from "@/components/modals/AnnouncementModal.vue";
+import {makeAnAppointment} from "@/api";
 
 export default {
   name: "FooterCallToAction",
@@ -42,7 +72,33 @@ export default {
       formSent: false,
       form: {
         name: '',
-        phone: '+7'
+        phone: '+7',
+        email: '',
+        message: '',
+      }
+    }
+  },
+  methods: {
+    setName(name) {
+      this.form.name = name
+    },
+    setPhone(phone) {
+      this.form.phone = phone
+    },
+    setEmail(email) {
+      this.form.email = email
+    },
+    setMessage(message) {
+      this.form.message = message
+    },
+
+    sendForm() {
+      if (!Object.values(this.form).includes('')) {
+        makeAnAppointment(this.form).then(response => {
+          console.log('ok', response)
+          this.form = {name: '', phone: '+7'}
+          this.formSent = true
+        })
       }
     }
   }

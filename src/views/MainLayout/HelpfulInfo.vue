@@ -2,6 +2,7 @@
   <div style="padding-bottom: 50px;" class="container">
     <h1 style="margin-bottom: 20px;">Полезная информация</h1>
 
+
     <HelpfulTable title="График приёма граждан" :table="admissionSchedule"/>
     <HelpfulTable title="Адреса и телефоны контролирующих организаций" :table="contactsOfControllingOrganizations"/>
     <HelpfulInfoText title="Перечень лекарственных препаратов"/>

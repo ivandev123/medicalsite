@@ -2,7 +2,8 @@
   <div class="our-certificates">
     <h2 class="our-certificates__title">Наши сертификаты и лицензии</h2>
 
-    <div class="our-certificates__content our-certificates__content_mt-50">
+    <Preloader style="margin-top: 50px;" v-if="!certificates.length"/>
+    <div class="our-certificates__content our-certificates__content_mt-50" v-if="certificates.length">
       <Carousel class="our-certificates__carousel" :items-to-show="getCountSlides" :autoplay="10000" :wrap-around="true" :transition="500">
         <Slide v-for="item in certificates" :key="item">
           <RouterLink class="our-certificates__item" to="">
@@ -22,6 +23,7 @@
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination } from 'vue3-carousel';
 import { getCertificates } from "@/api";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "OurCertificates",
@@ -37,6 +39,7 @@ export default {
     }
   },
   components: {
+    Preloader,
     Carousel,
     Slide,
     Pagination,

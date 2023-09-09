@@ -2,6 +2,7 @@
   <div class="block-of-video-lectures">
     <h1>Видео лекции</h1>
 
+    <Preloader style="margin-top: 20px;"/>
     <div class="block-of-video-lectures__content block-of-video-lectures__content_mt-20">
       <VideoReview
           :show-desc="false"
@@ -17,10 +18,11 @@
 <script>
 import VideoReview from "@/assets/scss/components/reviews/VideoReview.vue";
 import Pagination from "@/components/utils/Pagination.vue";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "BlockOfVideoLectures",
-  components: {Pagination, VideoReview},
+  components: {Preloader, Pagination, VideoReview},
 }
 </script>
 

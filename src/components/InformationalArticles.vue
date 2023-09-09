@@ -5,10 +5,11 @@ import SliderButtons from "@/components/utils/SliderButtons.vue";
 import { Carousel, Slide } from "vue3-carousel";
 import ArticleItem from "@/components/ArticleItem.vue";
 import {mapActions, mapState} from "vuex";
+import Preloader from "@/components/Preloader.vue";
 
 export default defineComponent({
   name: "InformationalArticles",
-  components: {ArticleItem, Button, SliderButtons, Carousel, Slide},
+  components: {Preloader, ArticleItem, Button, SliderButtons, Carousel, Slide},
   props: {
     // 'pageWidth', 'title', 'type'
     pageWidth: {
@@ -67,7 +68,8 @@ export default defineComponent({
       </div>
     </div>
 
-    <Carousel ref="carousel" :items-to-show="getCountSlides">
+    <Preloader v-if="!blogArticles.length"/>
+    <Carousel ref="carousel" :items-to-show="getCountSlides" v-if="blogArticles.length">
       <Slide v-for="article in blogArticles" :key="article.id">
         <ArticleItem
             :image="article.image"

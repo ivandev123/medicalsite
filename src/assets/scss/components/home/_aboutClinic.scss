@@ -76,3 +76,20 @@
     }
   }
 }
+
+@media screen and (max-width: 520px) {
+  .about-clinic {
+    &__left,
+    &__right {
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 373px) {
+  .about-clinic {
+    &__title {
+      font-size: 46px;
+    }
+  }
+}

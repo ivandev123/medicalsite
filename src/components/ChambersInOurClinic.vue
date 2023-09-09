@@ -8,6 +8,7 @@
       </svg>
     </h2>
 
+    <Preloader style="margin-top: 30px;"/>
     <div class="chambers-in-our-clinic__content chambers-in-our-clinic__content_mt-30">
       <div
           class="chambers-in-our-clinic__item"
@@ -38,8 +39,11 @@
 </template>
 
 <script>
+import Preloader from "@/components/Preloader.vue";
+
 export default {
   name: "ChambersInOurClinic",
+  components: {Preloader},
   methods: {
     openImg() {
       window.open('/img/our-service.347c4a7a.jpg', "_blank")

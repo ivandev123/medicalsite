@@ -2,7 +2,7 @@
   <div class="reviews">
     <div class="container">
       <div class="reviews__title reviews__title_mb-42">
-        <h2>Отзывы</h2>
+        <h1>Отзывы</h1>
 
         <div class="reviews__title-right">
           <Button name="Больше отзывов" @click="$router.push('/reviews')"/>
@@ -11,7 +11,8 @@
       </div>
     </div>
 
-    <Carousel class="reviews__carousel reviews__carousel_mt-40" ref="carousel" :items-to-show="getCountSlides">
+    <Preloader style="margin-top: 40px;" v-if="!reviews.length"/>
+    <Carousel class="reviews__carousel reviews__carousel_mt-40" ref="carousel" :items-to-show="getCountSlides" v-if="reviews.length">
       <Slide v-for="review in reviews" :key="review.id">
         <div class="reviews__item">
           <div class="reviews__up">
@@ -54,36 +55,15 @@ import SliderButtons from "@/components/utils/SliderButtons.vue";
 import Button from "@/components/utils/Button.vue";
 import Avatar from "@/components/Avatar.vue";
 import { getReviews } from "@/api";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "Reviews",
   props: ['pageWidth'],
-  components: { Avatar, Button, SliderButtons, Carousel, Slide, Pagination },
+  components: {Preloader, Avatar, Button, SliderButtons, Carousel, Slide, Pagination },
   data() {
     return {
-      reviews: [
-        {
-          id: 1,
-          image: 'http://localhost:8080/img/specialist.13182a10.jpg',
-          description: 'Lorem ipsum dolor sit amet consectetur. Consequat auctor consectetur nunc vitae dolor blandit. Elit enim massa etiam neque laoreet lorem sed. Vitae eu accumsan ultrices neque blandit proin elit ac. In turpis felis urna et aliquet sed lacus.',
-          full_name: 'Александра',
-          job: 'Студентка',
-        },
-        {
-          id: 2,
-          image: 'http://localhost:8080/img/specialist.13182a10.jpg',
-          description: 'Lorem ipsum dolor sit amet consectetur. Consequat auctor consectetur nunc vitae dolor blandit. Elit enim massa etiam neque laoreet lorem sed. Vitae eu accumsan ultrices neque blandit proin elit ac. In turpis felis urna et aliquet sed lacus.',
-          full_name: 'Александра',
-          job: 'Студентка',
-        },
-        {
-          id: 3,
-          image: 'http://localhost:8080/img/specialist.13182a10.jpg',
-          description: 'Lorem ipsum dolor sit amet consectetur. Consequat auctor consectetur nunc vitae dolor blandit. Elit enim massa etiam neque laoreet lorem sed. Vitae eu accumsan ultrices neque blandit proin elit ac. In turpis felis urna et aliquet sed lacus.',
-          full_name: 'Александра',
-          job: 'Студентка',
-        },
-      ]
+      reviews: []
     }
   },
   computed: {

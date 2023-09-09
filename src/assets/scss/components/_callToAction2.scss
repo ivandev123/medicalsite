@@ -70,6 +70,8 @@
 
 @media screen and (max-width: 941px) {
   .call-to-action2 {
+    margin-top: 50px;
+
     &__left {
       flex: 0 0 100%;
       max-width: 100%;
@@ -109,8 +111,70 @@
 
 @media screen and (max-width: 515px) {
   .call-to-action2 {
+    padding: 20px;
+
     &__title {
       font-size: 36px;
     }
+
+    &__left {
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 494px) {
+  .call-to-action2 {
+    &__title {
+      font-size: 34px;
+    }
+  }
+}
+
+@media screen and (max-width: 471px) {
+  .call-to-action2 {
+    &__title {
+      font-size: 32px;
+    }
+
+    &__subtitle {
+      font-size: 17px;
+    }
+  }
+}
+
+@media screen and (max-width: 447px) {
+  .call-to-action2 {
+    &__title {
+      font-size: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 447px) {
+  .call-to-action2 {
+    &__title {
+      font-size: 28px;
+    }
+
+    &__subtitle {
+      font-size: 16px;
+    }
+
+    & .button {
+      max-width: 100% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .call-to-action2 {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .call-to-action2 {
+    //padding: 14px;
   }
 }

@@ -3,8 +3,7 @@
 
   &__content {
     display: flex;
-    //grid-template-columns: repeat(4, 1fr);
-    //gap: 32px;
+    flex-wrap: wrap;
 
     &_mt-50 {
       margin-top: 50px;

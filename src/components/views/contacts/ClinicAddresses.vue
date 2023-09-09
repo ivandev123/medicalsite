@@ -6,6 +6,7 @@
       <div class="clinic-addresses__left">
         <InputSearch placeholder="Поиск по городам"/>
 
+        <Preloader style="margin-top: 20px;"/>
         <ul class="clinic-addresses__list clinic-addresses__list_mt-20">
           <li
               v-for="address in 30"
@@ -26,10 +27,11 @@
 <script>
 
 import InputSearch from "@/components/utils/InputSearch.vue";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "ClinicAddresses",
-  components: {InputSearch},
+  components: {Preloader, InputSearch},
   data() {
     return {
       addresses: [

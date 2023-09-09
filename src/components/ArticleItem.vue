@@ -27,7 +27,7 @@ export default {
   computed: {
     getDate() {
       return this.date
-          .split('T')[0]
+          ?.split('T')[0]
           .split('-')
     }
   }

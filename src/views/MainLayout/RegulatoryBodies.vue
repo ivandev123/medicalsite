@@ -3,6 +3,7 @@
     <div class="container">
       <h1>Контролирующие органы</h1>
 
+      <Preloader style="margin-top: 20px;"/>
       <div class="regulatory-bodies__content regulatory-bodies__content_mt-20">
           <p>Министерство здравоохранения Ростовской области: адрес: 344029, г. Ростов-на-Дону, ул Конной Армии, 33, тел.: 8 (863)263-20-50</p>
           <p>Территориальный орган Федеральной службы по надзору в сфере здравоохранения (Росдравнадзора) по Ростовской области: адрес: г.Ростов-на-Дону, ул. Ченцова, 71/63 Б , телефон 8 (863) 286-98-169.</p>
@@ -16,8 +17,11 @@
 </template>
 
 <script>
+import Preloader from "@/components/Preloader.vue";
+
 export default {
-  name: "RegulatoryBodies"
+  name: "RegulatoryBodies",
+  components: {Preloader}
 }
 </script>
 

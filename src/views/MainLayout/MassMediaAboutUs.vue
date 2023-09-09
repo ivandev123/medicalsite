@@ -3,11 +3,12 @@
     <div class="container">
       <h1>СМИ о нас пишут</h1>
 
+      <Preloader style="margin-top: 20px;"/>
       <div class="mass-media-about-us__articles mass-media-about-us__articles_mt-20">
         <a
             href="#"
             rel="nofollow"
-            v-for="item in 10"
+            v-for="item in 9"
             :key="item"
         >
           <ArticleItem/>
@@ -24,10 +25,11 @@
 import FooterCallToAction from "@/components/layouts/FooterCallToAction.vue";
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import ArticleItem from "@/components/ArticleItem.vue";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "MassMediaAboutUs",
-  components: {ArticleItem, InformationalArticles, FooterCallToAction},
+  components: {Preloader, ArticleItem, InformationalArticles, FooterCallToAction},
   data() {
     return {
       pageWidth: 0,

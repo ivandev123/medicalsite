@@ -2,6 +2,7 @@
   <div class="comments">
     <h2>Комментарии: 3</h2>
 
+    <Preloader style="margin-top: 20px;"/>
     <div class="comments__content comments__content_mt-20">
       <div class="comments__item">
         <img src="@/assets/images/avatar.jpg" alt="avatar" class="comments__item-avatar">
@@ -53,8 +54,11 @@
 </template>
 
 <script>
+import Preloader from "@/components/Preloader.vue";
+
 export default {
-  name: "Comments"
+  name: "Comments",
+  components: {Preloader}
 }
 </script>
 

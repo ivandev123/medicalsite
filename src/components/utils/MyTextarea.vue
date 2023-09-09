@@ -1,10 +1,25 @@
 <template>
-  <textarea class="my-textarea"/>
+  <textarea class="my-textarea" v-model="text" @input="$emit('set-value', text)"/>
 </template>
 
 <script>
 export default {
-  name: "MyTextarea"
+  name: "MyTextarea",
+  emits: ['set-value'],
+  props: ['defaultValue'],
+  data() {
+    return {
+      text: '',
+    }
+  },
+  watch: {
+    defaultValue() {
+      this.text = this.defaultValue
+    }
+  },
+  mounted() {
+    this.text = this.defaultValue
+  }
 }
 </script>
 

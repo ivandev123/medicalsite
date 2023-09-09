@@ -17,6 +17,7 @@
 <script>
 export default {
   name: "InputText",
+  emits: ['set-value'],
   props: ['title', 'placeholder', 'height', 'br', 'padding', 'defaultValue'],
   data() {
     return {

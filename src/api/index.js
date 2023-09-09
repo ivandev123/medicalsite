@@ -36,6 +36,22 @@ export async function getStock(id) {
   return await getAsync(`/stocks/${id}`)
 }
 
+export async function getAdvantages() {
+  return await getAsync('/ouradvantages')
+}
+
+export async function getHowItWork() {
+  return await getAsync('/howitwork')
+}
+
+export async function getAdditionalServices() {
+  return await getAsync('/additionalservices')
+}
+
+export async function getAppeal() {
+  return await getAsync('/appeal')
+}
+
 //////////POST
 export async function makeAnAppointment(form) {
   return await postAsync('/feedback', form)

@@ -2,6 +2,7 @@
   <div class="price-page">
     <h1 class="price-page__title">Цены</h1>
 
+    <Preloader style="margin-top: 20px;"/>
     <div class="price-page__content price-page__content_mt-20">
       <CardWithDropdown
           v-for="card in cards"
@@ -16,10 +17,11 @@
 <script>
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import CardWithDropdown from "@/components/utils/CardWithDropdown.vue";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "Price",
-  components: {CardWithDropdown, InformationalArticles},
+  components: {Preloader, CardWithDropdown, InformationalArticles},
   data() {
     return {
       cards: [
