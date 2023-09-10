@@ -2,9 +2,9 @@
   <div class="blog-author">
     <h2>Автор</h2>
 
-    <Preloader style="margin-top: 20px;"/>
-    <div class="blog-author__content blog-author__content_mt-20">
-      <div class="blog-author__avatar" v-if="author_avatar">
+    <Preloader style="margin-top: 20px;" v-if="!author_avatar"/>
+    <div class="blog-author__content blog-author__content_mt-20" v-if="author_avatar">
+      <div class="blog-author__avatar">
         <img alt="avatar" :src="author_avatar">
       </div>
       <div class="blog-author__info">

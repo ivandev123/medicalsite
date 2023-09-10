@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://hospital/api' // позже будет в .env // dev with openserver
-// const BASE_URL = 'http://158.160.18.123:8081/api' // позже будет в .env // prod
+// const BASE_URL = 'http://hospital/api' // позже будет в .env // dev with openserver
+const BASE_URL = 'http://158.160.18.123:8081/api' // позже будет в .env // prod
 
 
 ///////////GET
@@ -29,6 +29,10 @@ export async function getBlogArticle(blogArticleId) {
   return await getAsync(`/blog/${blogArticleId}`)
 }
 
+export async function getBlogArticleCommentsById(blogArticleId) {
+  return await getAsync(`/comments/${blogArticleId}`)
+}
+
 export async function getStocks() {
   return await getAsync('/stocks')
 }
@@ -53,9 +57,17 @@ export async function getAppeal() {
   return await getAsync('/appeal')
 }
 
+export async function getVideoLectures() {
+  return await getAsync('/video')
+}
+
 //////////POST
 export async function makeAnAppointment(form) {
   return await postAsync('/feedback', form)
+}
+
+export async function addBlogArticleComment(comment) {
+  return await postAsync('/comments', comment)
 }
 
 ///////////PUT

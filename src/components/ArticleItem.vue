@@ -2,7 +2,7 @@
   <div class="article-item">
     <img alt="article image" class="article-item__image" :src="image">
     <div class="article-item__info article-item__info_mt-12">
-      <div class="article-item__date">{{ `${getDate?.reverse().join('.')}` }}</div>
+      <div class="article-item__date">{{ getDate }}</div>
 <!--      31.07.2023-->
       <div class="article-item__tag" v-if="views !== undefined">
         <svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 576 512">
@@ -29,6 +29,8 @@ export default {
       return this.date
           ?.split('T')[0]
           .split('-')
+          .reverse()
+          .join('.')
     }
   }
 }

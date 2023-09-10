@@ -6,6 +6,7 @@ import stocks from "@/store/modules/stocks";
 import ourAdvantages from "@/store/modules/ourAdvantages";
 import howItWork from "@/store/modules/howItWork";
 import additionalServices from "@/store/modules/additionalServices";
+import videoLectures from "@/store/modules/videoLectures";
 
 export default createStore({
   modules: {
@@ -16,6 +17,7 @@ export default createStore({
     ourAdvantages,
     howItWork,
     additionalServices,
+    videoLectures,
   },
   state: {
     months: [

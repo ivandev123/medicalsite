@@ -2,21 +2,26 @@
   <div class="video-review">
     <div class="video-review__image">
       <img src="@/assets/images/our-service.jpg" alt="image">
-      <a href="https://docs.google.com/document/d/1AREyxhUtTcNfefjw2uXnhIIbhYtQaHCB7YJzvXjNS_Q/edit" class="video-review__play">
+      <div class="video-review__play" @click="$emit('go-to-video', id)">
         <img src="@/assets/images/video-play.png" alt="play">
-      </a>
+      </div>
     </div>
-    <div class="video-review__info" v-if="showDesc">Отзыв матери о реабилитационном центре "Арма"</div>
+    <div class="video-review__info" v-if="title">{{ title }}</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "VideoReview",
+  emits: ['go-to-video'],
   props: {
-    showDesc: {
-      type: Boolean,
-      default: true
+    id: {
+      type: Number,
+      default: -1,
+    },
+    title: {
+      type: String,
+      default: ''
     }
   }
 }
@@ -37,6 +42,7 @@ export default {
     width: 65px;
     height: 45px;
     transform: translate(-50%, -50%);
+    cursor: pointer;
     position: absolute;
     left: 50%;
     top: 50%;

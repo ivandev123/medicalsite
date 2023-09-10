@@ -3,23 +3,57 @@
     <h2>Добавить комментарий</h2>
 
     <div class="add-comment-form__content add-comment-form__content_mt-20">
-      <Textarea placeholder="Comment" style="grid-area: comment;"/>
-      <InputText placeholder="Name" style="grid-area: name;"/>
-      <InputText placeholder="Email" style="grid-area: email;"/>
-      <InputText placeholder="Website" style="grid-area: website;"/>
+      <MyTextarea placeholder="Ваш комментарий" style="grid-area: comment;" :default-value="comment.comment" @set-value="setComment"/>
+      <InputText placeholder="Ваше имя" style="grid-area: name;" :default-value="comment.name" @set-value="setName"/>
+      <InputText placeholder="Ваш email" style="grid-area: email;" :default-value="comment.email" @set-value="setEmail"/>
     </div>
-    <Button style="margin-top: 20px;" name="Отправить комментарий" padding="14px 24px" font-size="16px"/>
+    <Button
+        style="margin-top: 20px;"
+        type="submit"
+        name="Отправить комментарий"
+        padding="14px 24px"
+        font-size="16px"
+        @click.prevent="addComment"
+    />
   </form>
 </template>
 
 <script>
 import InputText from "@/components/utils/InputText.vue";
-import Textarea from "@/components/utils/Textarea.vue";
 import Button from "@/components/utils/Button.vue";
+import MyTextarea from "@/components/utils/MyTextarea.vue";
+import {mapActions} from "vuex";
 
 export default {
   name: "AddCommentForm",
-  components: {Button, Textarea, InputText}
+  components: {MyTextarea, Button, InputText},
+  props: ['id'],
+  data() {
+    return {
+      comment: {
+        comment: '',
+        name: '',
+        email: '',
+      }
+    }
+  },
+  methods: {
+    ...mapActions('blog', ['addBlogArticleComment']),
+
+    setComment(comment) {
+      this.comment.comment = comment
+    },
+    setName(name) {
+      this.comment.name = name
+    },
+    setEmail(email) {
+      this.comment.email = email
+    },
+    addComment() {
+      this.addBlogArticleComment({ ...this.comment, blog_id: this.id })
+      for (let key in this.comment) this.comment[key] = ''
+    }
+  }
 }
 </script>
 
@@ -35,8 +69,7 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
         "comment comment"
-        "name email"
-        "website website";
+        "name email";
     gap: 15px 30px;
 
     &_mt-20 {

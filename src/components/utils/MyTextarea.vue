@@ -42,5 +42,10 @@ export default {
     line-height: 20px;
     color: #9DA0AF;
   }
+
+  &:focus {
+    border: 1px solid #24C8BC;
+    transition: .25s;
+  }
 }
 </style>

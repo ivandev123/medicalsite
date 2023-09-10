@@ -21,14 +21,14 @@
             </div>
           </template>
 
-          <InformationalArticles :page-width="pageWidth" title="Рекомендуемые статьи" type="small"/>
+            <InformationalArticles title="Рекомендуемые статьи" type="small" :page-width="pageWidth"/>
           <BlogAuthor
               :author="blogArticle.author"
               :author-job="blogArticle.author_job"
-              :author-avatar="blogArticle.author_avatar"
+              :author_avatar="blogArticle.author_avatar"
           />
-          <Comments/>
-          <AddCommentForm/>
+          <Comments :comments-count="blogArticle.comments_count" :comments="comments"/>
+          <AddCommentForm :id="blogArticle.id"/>
         </div>
         <BlogArticleSidebar @scroll-to-title="scrollToTitle"/>
       </div>
@@ -57,7 +57,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('blog', ['getBlogArticle']),
+    ...mapActions('blog', ['getBlogArticle', 'getBlogArticleCommentsById']),
 
     scrollToTitle(ref) {
       const element = document.querySelector(`#${ref}`)
@@ -68,7 +68,7 @@ export default {
     },
   },
   computed: {
-    ...mapState('blog', ['blogArticle']),
+    ...mapState('blog', ['blogArticle', 'comments']),
 
     getBlogArticleData() {
       const data = { ...this.blogArticle }
@@ -76,6 +76,9 @@ export default {
       delete data.description
 
       return data
+    },
+    getBlogArticleId() {
+      return +this.$route.params.id
     }
   },
   watch: {
@@ -90,109 +93,12 @@ export default {
     window.onresize = () => this.setWidth()
   },
   mounted() {
-    this.getBlogArticle(+this.$route.params.id)
+    this.getBlogArticle(this.getBlogArticleId)
+    this.getBlogArticleCommentsById(this.getBlogArticleId)
   },
 }
 </script>
 
 <style scoped lang="scss">
-.blog-article {
-  padding-bottom: 50px;
-
-  &__body {
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-  }
-
-  &__content {
-    width: calc(100% - 360px);
-  }
-
-  &__inner {
-    &_mt-60 {
-      margin-top: 60px;
-    }
-
-    & > div {
-      //& ::v-deep {
-        & > h2 {
-          &:not(:first-child) {
-            margin-top: 40px;
-          }
-        }
-
-        & p {
-          margin-top: 20px;
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 24px;
-          color: #4B535A;
-
-          & + p {
-            margin-top: 0;
-          }
-        }
-
-        & > ul,
-        & > ol {
-          display: flex;
-          flex-direction: column;
-          row-gap: 10px;
-          margin-top: 24px;
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 24px;
-          color: #4B535A;
-
-          & li {
-            display: flex;
-            align-items: center;
-
-            & > strong {
-              font-weight: 700;
-              font-size: 20px;
-              line-height: 26px;
-              color: #262626;
-            }
-          }
-        }
-
-        & > ul {
-          & li {
-            &::before {
-              display: block;
-              content: '';
-              flex-shrink: 0;
-              margin: 0 10px;
-              width: 5px;
-              height: 5px;
-              background: #FFA765;
-              border-radius: 50%;
-            }
-          }
-        }
-
-        & > ol {
-          counter-reset: list 0;
-
-          & li {
-            display: block;
-
-            &::before {
-              content: counter(list) '.';
-              flex-shrink: 0;
-              padding-right: 5px;
-              counter-increment: list;
-              font-weight: 700;
-              font-size: 20px;
-              line-height: 26px;
-              color: #262626;
-            }
-          }
-        }
-      //}
-    }
-  }
-}
+@import "@/assets/scss/views/mainLayout/blogArticle";
 </style>

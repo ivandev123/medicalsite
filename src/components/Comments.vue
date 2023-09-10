@@ -1,52 +1,19 @@
 <template>
   <div class="comments">
-    <h2>Комментарии: 3</h2>
+    <h2>Комментарии: {{ commentsCount }}</h2>
 
-    <Preloader style="margin-top: 20px;"/>
-    <div class="comments__content comments__content_mt-20">
-      <div class="comments__item">
-        <img src="@/assets/images/avatar.jpg" alt="avatar" class="comments__item-avatar">
-
-
-        <div class="comments__item-info">
-          <div>
-            <h3>Алексей</h3>
-            <time>26.05.2016 в 17:30</time>
-          </div>
-          <p>
-            Здравствуйте, Андрей!
-            Как всегда вы умеете удивить своими хорошо раскрытыми статьями.
-            Эта статья про Хайпы очень интересная, читал ее с восторгом.
-            Все очень понятно рассказано и описано!
-            Продолжайте в том же духе. У вас это хорошо получается! Удачи!
-          </p>
-        </div>
-      </div>
-      <div class="comments__item">
-        <img src="@/assets/images/avatar.jpg" alt="avatar" class="comments__item-avatar">
+    <Preloader style="margin-top: 20px;" v-if="!comments.length"/>
+    <div class="comments__content comments__content_mt-20" v-if="comments.length">
+      <div class="comments__item" v-for="comment in comments" :key="comment.id">
+        <img src="@/assets/images/reviews-avatar.jpeg" alt="avatar" class="comments__item-avatar">
 
         <div class="comments__item-info">
           <div>
-            <h3>Алексей</h3>
-            <time>26.05.2016 в 17:30</time>
+            <h3>{{ comment.name }}</h3>
+            <time>{{ getDate(comment.created_at) }}</time>
+<!--            <time>26.05.2016 в 17:30</time>-->
           </div>
-          <p>
-            Мне тоже очень понравилась. Хорошо расписано.
-          </p>
-        </div>
-      </div>
-      <div class="comments__item">
-        <img src="@/assets/images/avatar.jpg" alt="avatar" class="comments__item-avatar">
-
-
-        <div class="comments__item-info">
-          <div>
-            <h3>Алексей</h3>
-            <time>26.05.2016 в 17:30</time>
-          </div>
-          <p>
-            Отличная статья. Достаточно познавательна
-          </p>
+          <p>{{ comment.comment }}</p>
         </div>
       </div>
     </div>
@@ -58,7 +25,18 @@ import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "Comments",
-  components: {Preloader}
+  components: {Preloader},
+  props: ['commentsCount', 'comments'],
+  methods: {
+    getDate(date) {
+      const dateArray = date.split('T');
+
+      const date2 = dateArray[0].split('-').reverse().join('.')
+      const time = dateArray[1].split('.')[0]
+
+      return `${date2} в ${time}`
+    }
+  }
 }
 </script>
 
