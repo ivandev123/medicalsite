@@ -8,7 +8,7 @@
       </svg>
     </h2>
 
-    <Preloader style="margin-top: 40px;" v-if="!additionalServices.length"/>
+    <Preloader style="margin: 40px 0 20px;" v-if="!additionalServices.length"/>
     <div class="additional-services__content" v-if="additionalServices.length">
       <div class="additional-services__service" v-for="item in additionalServices" :key="item.id">
         <div class="additional-services__service-circle">
