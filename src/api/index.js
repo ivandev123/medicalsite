@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://hospital/api' // позже будет в .env
+const BASE_URL = 'http://158.160.18.123:8081/api' // позже будет в .env
 
 
 ///////////GET
