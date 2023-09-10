@@ -119,6 +119,8 @@ export default {
       }
 
       & > img {
+        width: 100%;
+        object-fit: cover;
         transition: filter .3s,-webkit-filter .3s;
       }
     }
