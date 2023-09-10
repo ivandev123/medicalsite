@@ -3,15 +3,16 @@
     <div class="container">
       <h1>СМИ о нас пишут</h1>
 
-      <Preloader style="margin-top: 20px;"/>
-      <div class="mass-media-about-us__articles mass-media-about-us__articles_mt-20">
+      <Preloader style="margin-top: 20px;" v-if="!media.length"/>
+      <div class="mass-media-about-us__articles mass-media-about-us__articles_mt-20" v-if="media.length">
         <a
-            href="#"
             rel="nofollow"
-            v-for="item in 9"
-            :key="item"
+            target="_blank"
+            v-for="article in media"
+            :key="article.id"
+            :href="article.url"
         >
-          <ArticleItem/>
+          <ArticleItem :image="article.image"/>
         </a>
       </div>
 
@@ -26,6 +27,7 @@ import FooterCallToAction from "@/components/layouts/FooterCallToAction.vue";
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import ArticleItem from "@/components/ArticleItem.vue";
 import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "MassMediaAboutUs",
@@ -36,13 +38,21 @@ export default {
     }
   },
   methods: {
+    ...mapActions('media', ['getMassMediaAboutUs']),
+
     setWidth() {
       this.pageWidth = window.innerWidth
     },
   },
+  computed: {
+    ...mapState('media', ['media']),
+  },
   created() {
     this.setWidth()
     window.onresize = () => this.setWidth()
+  },
+  mounted() {
+    this.getMassMediaAboutUs()
   }
 }
 </script>

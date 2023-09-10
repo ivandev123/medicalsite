@@ -7,7 +7,7 @@
       <VideoReview
           v-for="video in videoLectures"
           :key="video.id"
-          :id="video.id"
+          :link="video.video"
           @go-to-video="goToVideo"
       />
     </div>

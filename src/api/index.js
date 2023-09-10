@@ -61,6 +61,18 @@ export async function getVideoLectures() {
   return await getAsync('/video')
 }
 
+export async function getMassMediaAboutUs() {
+  return await getAsync('/media')
+}
+
+export async function getPhotoGallery() {
+  return await getAsync('/galery')
+}
+
+export async function getChambersInOurClinic() {
+  return await getAsync('/chambers')
+}
+
 //////////POST
 export async function makeAnAppointment(form) {
   return await postAsync('/feedback', form)

@@ -1,7 +1,7 @@
 <template>
   <div class="article-item">
     <img alt="article image" class="article-item__image" :src="image">
-    <div class="article-item__info article-item__info_mt-12">
+    <div class="article-item__info article-item__info_mt-12" v-if="getDate || views !== undefined">
       <div class="article-item__date">{{ getDate }}</div>
 <!--      31.07.2023-->
       <div class="article-item__tag" v-if="views !== undefined">
@@ -11,7 +11,9 @@
         {{ views }}
       </div>
     </div>
-    <div class="article-item__title article-item__title_mt-14">{{ title }}</div>
+    <div class="article-item__title article-item__title_mt-14" v-if="title">
+      {{ title }}
+    </div>
   </div>
 </template>
 

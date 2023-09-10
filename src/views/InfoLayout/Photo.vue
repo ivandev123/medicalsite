@@ -2,11 +2,13 @@
   <div class="photo-page">
     <h1 class="photo-page__title">Фотогалерея</h1>
 
-    <Preloader style="margin-top: 20px;"/>
-    <div class="photo-page__content photo-page__content_mt-20">
+    <Preloader style="margin-top: 20px;" v-if="!gallery.length"/>
+    <div class="photo-page__content photo-page__content_mt-20" v-if="gallery.length">
       <PhotoItem
-          v-for="item in 9"
-          :key="item"
+          v-for="photo in gallery"
+          :key="photo"
+          :title="photo.title"
+          :image="photo.image"
       />
     </div>
     <Reviews/>
@@ -19,6 +21,7 @@ import PhotoItem from "@/components/views/photo/PhotoItem.vue";
 import Reviews from "@/components/Reviews.vue";
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "Photo",
@@ -29,6 +32,8 @@ export default {
     }
   },
   methods: {
+    ...mapActions('gallery', ['getPhotoGallery']),
+
     setWidth() {
       this.pageWidth = window.innerWidth
     },
@@ -36,6 +41,12 @@ export default {
   created() {
     this.setWidth()
     window.onresize = () => this.setWidth()
+  },
+  computed: {
+    ...mapState('gallery', ['gallery']),
+  },
+  mounted() {
+    this.getPhotoGallery()
   }
 }
 </script>

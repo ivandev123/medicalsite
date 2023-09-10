@@ -20,6 +20,7 @@ export default defineComponent({
         <template v-for="link in dropdown" :key="link.id">
           <RouterLink
               class="header-link__dropdown-link"
+              :class="{ 'empty': !link.path }"
               :to="link.path"
               v-if="!link?.dropdown"
           >
@@ -33,6 +34,7 @@ export default defineComponent({
             <div class="header-link__dropdown second-dropdown">
               <RouterLink
                   class="header-link__dropdown-link"
+                  :class="{ 'empty': !link.path }"
                   v-for="link2 in link.dropdown"
                   :key="link2.id"
                   :to="link2.path"

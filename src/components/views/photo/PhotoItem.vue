@@ -1,13 +1,10 @@
 <template>
   <div class="photo-item">
     <div class="photo-item__body">
-      <img src="@/assets/images/info-article.jpg" alt="image">
+      <img alt="image" :src="image">
 
       <div class="photo-item__info">
-
-        <div class="photo-item__text">
-          Стационар в Апрелевке
-        </div>
+        <div class="photo-item__text">{{ title }}</div>
       </div>
     </div>
   </div>
@@ -16,7 +13,7 @@
 <script>
 export default {
   name: "PhotoItem",
-
+  props: ['title', 'image'],
 }
 </script>
 

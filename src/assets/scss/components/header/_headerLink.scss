@@ -68,7 +68,7 @@
       white-space: nowrap;
       transition: .25s;
 
-      &.router-link-exact-active,
+      &.router-link-exact-active:not(.empty),
       &:hover {
         color: #24c8bc;
         transition: .25s;

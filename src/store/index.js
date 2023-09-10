@@ -7,6 +7,9 @@ import ourAdvantages from "@/store/modules/ourAdvantages";
 import howItWork from "@/store/modules/howItWork";
 import additionalServices from "@/store/modules/additionalServices";
 import videoLectures from "@/store/modules/videoLectures";
+import media from "@/store/modules/media";
+import gallery from "@/store/modules/gallery";
+import chambers from "@/store/modules/chambers";
 
 export default createStore({
   modules: {
@@ -18,6 +21,9 @@ export default createStore({
     howItWork,
     additionalServices,
     videoLectures,
+    media,
+    gallery,
+    chambers,
   },
   state: {
     months: [

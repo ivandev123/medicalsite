@@ -8,22 +8,20 @@
       </svg>
     </h2>
 
-    <Preloader style="margin-top: 30px;"/>
-    <div class="chambers-in-our-clinic__content chambers-in-our-clinic__content_mt-30">
+    <Preloader style="margin-top: 30px;" v-if="!chambers.length"/>
+    <div class="chambers-in-our-clinic__content chambers-in-our-clinic__content_mt-30" v-if="chambers.length">
       <div
           class="chambers-in-our-clinic__item"
-          v-for="item in 3"
-          :key="item"
+          v-for="chamber in chambers"
+          :key="chamber.id"
       >
-        <div class="chambers-in-our-clinic__item-image" @click="openImg">
-          <img src="@/assets/images/our-service.jpg" alt="image">
+        <div class="chambers-in-our-clinic__item-image" @click="openImg(chamber.image)">
+          <img alt="image" :src="chamber.image">
         </div>
 
         <div class="chambers-in-our-clinic__item-info">
-          <div class="chambers-in-our-clinic__item-title">Палата Стандарт</div>
-          <p class="chambers-in-our-clinic__item-description">
-            Проживание, питание, круглосуточное наблюдение, улучшенное лечение
-          </p>
+          <div class="chambers-in-our-clinic__item-title">{{ chamber.name }}</div>
+          <p class="chambers-in-our-clinic__item-description">{{ chamber.content }}</p>
 
           <ul class="chambers-in-our-clinic__item-list chambers-in-our-clinic__list_mb-20">
             <li>Осмотр и диагностика</li>
@@ -40,14 +38,23 @@
 
 <script>
 import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "ChambersInOurClinic",
   components: {Preloader},
   methods: {
-    openImg() {
-      window.open('/img/our-service.347c4a7a.jpg', "_blank")
+    ...mapActions('chambers', ['getChambersInOurClinic']),
+
+    openImg(image) {
+      window.open(image, "_blank")
     }
+  },
+  computed: {
+    ...mapState('chambers', ['chambers']),
+  },
+  mounted() {
+    this.getChambersInOurClinic()
   }
 }
 </script>
@@ -63,8 +70,10 @@ export default {
   }
 
   &__content {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    flex-wrap: wrap;
 
     &_mt-30 {
       margin-top: 30px;

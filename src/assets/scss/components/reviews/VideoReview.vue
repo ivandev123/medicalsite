@@ -2,9 +2,9 @@
   <div class="video-review">
     <div class="video-review__image">
       <img src="@/assets/images/our-service.jpg" alt="image">
-      <div class="video-review__play" @click="$emit('go-to-video', id)">
+      <a class="video-review__play" :href="link" target="_blank">
         <img src="@/assets/images/video-play.png" alt="play">
-      </div>
+      </a>
     </div>
     <div class="video-review__info" v-if="title">{{ title }}</div>
   </div>
@@ -15,11 +15,11 @@ export default {
   name: "VideoReview",
   emits: ['go-to-video'],
   props: {
-    id: {
-      type: Number,
-      default: -1,
-    },
     title: {
+      type: String,
+      default: ''
+    },
+    link: {
       type: String,
       default: ''
     }
