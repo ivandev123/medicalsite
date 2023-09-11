@@ -14,6 +14,8 @@ import regulatoryBodies from "@/store/modules/regulatoryBodies";
 import policy from "@/store/modules/policy";
 import terms from "@/store/modules/terms";
 import helpfulInfo from "@/store/modules/helpfulInfo";
+import contacts from "@/store/modules/contacts";
+import region from "@/store/modules/region";
 
 export default createStore({
   modules: {
@@ -32,6 +34,8 @@ export default createStore({
     policy,
     terms,
     helpfulInfo,
+    contacts,
+    region,
   },
   state: {
     months: [

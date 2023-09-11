@@ -20,8 +20,8 @@
           <div class="contacts-info__item-info">
             <p>Телефон:</p>
 
-            <h3><a href="tel:88005007594">8-800-500-75-94</a></h3>
-            <h3><a href="tel:88005007594">8-800-500-75-94</a></h3>
+            <h3><a href="tel:88005007594">{{ contacts.phone }}</a></h3>
+<!--            <h3><a href="tel:88005007594">8-800-500-75-94</a></h3>-->
           </div>
         </div>
         <div class="contacts-info__item-row">
@@ -48,7 +48,7 @@
           <div class="contacts-info__item-info">
             <p>Email:</p>
 
-            <h3><a href="mailto:info@stop-zavisimost.ru">info@stop-zavisimost.ru</a></h3>
+            <h3><a href="mailto:info@stop-zavisimost.ru">{{ contacts.email }}</a></h3>
           </div>
         </div>
         <div class="contacts-info__item-row">
@@ -71,7 +71,7 @@
           <div class="contacts-info__item-info">
             <p>Офис:</p>
 
-            <h3>Ростов-на-Дону, Тракторная улица, 48Г</h3>
+            <h3>{{ contacts.address }}</h3>
             <a href="#" style="font-weight: 100;">наши филиалы в других городах</a>
           </div>
         </div>
@@ -96,7 +96,7 @@
           <div class="contacts-info__item-info">
             <p>Часы работы:</p>
 
-            <h3>с 9:00 до 22:00</h3>
+            <h3>{{ contacts.chart }}</h3>
           </div>
         </div>
       </address>
@@ -115,6 +115,7 @@
 <script>
 import Button from "@/components/utils/Button.vue";
 import OrderConsultationModal from "@/components/modals/OrderConsultationModal.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "ContactsInfo",
@@ -123,6 +124,15 @@ export default {
     return {
       showOrderConsultationModal: false,
     }
+  },
+  methods: {
+    ...mapActions('contacts', ['getContacts']),
+  },
+  computed: {
+    ...mapState('contacts', ['contacts'])
+  },
+  mounted() {
+    this.getContacts()
   }
 }
 </script>

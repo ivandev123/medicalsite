@@ -101,6 +101,14 @@ export async function getInformation() {
   return await getAsync('/information')
 }
 
+export async function getContacts() {
+  return await getAsync('/contact')
+}
+
+export async function getRegions() {
+  return await getAsync('/region')
+}
+
 //////////POST
 export async function makeAnAppointment(form) {
   return await postAsync('/feedback', form)
