@@ -2,93 +2,71 @@
   <div style="padding-bottom: 50px;" class="container">
     <h1 style="margin-bottom: 20px;">Полезная информация</h1>
 
-
-    <HelpfulTable title="График приёма граждан" :table="admissionSchedule"/>
-    <HelpfulTable title="Адреса и телефоны контролирующих организаций" :table="contactsOfControllingOrganizations"/>
-    <HelpfulInfoText title="Перечень лекарственных препаратов"/>
-    <HelpfulInfoText title="Прочая полезная информация"/>
-    <HelpfulInfoText title="Нормативная база"/>
+    <HelpfulTable title="График приёма граждан" :table="getInformationScheduleTable"/>
+    <HelpfulTable title="Адреса и телефоны контролирующих организаций" :table="getInformationOrganizationsTable"/>
+<!--    <HelpfulInfoText title="Перечень лекарственных препаратов"/>-->
+<!--    <HelpfulInfoText title="Прочая полезная информация"/>-->
+<!--    <HelpfulInfoText title="Нормативная база"/>-->
+    <Preloader style="margin-top: 20px;" v-if="!information.length"/>
+    <HelpfulInfoText
+        v-for="item in information"
+        :key="item.id"
+        :title="item.title"
+        :content="item.content"
+    />
   </div>
 </template>
 
 <script>
 import HelpfulTable from "@/components/views/helpfulInfo/HelpfulTable.vue";
 import HelpfulInfoText from "@/components/views/helpfulInfo/HelpfulInfoText.vue";
+import {mapActions, mapState} from "vuex";
+import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "HelpfulInfo",
-  components: {HelpfulTable, HelpfulInfoText},
-  data() {
-    return {
-      admissionSchedule: [
-        [
-          {
-            id: 1,
-            value: 'Директор'
-          },
-          {
-            id: 2,
-            value: 'Афанасьевская Екатерина Владимировна'
-          },
-          {
-            id: 3,
-            value: 'каждая пятница'
-          },
-          {
-            id: 4,
-            value: '15.00-18.00'
-          },
-        ],
-        [
-          {
-            id: 1,
-            value: 'Директор'
-          },
-          {
-            id: 2,
-            value: 'Афанасьевская Екатерина Владимировна'
-          },
-          {
-            id: 3,
-            value: 'каждая пятница'
-          },
-          {
-            id: 4,
-            value: '15.00-18.00'
-          },
-        ],
-      ],
-      contactsOfControllingOrganizations: [
-        [
-          {
-            id: 1,
-            value: 'Комитет по здравоохранению Санкт-Петербурга'
-          },
-          {
-            id: 2,
-            value: '191023, Санкт-Петербург, Малая Садовая ул., д. 1'
-          },
-          {
-            id: 3,
-            value: '635-55-77'
-          },
-        ],
-        [
-          {
-            id: 1,
-            value: 'Территориальный орган Росздравнадзора по Санкт-Петербургу и Ленинградской области'
-          },
-          {
-            id: 2,
-            value: '190068, Санкт-Петербург, наб. канала Грибоедова, 88-90, каб. 306'
-          },
-          {
-            id: 3,
-            value: '571-39-73'
-          },
-        ],
-      ]
+  components: {Preloader, HelpfulTable, HelpfulInfoText},
+  methods: {
+    ...mapActions('helpfulInfo', ['getInformationSchedule', 'getInformationOrganizations', 'getInformation']),
+  },
+  computed: {
+    ...mapState('helpfulInfo', ['informationSchedule', 'informationOrganizations', 'information']),
+
+    getInformationScheduleTable() {
+      let table = []
+
+      this.informationSchedule.forEach((item, idx) => {
+        table[idx] = []
+
+        for (const key in item) {
+          const unreadableKeys = ['id', 'created_at', 'updated_at']
+          if (unreadableKeys.includes(key)) continue
+          table[idx].push({ id: idx + 1, value: item[key] })
+        }
+      })
+
+      return table
+    },
+    getInformationOrganizationsTable() {
+      let table = []
+
+      this.informationOrganizations.forEach((item, idx) => {
+        table[idx] = []
+
+        for (const key in item) {
+          const unreadableKeys = ['id', 'created_at', 'updated_at']
+          if (unreadableKeys.includes(key)) continue
+          table[idx].push({ id: idx + 1, value: item[key] })
+        }
+      })
+
+      return table
     }
+  },
+  mounted() {
+    this.getInformationSchedule()
+    this.getInformationOrganizations()
+    this.getInformation()
   }
 }
 </script>

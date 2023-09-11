@@ -3,18 +3,28 @@
     <div class="container">
       <h1>Политика конфиденциальности</h1>
 
-      <Preloader/>
-      <p class="privacy-policy__text">Текстовый блок</p>
+      <Preloader v-if="!policy.content"/>
+      <p class="privacy-policy__text" v-html="policy.content" v-if="policy.content"/>
     </div>
   </div>
 </template>
 
 <script>
 import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "PrivacyPolicy",
-  components: {Preloader}
+  components: {Preloader},
+  methods: {
+    ...mapActions('policy', ['getPolicy']),
+  },
+  computed: {
+    ...mapState('policy', ['policy']),
+  },
+  mounted() {
+    this.getPolicy()
+  }
 }
 </script>
 

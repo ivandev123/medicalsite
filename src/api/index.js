@@ -9,6 +9,10 @@ export async function getServices() {
   return await getAsync('/services');
 }
 
+export async function getSubcategories() {
+  return await getAsync('/subcategory');
+}
+
 export async function getReviews() {
   return await getAsync('/reviews');
 }
@@ -66,11 +70,35 @@ export async function getMassMediaAboutUs() {
 }
 
 export async function getPhotoGallery() {
-  return await getAsync('/galery')
+  return await getAsync('/gallery')
 }
 
 export async function getChambersInOurClinic() {
   return await getAsync('/chambers')
+}
+
+export async function getRegulatoryBodies() {
+  return await getAsync('/controlbody')
+}
+
+export async function getPolicy() {
+  return await getAsync('/policy')
+}
+
+export async function getTerms() {
+  return await getAsync('/terms')
+}
+
+export async function getInformationSchedule() {
+  return await getAsync('/information-chart')
+}
+
+export async function getInformationOrganizations() {
+  return await getAsync('/information-organizations')
+}
+
+export async function getInformation() {
+  return await getAsync('/information')
 }
 
 //////////POST

@@ -3,18 +3,28 @@
     <div class="container">
       <h1>Пользовательское соглашение</h1>
 
-      <Preloader/>
-      <p class="terms-of-use__text">Текстовый блок</p>
+      <Preloader v-if="!terms.content"/>
+      <p class="terms-of-use__text" v-html="terms.content" v-if="terms.content"/>
     </div>
   </div>
 </template>
 
 <script>
 import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "TermsOfUse",
-  components: {Preloader}
+  components: {Preloader},
+  methods: {
+    ...mapActions('terms', ['getTerms'])
+  },
+  computed: {
+    ...mapState('terms', ['terms'])
+  },
+  mounted() {
+    this.getTerms()
+  }
 }
 </script>
 

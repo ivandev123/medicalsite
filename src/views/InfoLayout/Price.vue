@@ -2,12 +2,13 @@
   <div class="price-page">
     <h1 class="price-page__title">Цены</h1>
 
-    <Preloader style="margin-top: 20px;"/>
-    <div class="price-page__content price-page__content_mt-20">
+    <Preloader style="margin-top: 20px;" v-if="!subcategories.length"/>
+    <div class="price-page__content price-page__content_mt-20" v-if="subcategories.length">
       <CardWithDropdown
-          v-for="card in cards"
+          v-for="card in subcategories"
           :key="card.id"
-          :card="card"
+          :title="card.name"
+          :dropdown="card.item.map(item => new Object({ id: item.id, name: item.content, price: item.price }))"
       />
     </div>
     <InformationalArticles type="small" :page-width="pageWidth"/>
@@ -18,87 +19,32 @@
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import CardWithDropdown from "@/components/utils/CardWithDropdown.vue";
 import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "Price",
   components: {Preloader, CardWithDropdown, InformationalArticles},
   data() {
     return {
-      cards: [
-        {
-          id: 1,
-          title: 'Вызов нарколога на дом',
-          dropdown: [
-            {
-              id: 1,
-              name: 'Первичная консультация по телефону + индивидуальный план лечения',
-              price: null
-            },
-            {
-              id: 2,
-              name: 'Консультация нарколога на дому',
-              price: 2000
-            },
-            {
-              id: 3,
-              name: 'Выезд команды интервенции (убеждение лечиться)',
-              price: 4000
-            },
-            {
-              id: 4,
-              name: 'Вывод из запоя на дому',
-              price: 3000
-            },
-            {
-              id: 5,
-              name: 'Вывод из запоя (двойная система капельниц)',
-              price: 4500
-            },
-          ],
-        },
-        {
-          id: 2,
-          title: 'Лечение в стационаре',
-          dropdown: [
-            {
-              id: 1,
-              name: 'Первичная консультация по телефону + индивидуальный план лечения',
-              price: null
-            },
-            {
-              id: 2,
-              name: 'Консультация нарколога на дому',
-              price: 2000
-            },
-            {
-              id: 3,
-              name: 'Выезд команды интервенции (убеждение лечиться)',
-              price: 4000
-            },
-            {
-              id: 4,
-              name: 'Вывод из запоя на дому',
-              price: 3000
-            },
-            {
-              id: 5,
-              name: 'Вывод из запоя (двойная система капельниц)',
-              price: 4500
-            },
-          ],
-        },
-      ],
       pageWidth: 0,
     }
   },
   methods: {
+    ...mapActions('services', ['getSubcategories']),
+
     setWidth() {
       this.pageWidth = window.innerWidth
     },
   },
+  computed: {
+    ...mapState('services', ['subcategories']),
+  },
   created() {
     this.setWidth()
     window.onresize = () => this.setWidth()
+  },
+  mounted() {
+    this.getSubcategories()
   }
 }
 </script>

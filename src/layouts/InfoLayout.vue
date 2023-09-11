@@ -42,7 +42,7 @@ export default defineComponent({
       column-gap: 25px;
 
       & > div {
-        width: calc(100% - 230px);
+        width: calc(100% - 255px);
       }
     }
   }

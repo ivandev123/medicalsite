@@ -5,17 +5,17 @@
         <path d="M93.5 174.5L256.5 337.5L419.5 174.5" stroke="#FFFFFF" stroke-width="60" stroke-linecap="round"/>
       </svg>
 
-      <div class="card-with-dropdown__title">{{ card.title }}</div>
+      <div class="card-with-dropdown__title">{{ title }}</div>
     </div>
     <Transition name="dropdown">
       <div class="card-with-dropdown__dropdown" v-show="open">
         <table>
           <tbody>
-          <tr v-for="item in card.dropdown" :key="item.id">
+          <tr v-for="item in dropdown" :key="item.id">
             <td>{{ item.name }}</td>
-            <td>
+            <td style="width: 14%;">
               <div>
-                <span>{{ item.price ? `от ${item.price}₽` : 'Бесплатно' }}</span>
+                <span>{{ +item.price ? `от ${item.price}₽` : 'Бесплатно' }}</span>
               </div>
             </td>
             <td>
@@ -32,7 +32,7 @@
 <script>
 export default {
   name: "CardWithDropdown",
-  props: ['card'],
+  props: ['title', 'dropdown'],
   data() {
     return {
       open: false,

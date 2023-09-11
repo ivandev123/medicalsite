@@ -24,11 +24,15 @@
           <p class="chambers-in-our-clinic__item-description">{{ chamber.content }}</p>
 
           <ul class="chambers-in-our-clinic__item-list chambers-in-our-clinic__list_mb-20">
-            <li>Осмотр и диагностика</li>
-            <li>Препараты, выводящие токсины из организма</li>
-            <li>Успокоительные</li>
-            <li>Противорвотные</li>
-            <li>Витамины</li>
+<!--            <li>Осмотр и диагностика</li>-->
+<!--            <li>Препараты, выводящие токсины из организма</li>-->
+<!--            <li>Успокоительные</li>-->
+<!--            <li>Противорвотные</li>-->
+<!--            <li>Витамины</li>-->
+            <li
+                v-for="item in chamber.chamberlist"
+                :key="item.id"
+            >{{ item.title }}</li>
           </ul>
         </div>
       </div>

@@ -10,6 +10,10 @@ import videoLectures from "@/store/modules/videoLectures";
 import media from "@/store/modules/media";
 import gallery from "@/store/modules/gallery";
 import chambers from "@/store/modules/chambers";
+import regulatoryBodies from "@/store/modules/regulatoryBodies";
+import policy from "@/store/modules/policy";
+import terms from "@/store/modules/terms";
+import helpfulInfo from "@/store/modules/helpfulInfo";
 
 export default createStore({
   modules: {
@@ -24,6 +28,10 @@ export default createStore({
     media,
     gallery,
     chambers,
+    regulatoryBodies,
+    policy,
+    terms,
+    helpfulInfo,
   },
   state: {
     months: [
