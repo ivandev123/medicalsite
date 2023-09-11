@@ -43,8 +43,8 @@ export default {
     ...mapActions('region', ['getRegions']),
 
     showMarker(region, idx) {
-      const marker = document.querySelector(`.yandex-map-section-${idx + 1}`)
-      console.log(this.map)
+      // const marker = document.querySelector(`.yandex-map-section-${idx + 1}`)
+      console.log(region)
       console.log()
     },
     async loadMap() {
