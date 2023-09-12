@@ -1,6 +1,6 @@
 <template>
   <div class="stock-item">
-    <img alt="image" class="stock-item__image" :src="stock.image">
+    <img alt="image" class="stock-item__image" :src="stock.stock_image">
 
     <div class="stock-item__info">
       <div class="stock-item__title">{{ stock.title }}</div>

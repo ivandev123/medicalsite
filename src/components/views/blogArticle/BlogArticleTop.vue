@@ -1,7 +1,7 @@
 <template>
   <div class="blog-article-top">
     <header class="blog-article-top__body">
-      <img alt="image" :src="data.image">
+      <img alt="image" :src="data.blog_image">
 
       <div class="blog-article-top__content">
         <div class="blog-article-top__title">
