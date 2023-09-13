@@ -3,6 +3,7 @@ import {defineComponent} from 'vue'
 import Button from "@/components/utils/Button.vue";
 import OrderConsultationModal from "@/components/modals/OrderConsultationModal.vue";
 import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
 
 export default defineComponent({
   name: "HeadDoctorsMessage",
@@ -12,8 +13,18 @@ export default defineComponent({
       showOrderConsultationModal: false,
     }
   },
-  mounted() {
+  methods: {
+    ...mapActions('appeal', ['getAppeal']),
+  },
+  computed: {
+    ...mapState('appeal', ['appeal']),
 
+    getName() {
+      return this.appeal.fullname?.split(' ')
+    }
+  },
+  mounted() {
+    this.getAppeal()
   }
 })
 </script>
@@ -24,9 +35,9 @@ export default defineComponent({
     <template v-if="true">
       <div class="head-doctors-message__left">
         <h2 class="head-doctors-message__title head-doctors-message__title_mb-15">
-          <span>Вашкин</span>
+          <span>{{ getName?.[0] }}</span>
           <span>
-          Дмитрий Владимирович
+          {{ getName?.splice(1).join(' ') }}
           <Button name="Записаться на консультацию" @click="showOrderConsultationModal = true"/>
         </span>
         </h2>
@@ -34,17 +45,16 @@ export default defineComponent({
 
         <div class="head-doctors-message__content">
           <div class="head-doctors-message__picture top">
-            <img src="../../../assets/images/header-doctor.png" alt="Главврач">
+            <img alt="Главврач" :src="appeal.image">
           </div>
-          <div class="head-doctors-message__text">
-            <p>Химическая зависимость — это тяжелая смертельная болезнь. Каждый день употребления наркотиков приближает человека к критической черте.</p>
-            <p>К сожалению, на дому вылечить зависимость невозможно. Также не существует «волшебной таблетки», после которой больной резко исцелится. Если вы хотите помочь близкому в беде, не тратьте драгоценное время на сомнительные советы из интернета и на шарлатанов!</p>
-            <p>Мы придерживаемся простого взгляда: медицинская помощь должна быть профессиональной. Индивидуальный подход, комплексная терапия и бережная психологическая поддержка — <span>вот надежный путь к выздоровлению!</span></p>
-          </div>
+          <div class="head-doctors-message__text" v-html="appeal.content"/>
+          <!--            <p>Химическая зависимость — это тяжелая смертельная болезнь. Каждый день употребления наркотиков приближает человека к критической черте.</p>-->
+          <!--            <p>К сожалению, на дому вылечить зависимость невозможно. Также не существует «волшебной таблетки», после которой больной резко исцелится. Если вы хотите помочь близкому в беде, не тратьте драгоценное время на сомнительные советы из интернета и на шарлатанов!</p>-->
+          <!--            <p>Мы придерживаемся простого взгляда: медицинская помощь должна быть профессиональной. Индивидуальный подход, комплексная терапия и бережная психологическая поддержка — <span>вот надежный путь к выздоровлению!</span></p>-->
         </div>
       </div>
       <div class="head-doctors-message__picture right">
-        <img src="../../../assets/images/header-doctor.png" alt="Главврач">
+        <img alt="Главврач" :src="appeal.image">
       </div>
     </template>
   </div>

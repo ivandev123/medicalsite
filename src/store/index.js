@@ -16,6 +16,7 @@ import terms from "@/store/modules/terms";
 import helpfulInfo from "@/store/modules/helpfulInfo";
 import contacts from "@/store/modules/contacts";
 import region from "@/store/modules/region";
+import appeal from "@/store/modules/appeal";
 
 export default createStore({
   modules: {
@@ -36,6 +37,7 @@ export default createStore({
     helpfulInfo,
     contacts,
     region,
+    appeal,
   },
   state: {
     months: [

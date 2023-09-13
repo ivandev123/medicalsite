@@ -8,7 +8,7 @@
           v-for="(item, idx) in items"
           :key="item.id"
       >
-        <div class="how-to-determine__item-num">0{{ idx + 1 }}</div>
+        <div class="how-to-determine__item-num">{{ idx + 1 < 10 ? `0${idx + 1}` : idx }}</div>
         <div class="how-to-determine__item-description" v-html="item.name"/>
       </div>
     </div>
