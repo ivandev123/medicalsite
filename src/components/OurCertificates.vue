@@ -6,9 +6,9 @@
     <div class="our-certificates__content our-certificates__content_mt-50" v-if="certificates.length">
       <Carousel class="our-certificates__carousel" :items-to-show="getCountSlides" :autoplay="10000" :wrap-around="true" :transition="500">
         <Slide v-for="item in certificates" :key="item">
-          <RouterLink class="our-certificates__item" to="">
+          <div class="our-certificates__item">
             <img alt="certificate" :src="item.image">
-          </RouterLink>
+          </div>
         </Slide>
 
         <template #addons>
