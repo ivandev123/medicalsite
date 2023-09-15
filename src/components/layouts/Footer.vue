@@ -65,7 +65,7 @@ export default defineComponent({
                     <li
                         v-for="subcategory in category.subcategories"
                         :key="subcategory.id"
-                        @click="$router.push('/subcategory/' + category.id)"
+                        @click="$router.push('/subcategory/' + subcategory.id)"
                     >
                       {{ subcategory.name }}
 
