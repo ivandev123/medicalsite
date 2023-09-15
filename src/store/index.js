@@ -18,6 +18,7 @@ import contacts from "@/store/modules/contacts";
 import region from "@/store/modules/region";
 import appeal from "@/store/modules/appeal";
 import seo from "@/store/modules/seo";
+import category from "@/store/modules/category";
 
 export default createStore({
   modules: {
@@ -40,6 +41,7 @@ export default createStore({
     region,
     appeal,
     seo,
+    category,
   },
   state: {
     months: [

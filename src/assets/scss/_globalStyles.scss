@@ -17,13 +17,13 @@ body {
   color: #262626;
 
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
     background: #FFFFFF;
     border-radius: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #DFDFDF;
+    background: #24c8bc;
     border-radius: 6px;
   }
 }

@@ -8,7 +8,11 @@ import VideoLectures from "@/views/InfoLayout/VideoLectures.vue";
 
 export default [
   {
-    path: 'categories',
+    path: 'category/:id',
+    component: Categories,
+  },
+  {
+    path: 'subcategory/:id',
     component: Categories,
   },
   {

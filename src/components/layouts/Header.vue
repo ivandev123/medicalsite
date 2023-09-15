@@ -9,9 +9,9 @@ import TwitterIcon from "@/components/icons/networks/TwitterIcon.vue";
 import VKIcon from "@/components/icons/networks/VKIcon.vue";
 import YouTubeIcon from "@/components/icons/networks/YouTubeIcon.vue";
 import LogoIcon from "@/components/icons/LogoIcon.vue";
-import headerLinks from "@/data/headerLinks";
 import OrderConsultationModal from "@/components/modals/OrderConsultationModal.vue";
 import AnnouncementModal from "@/components/modals/AnnouncementModal.vue";
+import {mapActions, mapState} from "vuex";
 
 export default defineComponent({
   name: "Header",
@@ -25,11 +25,122 @@ export default defineComponent({
       showAnnouncementModal: false,
     }
   },
+  methods: {
+    ...mapActions('category', ['getCategories']),
+  },
   computed: {
+    ...mapState('category', ['categories']),
+
     headerLinks() {
-      return headerLinks
+      let categoriesNav = this.categories.map(category => new Object({
+        id: category.id,
+        title: category.name,
+        path: '/' + category.id,
+
+        dropdown: category.subcategories.map(subcategory => new Object({
+          id: subcategory.id,
+          name: subcategory.name,
+          path: '/category/' + category.id,
+
+          dropdown: subcategory.item.map(service => new Object({
+            id: service.id,
+            name: service.name,
+            path: '/subcategory/' + subcategory.id
+          }))
+        })),
+      }))
+      categoriesNav.push(this.otherLinks)
+      return categoriesNav
+    },
+    otherLinks() {
+      return {
+        id: this.headerLinks?.length + 1,
+        title: 'О клинике',
+        path: '/',
+
+        dropdown: [
+          {
+            id: 1,
+            name: 'История клиники',
+            path: '/history'
+          },
+          {
+            id: 2,
+            name: 'Специалисты',
+            path: '/specialists'
+          },
+          {
+            id: 3,
+            name: 'Сертификаты и лицензии',
+            path: '/certificates'
+          },
+          {
+            id: 4,
+            name: 'Цены',
+            path: '/price'
+          },
+          {
+            id: 5,
+            name: 'Отзывы',
+            path: '/reviews'
+          },
+          {
+            id: 6,
+            name: 'Фото',
+            path: '/photo'
+          },
+          {
+            id: 7,
+            name: 'Статьи',
+            path: '/blog'
+          },
+          {
+            id: 8,
+            name: 'СМИ о нас',
+            path: '/media'
+          },
+          {
+            id: 9,
+            name: 'Акции',
+            path: '/stock'
+          },
+          {
+            id: 10,
+            name: 'Видео лекции',
+            path: '/video-lectures'
+          },
+          {
+            id: 11,
+            name: 'Контролирующие органы',
+            path: '/regulatory-bodies'
+          },
+          {
+            id: 12,
+            name: 'Полезная информация',
+            path: '/helpful-info'
+          },
+          {
+            id: 13,
+            name: 'Контакты',
+            path: '/contacts'
+          },
+          {
+            id: 14,
+            name: 'Политика конфиденциальности',
+            path: '/policy'
+          },
+          {
+            id: 15,
+            name: 'Пользовательское соглашение',
+            path: '/terms'
+          },
+        ]
+      }
     }
   },
+  mounted() {
+    this.getCategories()
+  }
 })
 </script>
 

@@ -9,6 +9,10 @@ export async function getServices() {
   return await getAsync('/services');
 }
 
+export async function getCategories() {
+  return await getAsync('/category');
+}
+
 export async function getSubcategories() {
   return await getAsync('/subcategory');
 }
