@@ -57,14 +57,14 @@ export default defineComponent({
             </div>
           </div>
         </div>
-        <Button
-            class="our-specialists__item-button"
-            name="Смотреть профиль"
-            padding="14px 0"
-            width="100%"
-            font-size="16px"
-            @click="$router.push(`/specialist/${specialist.id}`)"
-        />
+<!--        <Button-->
+<!--            class="our-specialists__item-button"-->
+<!--            name="Смотреть профиль"-->
+<!--            padding="14px 0"-->
+<!--            width="100%"-->
+<!--            font-size="16px"-->
+<!--            @click="$router.push(`/specialist/${specialist.id}`)"-->
+<!--        />-->
       </div>
     </div>
   </div>

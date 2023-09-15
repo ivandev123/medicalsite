@@ -32,7 +32,7 @@ export default defineComponent({
         <h2>Получите бесплатную консультацию врача</h2>
         <Button name="Записаться на приём" width="100%" @click="showOrderConsultationModal = true"/>
 
-        <p>Отправляя заявку вы соглашаетесь с условиями нашей <a href="#">политики конфиденциальности.</a></p>
+        <p>Отправляя заявку вы соглашаетесь с условиями нашей <RouterLink to="/policy">политики конфиденциальности.</RouterLink></p>
       </div>
     </div>
   </div>

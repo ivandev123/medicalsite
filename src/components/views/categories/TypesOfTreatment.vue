@@ -2,11 +2,13 @@
   <div class="types-of-treatment">
     <h2 class="types-of-treatment__title">Наши цены</h2>
 
-    <div class="types-of-treatment__content types-of-treatment__content_mt-20">
+    <Preloader style="margin-top: 20px;" v-if="!subcategories.length"/>
+    <div class="types-of-treatment__content types-of-treatment__content_mt-20" v-if="subcategories.length">
       <CardWithDropdown
-          v-for="card in cards"
+          v-for="card in subcategories"
           :key="card.id"
-          :card="card"
+          :title="card.name"
+          :dropdown="card.item.map(item => new Object({ id: item.id, name: item.content, price: item.price }))"
       />
     </div>
   </div>
@@ -14,77 +16,20 @@
 
 <script>
 import CardWithDropdown from "@/components/utils/CardWithDropdown.vue";
+import Preloader from "@/components/Preloader.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "TypesOfTreatment",
-  components: {CardWithDropdown},
-  data() {
-    return {
-      cards: [
-        {
-          id: 1,
-          title: 'Вызов нарколога на дом',
-          dropdown: [
-            {
-              id: 1,
-              name: 'Первичная консультация по телефону + индивидуальный план лечения',
-              price: null
-            },
-            {
-              id: 2,
-              name: 'Консультация нарколога на дому',
-              price: 2000
-            },
-            {
-              id: 3,
-              name: 'Выезд команды интервенции (убеждение лечиться)',
-              price: 4000
-            },
-            {
-              id: 4,
-              name: 'Вывод из запоя на дому',
-              price: 3000
-            },
-            {
-              id: 5,
-              name: 'Вывод из запоя (двойная система капельниц)',
-              price: 4500
-            },
-          ],
-        },
-        {
-          id: 2,
-          title: 'Лечение в стационаре',
-          dropdown: [
-            {
-              id: 1,
-              name: 'Первичная консультация по телефону + индивидуальный план лечения',
-              price: null
-            },
-            {
-              id: 2,
-              name: 'Консультация нарколога на дому',
-              price: 2000
-            },
-            {
-              id: 3,
-              name: 'Выезд команды интервенции (убеждение лечиться)',
-              price: 4000
-            },
-            {
-              id: 4,
-              name: 'Вывод из запоя на дому',
-              price: 3000
-            },
-            {
-              id: 5,
-              name: 'Вывод из запоя (двойная система капельниц)',
-              price: 4500
-            },
-          ],
-        },
-      ]
-    }
+  components: {Preloader, CardWithDropdown},
+  methods: {
+    ...mapActions('services', ['getSubcategories']),
+  },
+  computed: {
+    ...mapState('services', ['subcategories']),
+  },
+  mounted() {
+    this.getSubcategories()
   }
 }
 </script>

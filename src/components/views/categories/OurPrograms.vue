@@ -5,16 +5,17 @@
     <div class="our-programs__content our-programs__content_mt-25">
       <div
           class="our-programs__item"
-          v-for="program in programs"
+          v-for="program in services"
           :key="program.id"
       >
-        <h3 class="our-programs__item-title">{{ program.title }}</h3>
-        <p class="our-programs__item-description our-programs__item-description_mt-10">{{ program.description }}</p>
+        <h3 class="our-programs__item-title">{{ program.name }}</h3>
+        <p class="our-programs__item-description our-programs__item-description_mt-10">{{ program.content }}</p>
 
         <div class="our-programs__item-info">
           <div class="our-programs__item-price">
-            от {{ program.price }} ₽
-            <sup v-if="program.time"> / {{ program.time }}</sup>
+<!--            от {{ program.price }} ₽-->
+            {{ program.price }}
+<!--            <sup v-if="program.time"> / {{ program.time }}</sup>-->
           </div>
           <div class="our-programs__item-image">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none">
@@ -34,6 +35,8 @@
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
+
 export default {
   name: "OurPrograms",
   data() {
@@ -62,6 +65,15 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    ...mapActions('services', ['getServices']),
+  },
+  computed: {
+    ...mapState('services', ['services']),
+  },
+  mounted() {
+    this.getServices()
   }
 }
 </script>
@@ -72,7 +84,7 @@ export default {
 
   &__content {
     display: flex;
-    column-gap: 30px;
+    gap: 30px;
     flex-wrap: wrap;
 
     &_mt-25 {

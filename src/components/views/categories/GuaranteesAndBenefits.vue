@@ -5,12 +5,13 @@
     <div class="guarantees-and-benefits__content guarantees-and-benefits__content_mt-30">
       <div
           class="guarantees-and-benefits__item"
-          v-for="item in data"
+          v-for="item in advantages"
           :key="item.id"
       >
         <div class="guarantees-and-benefits__item-body">
           <div class="guarantees-and-benefits__item-icon">
-            <img alt="Дипломированные специалисты" loading="lazy" width="40" height="40" :src="require(`@/assets/svg/guaranteesAndBenefits/${item.id}.svg`)">
+            <img alt="Дипломированные специалисты" loading="lazy" width="40" height="40" :src="item.icon">
+<!--            :src="require(`@/assets/svg/guaranteesAndBenefits/${item.id}.svg`)"-->
           </div>
           <div class="guarantees-and-benefits__item-title">{{ item.title }}</div>
         </div>
@@ -20,6 +21,8 @@
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
+
 export default {
   name: "GuaranteesAndBenefits",
   data() {
@@ -51,6 +54,15 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    ...mapActions('ourAdvantages', ['getAdvantages']),
+  },
+  computed: {
+    ...mapState('ourAdvantages', ['advantages']),
+  },
+  mounted() {
+    this.getAdvantages()
   }
 }
 </script>
