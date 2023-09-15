@@ -80,8 +80,19 @@
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
+
 export default {
-  name: "SEOText"
+  name: "SEOText",
+  methods: {
+    ...mapActions('seo', ['getSeo']),
+  },
+  computed: {
+    ...mapState('seo', ['seo']),
+  },
+  mounted() {
+    this.getSeo()
+  }
 }
 </script>
 
