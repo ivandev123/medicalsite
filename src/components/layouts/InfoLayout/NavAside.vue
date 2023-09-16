@@ -13,47 +13,29 @@ export default defineComponent({
     }
   },
   methods: {
-    ...mapActions('category', ['getCategoryById', 'getSubcategoryById']),
+    ...mapActions('category', ['getCategoryById']),
 
     loadNav() {
-      if (this.getSubcategoryId) {
-        this.getCategoryById(this.getCategoryId)
-        this.getSubcategoryById(this.getSubcategoryId)
-      }
       if (this.getCategoryId) this.getCategoryById(this.getCategoryId)
     }
   },
   computed: {
-    ...mapState('category', ['category', 'subcategory']),
+    ...mapState('category', ['category']),
 
     getCategoryId() {
       return this.$route.params.categoryId
     },
-    getSubcategoryId() {
-      return this.$route.params.subcategoryId
-    },
     getNavigation() {
-      switch (true) {
-        case !!this.getSubcategoryId:
-          return this.subcategory.item?.map(service => new Object({
-            ...service,
-            slug: `/service/${service.id}`
-          }))
-        case !!this.getCategoryId:
-          return this.category.subcategories?.map(subcategory => new Object({
-            ...subcategory,
-            slug: `/category/${this.getCategoryId}/subcategory/${subcategory.id}`
-          }))
-      }
+      return this.category.subcategories?.map(subcategory => new Object({
+        ...subcategory,
+        slug: `/category/${this.getCategoryId}/subcategory/${subcategory.id}`
+      }))
     },
   },
   watch: {
     getCategoryId() {
       this.loadNav()
     },
-    getSubcategoryId() {
-      this.loadNav()
-    }
   },
   mounted() {
     this.loadNav()

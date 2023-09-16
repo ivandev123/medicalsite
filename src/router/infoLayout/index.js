@@ -11,6 +11,10 @@ export default [
     path: 'category/:categoryId',
     component: Categories,
   },
+  {
+    path: '/category/:categoryId/subcategory/:subcategoryId',
+    component: Categories,
+  },
   // {
   //   path: `category/:id/subcategory/:id2`,
   //   component: Categories,
@@ -18,10 +22,6 @@ export default [
   //     type: 'all'
   //   }
   // },
-  {
-    path: '/category/:categoryId/subcategory/:subcategoryId',
-    component: Categories,
-  },
   {
     path: 'specialists',
     component: Specialists,
