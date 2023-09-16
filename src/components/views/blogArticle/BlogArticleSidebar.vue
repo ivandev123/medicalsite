@@ -36,10 +36,11 @@ import Networks from "@/components/Networks.vue";
 export default {
   name: "BlogArticleSidebar",
   components: {Networks},
+  props: ['headers'],
   data() {
     return {
-      headers: ['Заголовок 1', 'Заголовок 2', 'Длинный заголовок Длинный заголовок Длинный заголовок'],
-      activeTitle: 'Заголовок 1'
+      // headers: ['Заголовок 1', 'Заголовок 2', 'Длинный заголовок Длинный заголовок Длинный заголовок'],
+      activeTitle: ''
     }
   },
   methods: {
@@ -47,7 +48,12 @@ export default {
       this.activeTitle = title
       this.$emit('scroll-to-title', ref)
     }
-  }
+  },
+  watch: {
+    'headers.length'() {
+      this.activeTitle = this.headers[0]
+    }
+  },
 }
 </script>
 

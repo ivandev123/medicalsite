@@ -15,6 +15,7 @@ import ChambersInOurClinic from "@/components/ChambersInOurClinic.vue";
 import OurCertificates from "@/components/OurCertificates.vue";
 import Reviews from "@/components/Reviews.vue";
 import InformationalArticles from "@/components/InformationalArticles.vue";
+import {mapState} from "vuex";
 
 export default defineComponent({
   name: "Categories",
@@ -40,6 +41,38 @@ export default defineComponent({
       this.pageWidth = window.innerWidth
     },
   },
+  computed: {
+    ...mapState('category', ['category', 'subcategory']),
+
+    getCategoryId() {
+      return this.$route.params.categoryId
+    },
+    getSubcategoryId() {
+      return this.$route.params.subcategoryId
+    },
+    getBreadcrumbs() {
+      const category = { name: this.category.name, path: `/category/${this.category.id}` }
+      const subcategory = {
+        name: this.subcategory.name,
+        path: `/category/${this.getCategoryId}/subcategory/${this.subcategory.id}`
+      }
+
+      switch (true) {
+        case !!this.getSubcategoryId:
+          return [category, subcategory]
+        case !!this.getCategoryId:
+          return [category]
+      }
+    },
+    getContent() {
+      switch (true) {
+        case !!this.getSubcategoryId:
+          return this.subcategory.content
+        case !!this.getCategoryId:
+          return this.category.content
+      }
+    }
+  },
   created() {
     this.setWidth()
     window.onresize = () => this.setWidth()
@@ -48,8 +81,16 @@ export default defineComponent({
 </script>
 
 <template>
-  <Breadcrumbs page-title="Главная" :breadcrumbs="['Категории', 'Лечение алкоголизма']"/>
+  <Breadcrumbs
+      :page-parent="{ name: 'Главная', path: '/' }"
+      :breadcrumbs="getBreadcrumbs"
+  />
   <CategoriesBanner/>
+
+<!--  <div style="margin-top: 30px;" v-html="getContent"></div>-->
+  <div class="categories-content">
+
+  </div>
   <HowToDetermine/>
   <PrimaryDiagnosis/>
   <OurPrograms/>
@@ -66,4 +107,13 @@ export default defineComponent({
 </template>
 
 <style scoped lang="scss">
+.categories-content {
+  & ol {
+
+  }
+
+  & ul {
+
+  }
+}
 </style>

@@ -4,13 +4,13 @@ import {addBlogArticleComment, getBlogArticleCommentsById} from "@/api";
 export default {
   namespaced: true,
   state: {
-    blogArticles: [],
+    blogArticles: {},
     blogArticle: {},
     comments: [],
   },
   actions: {
-    getBlogArticles({ commit }) {
-      API.getBlogArticles().then(response => commit('SET_BLOG_ARTICLES', response))
+    getBlogArticles({ commit }, page) {
+      API.getBlogArticles(page).then(response => commit('SET_BLOG_ARTICLES', response))
     },
     getBlogArticle({ commit }, blogArticleId) {
       API.getBlogArticle(blogArticleId).then(response => commit('SET_BLOG_ARTICLE', response))

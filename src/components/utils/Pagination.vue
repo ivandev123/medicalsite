@@ -1,67 +1,66 @@
 <template>
   <div class="pagination">
-    <div class="pagination__prev" @click="selectedNum > 1 ? selectedNum-- : selectedNum = 1">
+<!--    <div class="pagination__prev" @click="selectedNum > 1 ? selectedNum&#45;&#45; : selectedNum = 1">-->
+<!--      <svg width="9" height="5.5" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.235034 0.204742C0.536173 -0.0796667 1.01085 -0.0661045 1.29526 0.235034L5 4.1577L8.70474 0.235034C8.98915 -0.0661045 9.46383 -0.0796667 9.76497 0.204742C10.0661 0.489151 10.0797 0.963831 9.79526 1.26497L5.54526 5.76497C5.40358 5.91499 5.20635 6 5 6C4.79366 6 4.59642 5.91499 4.45474 5.76497L0.204742 1.26497C-0.0796667 0.963831 -0.0661045 0.489151 0.235034 0.204742Z" fill="#4B535A"/>-->
+<!--      </svg>-->
+<!--    </div>-->
+<!--    <div class="pagination__numbers">-->
+<!--      <div-->
+<!--          class="pagination__number"-->
+<!--          :class="{ 'active': selectedNum === num }"-->
+<!--          v-for="(num, idx) in count < 6 ? count : getNumbers"-->
+<!--          :key="idx"-->
+<!--          @click="selectedNum = num"-->
+<!--      >-->
+<!--        {{ num }}-->
+<!--      </div>-->
+<!--      <template v-if="count > 5">-->
+<!--        <span v-if="getNumbers.length >= 5 && !getNumbers.includes(count)">...</span>-->
+<!--        <div-->
+<!--            class="pagination__number"-->
+<!--            :class="{ 'active': selectedNum === count }"-->
+<!--            @click="selectedNum = count"-->
+<!--            v-if="!getNumbers.includes(count)"-->
+<!--        >{{ count }}</div>-->
+<!--      </template>-->
+<!--    </div>-->
+<!--    <div class="pagination__next" @click="selectedNum < count ? selectedNum++ : selectedNum = count">-->
+<!--      <svg width="9" height="5.5" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.235034 0.204742C0.536173 -0.0796667 1.01085 -0.0661045 1.29526 0.235034L5 4.1577L8.70474 0.235034C8.98915 -0.0661045 9.46383 -0.0796667 9.76497 0.204742C10.0661 0.489151 10.0797 0.963831 9.79526 1.26497L5.54526 5.76497C5.40358 5.91499 5.20635 6 5 6C4.79366 6 4.59642 5.91499 4.45474 5.76497L0.204742 1.26497C-0.0796667 0.963831 -0.0661045 0.489151 0.235034 0.204742Z" fill="#4B535A"/>-->
+<!--      </svg>-->
+<!--    </div>-->
+    <RouterLink class="pagination__prev" :to="prevPage ? prevPage : ''">
       <svg width="9" height="5.5" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M0.235034 0.204742C0.536173 -0.0796667 1.01085 -0.0661045 1.29526 0.235034L5 4.1577L8.70474 0.235034C8.98915 -0.0661045 9.46383 -0.0796667 9.76497 0.204742C10.0661 0.489151 10.0797 0.963831 9.79526 1.26497L5.54526 5.76497C5.40358 5.91499 5.20635 6 5 6C4.79366 6 4.59642 5.91499 4.45474 5.76497L0.204742 1.26497C-0.0796667 0.963831 -0.0661045 0.489151 0.235034 0.204742Z" fill="#4B535A"/>
       </svg>
-    </div>
+    </RouterLink>
     <div class="pagination__numbers">
-      <div
+      <RouterLink
           class="pagination__number"
-          :class="{ 'active': selectedNum === num }"
-          v-for="(num, idx) in count < 6 ? count : getNumbers"
+          :class="{ 'active': link.active }"
+          v-for="(link, idx) in links"
           :key="idx"
-          @click="selectedNum = num"
-      >
-        {{ num }}
-      </div>
-      <template v-if="count > 5">
-        <span v-if="getNumbers.length >= 5 && !getNumbers.includes(count)">...</span>
-        <div
-            class="pagination__number"
-            :class="{ 'active': selectedNum === count }"
-            @click="selectedNum = count"
-            v-if="!getNumbers.includes(count)"
-        >{{ count }}</div>
-      </template>
+          :to="link.url"
+      >{{ link.label }}</RouterLink>
     </div>
-    <div class="pagination__next" @click="selectedNum < count ? selectedNum++ : selectedNum = count">
+    <RouterLink class="pagination__next" :to="nextPage ? nextPage : ''">
       <svg width="9" height="5.5" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M0.235034 0.204742C0.536173 -0.0796667 1.01085 -0.0661045 1.29526 0.235034L5 4.1577L8.70474 0.235034C8.98915 -0.0661045 9.46383 -0.0796667 9.76497 0.204742C10.0661 0.489151 10.0797 0.963831 9.79526 1.26497L5.54526 5.76497C5.40358 5.91499 5.20635 6 5 6C4.79366 6 4.59642 5.91499 4.45474 5.76497L0.204742 1.26497C-0.0796667 0.963831 -0.0661045 0.489151 0.235034 0.204742Z" fill="#4B535A"/>
       </svg>
-    </div>
+    </RouterLink>
   </div>
 </template>
 
 <script>
 export default {
   name: "Pagination",
-  props: {
-    count: {
-      type: Number,
-      default: 0
-    }
-  },
+  props: ['prevPage', 'links', 'nextPage'],
   data() {
     return {
       selectedNum: 1
     }
   },
-  computed: {
-    getNumbers() {
-      let count = []
-
-      for (let i = 0; i < this.count; i++) count.push(i + 1)
-      const idx = count.indexOf(this.selectedNum)
-
-      return count.slice(idx ? idx - 1 : idx, idx ? idx + 4 : idx + 5)
-    }
-  },
-  watch: {
-    selectedNum() {
-      this.$emit('set-active-page', this.selectedNum)
-    }
-  }
 }
 </script>
 

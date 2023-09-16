@@ -2,6 +2,7 @@
 import {defineComponent} from 'vue'
 import Button from "@/components/utils/Button.vue";
 import OrderConsultationModal from "@/components/modals/OrderConsultationModal.vue";
+import {mapActions, mapState} from "vuex";
 
 export default defineComponent({
   name: "NavAside",
@@ -10,6 +11,52 @@ export default defineComponent({
     return {
       showOrderConsultationModal: false,
     }
+  },
+  methods: {
+    ...mapActions('category', ['getCategoryById', 'getSubcategoryById']),
+
+    loadNav() {
+      if (this.getSubcategoryId) {
+        this.getCategoryById(this.getCategoryId)
+        this.getSubcategoryById(this.getSubcategoryId)
+      }
+      if (this.getCategoryId) this.getCategoryById(this.getCategoryId)
+    }
+  },
+  computed: {
+    ...mapState('category', ['category', 'subcategory']),
+
+    getCategoryId() {
+      return this.$route.params.categoryId
+    },
+    getSubcategoryId() {
+      return this.$route.params.subcategoryId
+    },
+    getNavigation() {
+      switch (true) {
+        case !!this.getSubcategoryId:
+          return this.subcategory.item?.map(service => new Object({
+            ...service,
+            slug: `/service/${service.id}`
+          }))
+        case !!this.getCategoryId:
+          return this.category.subcategories?.map(subcategory => new Object({
+            ...subcategory,
+            slug: `/category/${this.getCategoryId}/subcategory/${subcategory.id}`
+          }))
+      }
+    },
+  },
+  watch: {
+    getCategoryId() {
+      this.loadNav()
+    },
+    getSubcategoryId() {
+      this.loadNav()
+    }
+  },
+  mounted() {
+    this.loadNav()
   }
 })
 </script>
@@ -17,36 +64,41 @@ export default defineComponent({
 <template>
   <aside class="sidebar">
     <nav class="sidebar__nav">
-      <RouterLink to="/cabinet">
-        Женский алкоголизм
-      </RouterLink>
-      <RouterLink to="/my-orders">
-        Кодирование от алкоголизма
-      </RouterLink>
-      <RouterLink to="/partners">
-        Вывод из запоя
-      </RouterLink>
-      <RouterLink to="/operations">
-        Детоксикация
-      </RouterLink>
-      <RouterLink to="/promo-materials">
-        Реабилитация
-      </RouterLink>
-      <RouterLink to="/settings">
-        Лечение за границей
-      </RouterLink>
-      <RouterLink to="/settings">
-        Лечебно-диагностическая программа
-      </RouterLink>
-      <RouterLink to="/settings">
-        Гарантии на лечение
-      </RouterLink>
-      <RouterLink to="/settings">
-        Причины алкоголизма
-      </RouterLink>
-      <RouterLink to="/settings">
-        Медикаментозное лечение в стационаре
-      </RouterLink>
+      <RouterLink
+          v-for="link in getNavigation"
+          :key="link.id"
+          :to="link.slug"
+      >{{ link.name }}</RouterLink>
+<!--      <RouterLink to="/cabinet">-->
+<!--        Женский алкоголизм-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/my-orders">-->
+<!--        Кодирование от алкоголизма-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/partners">-->
+<!--        Вывод из запоя-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/operations">-->
+<!--        Детоксикация-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/promo-materials">-->
+<!--        Реабилитация-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/settings">-->
+<!--        Лечение за границей-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/settings">-->
+<!--        Лечебно-диагностическая программа-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/settings">-->
+<!--        Гарантии на лечение-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/settings">-->
+<!--        Причины алкоголизма-->
+<!--      </RouterLink>-->
+<!--      <RouterLink to="/settings">-->
+<!--        Медикаментозное лечение в стационаре-->
+<!--      </RouterLink>-->
     </nav>
 
     <div class="sidebar__line"/>

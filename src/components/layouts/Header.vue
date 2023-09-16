@@ -35,17 +35,17 @@ export default defineComponent({
       let categoriesNav = this.categories.map(category => new Object({
         id: category.id,
         title: category.name,
-        path: '/' + category.id,
+        path: '/category/' + category.id,
 
         dropdown: category.subcategories.map(subcategory => new Object({
           id: subcategory.id,
           name: subcategory.name,
-          path: '/category/' + category.id,
+          path: '/subcategory/' + category.id,
 
           dropdown: subcategory.item.map(service => new Object({
             id: service.id,
             name: service.name,
-            path: '/subcategory/' + subcategory.id
+            path: '/service/' + subcategory.id
           }))
         })),
       }))
@@ -56,7 +56,7 @@ export default defineComponent({
       return {
         id: this.headerLinks?.length + 1,
         title: 'О клинике',
-        path: '/',
+        path: '/history',
 
         dropdown: [
           {
@@ -92,7 +92,7 @@ export default defineComponent({
           {
             id: 7,
             name: 'Статьи',
-            path: '/blog'
+            path: '/blog?page=1'
           },
           {
             id: 8,
@@ -172,6 +172,7 @@ export default defineComponent({
             v-for="link in headerLinks"
             :key="link.id"
             :name="link.title"
+            :path="link.path"
             :dropdown="link.dropdown"
         />
       </nav>

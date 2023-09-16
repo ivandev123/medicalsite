@@ -36,7 +36,6 @@ export default defineComponent({
   }
 
   &-main {
-
     &__content {
       display: flex;
       column-gap: 25px;

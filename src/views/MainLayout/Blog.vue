@@ -10,7 +10,7 @@ export default {
 
 <template>
   <div class="container">
-    <Breadcrumbs page-title="Главная" :breadcrumbs="['Категории', 'Лечение алкоголизма']"/>
+    <Breadcrumbs :page-parent="{ name: 'Главная', path: '/' }" :breadcrumbs="[{ name: 'Блог', path: null }]"/>
     <PreviewOfInfoArticles style="margin-bottom: 50px;"/>
   </div>
 </template>

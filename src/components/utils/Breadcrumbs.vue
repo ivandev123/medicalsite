@@ -3,13 +3,13 @@ import {defineComponent} from 'vue'
 
 export default defineComponent({
   name: "Breadcrumbs",
-  props: ['pageTitle', 'breadcrumbs']
+  props: ['pageParent', 'breadcrumbs']
 })
 </script>
 
 <template>
   <div class="breadcrumbs">
-    <div class="breadcrumbs__title" v-html="pageTitle"/>
+    <RouterLink class="breadcrumbs__title" :to="pageParent.path">{{ pageParent.name }}</RouterLink>
     <svg
         width="11"
         height="11"
@@ -21,11 +21,8 @@ export default defineComponent({
       <path d="M93.5 174.5L256.5 337.5L419.5 174.5" stroke="black" stroke-width="24" stroke-linecap="round"/>
     </svg>
     <div class="breadcrumbs__content">
-      <span
-          :class="{ 'breadcrumbs__section-title': !idx, 'breadcrumbs__section-item': idx }"
-          v-for="(item, idx) in breadcrumbs"
-          :key="idx"
-      >
+      <div v-for="(item, idx) in breadcrumbs" :key="idx">
+        <RouterLink class="breadcrumbs__section-item" :to="item?.path" v-if="breadcrumbs.length !== idx + 1">
           <svg
               width="11"
               height="11"
@@ -33,13 +30,29 @@ export default defineComponent({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               class="breadcrumbs__delimiter"
-              v-if="idx"
+              v-if="idx !== 0"
           >
             <path d="M93.5 174.5L256.5 337.5L419.5 174.5" stroke="black" stroke-width="24" stroke-linecap="round"/>
           </svg>
 
-          {{ item }}
-      </span>
+          {{ item.name }}
+        </RouterLink>
+        <span class="breadcrumbs__section-title" v-else>
+          <svg
+              width="11"
+              height="11"
+              viewBox="0 0 512 512"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="breadcrumbs__delimiter"
+              v-if="idx > 0"
+          >
+           <path d="M93.5 174.5L256.5 337.5L419.5 174.5" stroke="black" stroke-width="24" stroke-linecap="round"/>
+          </svg>
+
+          {{ item.name }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -88,20 +101,26 @@ export default defineComponent({
 
   &__section {
     &-title {
+      padding-left: 8px;
+      font-size: 13px;
+      color: #74788d;
+    }
+
+    &-item {
+      padding-left: 8px;
       font-size: 13px;
       color: #FFA765;
-      cursor: pointer;
       position: relative;
 
       &:before {
         content: '';
-        width: 100%;
+        width: calc(100% - 8px);
         height: 1px;
         background: #FFA765;
         transition: .25s all ease;
         position: absolute;
         bottom: 0;
-        left: 0;
+        left: 8px;
         right: 0;
       }
 
@@ -112,12 +131,6 @@ export default defineComponent({
           opacity: 0;
         }
       }
-    }
-
-    &-item {
-      padding-left: 8px;
-      font-size: 13px;
-      color: #74788d;
     }
   }
 

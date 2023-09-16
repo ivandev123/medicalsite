@@ -1,6 +1,6 @@
 <template>
   <div class="specialists">
-    <Breadcrumbs page-title="Главная" :breadcrumbs="['Категории', 'Лечение алкоголизма']"/>
+    <Breadcrumbs :page-parent="{ name: 'Главная', path: '/' }" :breadcrumbs="[{ name: 'Категория', path: '/' }, { name: 'Лечение алкоголизма', path: '/' }]"/>
     <h1 class="specialists__title specialists__title_mb-20">Наши специалисты</h1>
     <p class="specialists__desc specialists__desc_mb-20">
       Врач-нарколог осуществляет терапию, профилактику и диагностику алкогольной, табачной,

@@ -30,7 +30,7 @@
           <Comments :comments-count="blogArticle.comments_count" :comments="comments"/>
           <AddCommentForm :id="blogArticle.id"/>
         </div>
-        <BlogArticleSidebar @scroll-to-title="scrollToTitle"/>
+        <BlogArticleSidebar :headers="getHeaders" @scroll-to-title="scrollToTitle"/>
       </div>
     </div>
   </article>
@@ -76,6 +76,15 @@ export default {
       delete data.description
 
       return data
+    },
+    getHeaders() {
+      let element = document.createElement('div')
+      element.innerHTML = this.blogArticle.content
+
+      const headers = element.getElementsByTagName('h2');
+      console.log(headers)
+
+      return [...headers].map(title => title.innerText);
     },
     getBlogArticleId() {
       return +this.$route.params.id

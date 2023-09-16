@@ -1,25 +1,52 @@
 <script>
-import {mapActions, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 import Preloader from "@/components/Preloader.vue";
+import Pagination from "@/components/utils/Pagination.vue";
 
 export default {
   name: 'PreviewOfInfoArticles',
-  components: {Preloader},
+  components: {Pagination, Preloader},
   methods: {
     ...mapActions('blog', ['getBlogArticles']),
+    ...mapMutations('blog', ['SET_BLOG_ARTICLES']),
 
     getDate(date) {
       return date
           .split('T')[0]
           .split('-')
-    }
+    },
   },
   computed: {
     ...mapState('blog', ['blogArticles']),
     ...mapState(['months']),
+
+    getPage() {
+      return this.$route.query.page
+    },
+    getLinks() {
+      return this.blogArticles.links
+          ?.slice(1, this.blogArticles.links.length - 1)
+          .map(link => new Object({
+            ...link,
+            url: link.url.split('/api')[1]
+          }));
+    },
+    getPrevPage() {
+      return this.blogArticles.links?.[0].url?.split('/api')[1]
+      // return this.blogArticles?.links[0]?.url?.split('/api')[1]
+    },
+    getNextPage() {
+      return this.blogArticles.links?.at(-1).url?.split('/api')[1]
+    }
+  },
+  watch: {
+    getPage() {
+      this.SET_BLOG_ARTICLES({})
+      this.getBlogArticles(this.getPage)
+    }
   },
   mounted() {
-    this.getBlogArticles()
+    this.getBlogArticles(this.getPage)
   }
 }
 </script>
@@ -28,11 +55,11 @@ export default {
   <div class="preview-of-info-articles">
     <h1 class="preview-of-info-articles__title">Статьи</h1>
 
-    <Preloader style="margin-top: 30px;" v-if="!blogArticles.length"/>
-    <div class="preview-of-info-articles__content preview-of-info-articles__content_mt-30" v-if="blogArticles.length">
+    <Preloader style="margin-top: 30px;" v-if="!blogArticles.data?.length"/>
+    <div class="preview-of-info-articles__content preview-of-info-articles__content_mt-30" v-if="blogArticles.data?.length">
       <article
           class="preview-of-info-articles__item"
-          v-for="article in blogArticles"
+          v-for="article in blogArticles.data"
           :key="article.id"
       >
         <div class="preview-of-info-articles__item-image" @click="$router.push(`/blog/${article.id}`)">
@@ -61,6 +88,7 @@ export default {
         </div>
       </article>
     </div>
+    <Pagination :prev-page="getPrevPage" :next-page="getNextPage" :links="getLinks"/>
   </div>
 </template>
 

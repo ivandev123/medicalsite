@@ -13,8 +13,16 @@ export async function getCategories() {
   return await getAsync('/category');
 }
 
+export async function getCategoryById(id) {
+  return await getAsync(`/category/${id}`);
+}
+
 export async function getSubcategories() {
   return await getAsync('/subcategory');
+}
+
+export async function getSubcategoryById(id) {
+  return await getAsync(`/subcategory/${id}`);
 }
 
 export async function getReviews() {
@@ -29,8 +37,8 @@ export async function getSpecialists() {
   return await getAsync('/specialists');
 }
 
-export async function getBlogArticles() {
-  return await getAsync('/blog');
+export async function getBlogArticles(page) {
+  return await getAsync(`/blog?page=${page}`);
 }
 
 export async function getBlogArticle(blogArticleId) {

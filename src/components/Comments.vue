@@ -2,8 +2,8 @@
   <div class="comments">
     <h2>Комментарии: {{ commentsCount }}</h2>
 
-    <Preloader style="margin-top: 20px;" v-if="!comments.length"/>
-    <div class="comments__content comments__content_mt-20" v-if="comments.length">
+    <Preloader style="margin-top: 20px;" v-if="!comments?.length"/>
+    <div class="comments__content comments__content_mt-20" v-if="comments?.length">
       <div class="comments__item" v-for="comment in comments" :key="comment.id">
         <img src="@/assets/images/reviews-avatar.jpeg" alt="avatar" class="comments__item-avatar">
 
