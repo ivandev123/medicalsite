@@ -2,17 +2,17 @@
   <div class="block-of-video-lectures">
     <h1>Видео лекции</h1>
 
-    <Preloader style="margin-top: 20px;" v-if="!videoLectures.length"/>
-    <div class="block-of-video-lectures__content block-of-video-lectures__content_mt-20" v-if="videoLectures.length">
+    <Preloader style="margin-top: 20px;" v-if="!videoLectures.data?.length"/>
+    <div class="block-of-video-lectures__content block-of-video-lectures__content_mt-20" v-if="videoLectures.data?.length">
       <VideoReview
-          v-for="video in videoLectures"
+          v-for="video in videoLectures.data"
           :key="video.id"
           :link="video.video"
           @go-to-video="goToVideo"
       />
     </div>
 
-    <Pagination :count="10"/>
+    <Pagination :prev-page="getPrevPage" :next-page="getNextPage" :links="getLinks"/>
   </div>
 </template>
 
@@ -35,9 +35,36 @@ export default {
   },
   computed: {
     ...mapState('videoLectures', ['videoLectures']),
+
+    getPage() {
+      return this.$route.query.page
+    },
+    getLinks() {
+      return this.videoLectures.links
+          ?.slice(1, this.videoLectures.links.length - 1)
+          .map(link => new Object({
+            ...link,
+            url: '/video-lectures?page=' + link.url.split('?page=')[1]
+          }));
+    },
+    getPrevPage() {
+      const link = this.videoLectures.links?.[0].url?.split('?page=')[1]
+
+      return link ? '/video-lectures?page=' + link : null
+    },
+    getNextPage() {
+      const link = this.videoLectures.links?.at(-1).url?.split('?page=')[1]
+
+      return link ? '/video-lectures?page=' + link : null
+    }
+  },
+  watch: {
+    getPage() {
+      this.getVideoLectures(this.getPage)
+    }
   },
   mounted() {
-    this.getVideoLectures()
+    this.getVideoLectures(this.getPage ? this.getPage : 1)
   }
 }
 </script>

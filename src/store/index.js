@@ -19,6 +19,7 @@ import region from "@/store/modules/region";
 import appeal from "@/store/modules/appeal";
 import seo from "@/store/modules/seo";
 import category from "@/store/modules/category";
+import reviews from "@/store/modules/reviews";
 
 export default createStore({
   modules: {
@@ -42,6 +43,7 @@ export default createStore({
     appeal,
     seo,
     category,
+    reviews,
   },
   state: {
     months: [

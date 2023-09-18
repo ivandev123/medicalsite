@@ -6,7 +6,7 @@
     <h1>{{ stock.title }}</h1>
 
     <div class="stock-article-top__content stock-article-top__content_mt-20">
-      <img alt="article image" :src="stock.image">
+      <img alt="article image" :src="stock.stock_image">
 
       <div v-html="stock.content"/>
       <!--      <div class="stock-article-top__info">-->

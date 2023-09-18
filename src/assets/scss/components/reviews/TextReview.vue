@@ -2,7 +2,7 @@
   <div class="text-review">
     <div class="text-review__info">
       <div class="text-review__name">{{ review.name }}</div>
-      <div class="text-review__date">{{ `${+getDate[2]} ${months[+getDate[1]]} ${getDate[0]}` }}</div>
+      <div class="text-review__date">{{ `${+getDate?.[2]} ${months[+getDate?.[1]]} ${getDate?.[0]}` }}</div>
 <!--      <div class="text-review__date">22 марта 2022</div>-->
     </div>
 
@@ -21,7 +21,7 @@ export default {
 
     getDate() {
       return this.review.created_at
-          .split('T')[0]
+          ?.split(' ')[0]
           .split('-')
     }
   }

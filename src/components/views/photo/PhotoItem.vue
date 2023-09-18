@@ -1,7 +1,7 @@
 <template>
   <div class="photo-item">
     <div class="photo-item__body">
-      <img alt="image" :src="image">
+      <img alt="image" loading="lazy" :src="image">
 
       <div class="photo-item__info">
         <div class="photo-item__text">{{ title }}</div>

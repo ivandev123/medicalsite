@@ -6,8 +6,8 @@ export default {
     videoLectures: []
   },
   actions: {
-    getVideoLectures({ commit }) {
-      getVideoLectures().then(response => commit('SET_VIDEO_LECTURES', response))
+    getVideoLectures({ commit }, page) {
+      getVideoLectures(page).then(response => commit('SET_VIDEO_LECTURES', response))
     }
   },
   mutations: {

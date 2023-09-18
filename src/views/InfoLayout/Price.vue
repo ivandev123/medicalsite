@@ -8,7 +8,7 @@
           v-for="card in subcategories"
           :key="card.id"
           :title="card.name"
-          :dropdown="card.item.map(item => new Object({ id: item.id, name: item.content, price: item.price }))"
+          :dropdown="card.item.map(item => new Object({ id: item.id, name: item.content, price: item.price, path: `/category/${card.id}/subcategory/${item.id}` }))"
       />
     </div>
     <InformationalArticles type="small" :page-width="pageWidth"/>

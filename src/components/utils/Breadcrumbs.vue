@@ -63,7 +63,7 @@ export default defineComponent({
   display: flex;
   //justify-content: space-between;
   align-items: center;
-  padding: 0 12px 24px;
+  padding-bottom: 24px;
 
   &__title {
     display: flex;

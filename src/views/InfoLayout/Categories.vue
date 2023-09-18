@@ -15,10 +15,12 @@ import Reviews from "@/components/Reviews.vue";
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import {mapState} from "vuex";
 import CategoryAnchors from "@/components/views/categories/CategoryAnchors.vue";
+import Preloader from "@/components/Preloader.vue";
 
 export default defineComponent({
   name: "Categories",
   components: {
+    Preloader,
     CategoryAnchors,
     InformationalArticles,
     Reviews,
@@ -64,7 +66,7 @@ export default defineComponent({
       return this.$route.params.serviceId
     },
     getBreadcrumbs() {
-      const category = { name: this.category.name, path: `/category/${this.category.id}` }
+      const category = { name: this.category?.name, path: `/category/${this.category.id}` }
       const subcategory = {
         name: this.subcategory.name,
         path: `/category/${this.getCategoryId}/subcategory/${this.subcategory.id}`
@@ -168,6 +170,7 @@ export default defineComponent({
   <CategoryAnchors :anchors="getAnchors" @anchor="anchor"/>
 
 <!--  <div style="margin-top: 30px;" v-html="getContent"></div>-->
+  <Preloader style="margin-top: 30px;" v-if="!getContent"/>
   <div class="categories-content" v-html="getContent"/>
   <OurPrograms id="programs" :services="subcategory.item" v-if="getSubcategoryId && subcategory.item?.length"/>
   <StagesOfTreatment id="stagesOfTreatment"/>

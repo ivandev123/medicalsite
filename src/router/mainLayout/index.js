@@ -71,5 +71,5 @@ export default [
   {
     path: 'terms',
     component: TermsOfUse
-  }
+  },
 ]

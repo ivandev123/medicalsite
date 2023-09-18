@@ -33,6 +33,14 @@ export async function getReviews() {
   return await getAsync('/reviews');
 }
 
+export async function getTextReviews(page) {
+  return await getAsync(`/text-reviews?page=${page}`);
+}
+
+export async function getVideoReviews(page) {
+  return await getAsync(`/video-reviews?page=${page}`);
+}
+
 export async function getCertificates() {
   return await getAsync('/certificates');
 }
@@ -77,8 +85,8 @@ export async function getAppeal() {
   return await getAsync('/appeal')
 }
 
-export async function getVideoLectures() {
-  return await getAsync('/video')
+export async function getVideoLectures(page) {
+  return await getAsync(`/video?page=${page}`)
 }
 
 export async function getMassMediaAboutUs() {

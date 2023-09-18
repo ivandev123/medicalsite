@@ -3,10 +3,11 @@ import {defineComponent} from 'vue'
 import Button from "@/components/utils/Button.vue";
 import OrderConsultationModal from "@/components/modals/OrderConsultationModal.vue";
 import {mapActions, mapState} from "vuex";
+import Preloader from "@/components/Preloader.vue";
 
 export default defineComponent({
   name: "NavAside",
-  components: {OrderConsultationModal, Button},
+  components: {Preloader, OrderConsultationModal, Button},
   data() {
     return {
       showOrderConsultationModal: false,
@@ -35,6 +36,85 @@ export default defineComponent({
     getServiceId() {
       return this.$route.params.serviceId
     },
+    getStaticNav() {
+      return [
+        {
+          id: 1,
+          name: 'История клиники',
+          slug: '/history'
+        },
+        {
+          id: 2,
+          name: 'Специалисты',
+          slug: '/specialists'
+        },
+        {
+          id: 3,
+          name: 'Сертификаты и лицензии',
+          slug: '/certificates'
+        },
+        {
+          id: 4,
+          name: 'Цены',
+          slug: '/price'
+        },
+        {
+          id: 5,
+          name: 'Отзывы',
+          slug: '/reviews'
+        },
+        {
+          id: 6,
+          name: 'Фото',
+          slug: '/photo'
+        },
+        {
+          id: 7,
+          name: 'Статьи',
+          slug: '/blog?page=1'
+        },
+        {
+          id: 8,
+          name: 'СМИ о нас',
+          slug: '/media'
+        },
+        {
+          id: 9,
+          name: 'Акции',
+          slug: '/stock'
+        },
+        {
+          id: 10,
+          name: 'Видео лекции',
+          slug: '/video-lectures'
+        },
+        {
+          id: 11,
+          name: 'Контролирующие органы',
+          slug: '/regulatory-bodies'
+        },
+        {
+          id: 12,
+          name: 'Полезная информация',
+          slug: '/helpful-info'
+        },
+        {
+          id: 13,
+          name: 'Контакты',
+          slug: '/contacts'
+        },
+        {
+          id: 14,
+          name: 'Политика конфиденциальности',
+          slug: '/policy'
+        },
+        {
+          id: 15,
+          name: 'Пользовательское соглашение',
+          slug: '/terms'
+        },
+      ]
+    },
     getNavigation() {
       const subcategories = this.category.subcategories?.map(subcategory => new Object({
         ...subcategory,
@@ -56,6 +136,8 @@ export default defineComponent({
           return this.subcategory.item?.length ? services : subcategories
         case !!this.getCategoryId:
           return subcategories
+        default:
+          return this.getStaticNav
       }
     },
   },
@@ -75,42 +157,13 @@ export default defineComponent({
 
 <template>
   <aside class="sidebar">
+    <Preloader v-if="!getNavigation?.length"/>
     <nav class="sidebar__nav">
       <RouterLink
           v-for="link in getNavigation"
           :key="link.id"
           :to="link.slug"
       >{{ link.name }}</RouterLink>
-<!--      <RouterLink to="/cabinet">-->
-<!--        Женский алкоголизм-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/my-orders">-->
-<!--        Кодирование от алкоголизма-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/partners">-->
-<!--        Вывод из запоя-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/operations">-->
-<!--        Детоксикация-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/promo-materials">-->
-<!--        Реабилитация-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/settings">-->
-<!--        Лечение за границей-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/settings">-->
-<!--        Лечебно-диагностическая программа-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/settings">-->
-<!--        Гарантии на лечение-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/settings">-->
-<!--        Причины алкоголизма-->
-<!--      </RouterLink>-->
-<!--      <RouterLink to="/settings">-->
-<!--        Медикаментозное лечение в стационаре-->
-<!--      </RouterLink>-->
     </nav>
 
     <div class="sidebar__line"/>

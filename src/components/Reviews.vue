@@ -36,6 +36,7 @@
               <div class="reviews__name">{{ review?.name }}</div>
 <!--              <div class="reviews__job-title reviews__job-title_mt-2">{{ review.job }}</div>-->
             </div>
+            <Button name="Смотреть видеоотзыв" @click="goToVideo(review.video)" v-if="review.video"/>
           </div>
         </div>
       </Slide>
@@ -79,8 +80,13 @@ export default {
       return 1.85
     }
   },
+  methods: {
+    goToVideo(href) {
+      window.location.href = href
+    }
+  },
   mounted() {
-    getReviews().then(response => this.reviews = response)
+    getReviews().then(response => this.reviews = response.data)
   }
 }
 </script>
