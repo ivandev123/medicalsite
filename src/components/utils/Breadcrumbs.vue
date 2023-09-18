@@ -17,9 +17,11 @@ export default defineComponent({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         class="breadcrumbs__delimiter"
+        v-if="breadcrumbs.length === 1"
     >
       <path d="M93.5 174.5L256.5 337.5L419.5 174.5" stroke="black" stroke-width="24" stroke-linecap="round"/>
     </svg>
+
     <div class="breadcrumbs__content">
       <div v-for="(item, idx) in breadcrumbs" :key="idx">
         <RouterLink class="breadcrumbs__section-item" :to="item?.path" v-if="breadcrumbs.length !== idx + 1">
@@ -30,7 +32,6 @@ export default defineComponent({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               class="breadcrumbs__delimiter"
-              v-if="idx !== 0"
           >
             <path d="M93.5 174.5L256.5 337.5L419.5 174.5" stroke="black" stroke-width="24" stroke-linecap="round"/>
           </svg>
@@ -114,13 +115,13 @@ export default defineComponent({
 
       &:before {
         content: '';
-        width: calc(100% - 8px);
+        width: calc(100% - 30px);
         height: 1px;
         background: #FFA765;
         transition: .25s all ease;
         position: absolute;
         bottom: 0;
-        left: 8px;
+        left: 30px;
         right: 0;
       }
 

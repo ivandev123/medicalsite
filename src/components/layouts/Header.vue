@@ -45,7 +45,7 @@ export default defineComponent({
           dropdown: subcategory.item.map(service => new Object({
             id: service.id,
             name: service.name,
-            path: '/service/' + subcategory.id
+            path: `/category/${category.id}/subcategory/${subcategory.id}/service/${service.id}`
           }))
         })),
       }))

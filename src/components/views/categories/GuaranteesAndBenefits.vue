@@ -25,36 +25,6 @@ import {mapActions, mapState} from "vuex";
 
 export default {
   name: "GuaranteesAndBenefits",
-  data() {
-    return {
-      data: [
-        {
-          id: 1,
-          title: 'Дипломированные специалисты',
-        },
-        {
-          id: 2,
-          title: 'Еженедельные занятия для близких',
-        },
-        {
-          id: 3,
-          title: 'Бессрочная поддержка после выписки',
-        },
-        {
-          id: 4,
-          title: 'Комфортабельные палаты',
-        },
-        {
-          id: 5,
-          title: 'Привозное питание из кафе',
-        },
-        {
-          id: 6,
-          title: 'Медицинское сопровождение',
-        },
-      ]
-    }
-  },
   methods: {
     ...mapActions('ourAdvantages', ['getAdvantages']),
   },

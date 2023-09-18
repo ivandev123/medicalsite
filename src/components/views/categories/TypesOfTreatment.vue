@@ -2,13 +2,13 @@
   <div class="types-of-treatment">
     <h2 class="types-of-treatment__title">Наши цены</h2>
 
-    <Preloader style="margin-top: 20px;" v-if="!subcategories.length"/>
-    <div class="types-of-treatment__content types-of-treatment__content_mt-20" v-if="subcategories.length">
+    <Preloader style="margin-top: 20px;" v-if="!prices?.length"/>
+    <div class="types-of-treatment__content types-of-treatment__content_mt-20" v-if="prices?.length">
       <CardWithDropdown
-          v-for="card in subcategories"
+          v-for="card in prices"
           :key="card.id"
           :title="card.name"
-          :dropdown="card.item.map(item => new Object({ id: item.id, name: item.content, price: item.price }))"
+          :dropdown="card.item.map(item => new Object({ id: item.id, name: item.content, price: item.price, path: card.path + `/service/${item.id}` }))"
       />
     </div>
   </div>
@@ -22,15 +22,7 @@ import {mapActions, mapState} from "vuex";
 export default {
   name: "TypesOfTreatment",
   components: {Preloader, CardWithDropdown},
-  methods: {
-    ...mapActions('services', ['getSubcategories']),
-  },
-  computed: {
-    ...mapState('services', ['subcategories']),
-  },
-  mounted() {
-    this.getSubcategories()
-  }
+  props: ['prices']
 }
 </script>
 

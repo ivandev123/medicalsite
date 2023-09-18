@@ -19,7 +19,7 @@
               </div>
             </td>
             <td>
-              <a href="#">заказать</a>
+              <RouterLink :to="item.path">заказать</RouterLink>
             </td>
           </tr>
           </tbody>

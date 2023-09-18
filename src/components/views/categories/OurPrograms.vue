@@ -35,46 +35,9 @@
 </template>
 
 <script>
-import {mapActions, mapState} from "vuex";
-
 export default {
   name: "OurPrograms",
-  data() {
-    return {
-      programs: [
-        {
-          id: 1,
-          title: 'Курсовое лечение',
-          description: 'Лекарственные препараты, психотерапия, плазмаферез, электросон для 100% освобождения от зависимости. Курс от 28 дней.',
-          price: 1700,
-          time: 'сутки'
-        },
-        {
-          id: 2,
-          title: 'Кодирование',
-          description: 'Формируем отвращение к алкоголю на подсознательном уровне. Достаточно не пить 1 день. Процедура длится не более 2 часов. ',
-          price: 1700,
-          time: ''
-        },
-        {
-          id: 3,
-          title: 'Вывод из запоя',
-          description: 'Временное решение проблем с алкоголем. Останавливаем запой с первой процедуры. Возвращаем хорошее самочувствие за 1-3 дня.',
-          price: 1700,
-          time: ''
-        },
-      ]
-    }
-  },
-  methods: {
-    ...mapActions('services', ['getServices']),
-  },
-  computed: {
-    ...mapState('services', ['services']),
-  },
-  mounted() {
-    this.getServices()
-  }
+  props: ['services'],
 }
 </script>
 

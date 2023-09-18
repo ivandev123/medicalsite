@@ -9,6 +9,10 @@ export async function getServices() {
   return await getAsync('/services');
 }
 
+export async function getServiceById(id) {
+  return await getAsync(`/services/${id}`);
+}
+
 export async function getCategories() {
   return await getAsync('/category');
 }

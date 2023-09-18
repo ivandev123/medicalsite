@@ -15,6 +15,10 @@ export default [
     path: '/category/:categoryId/subcategory/:subcategoryId',
     component: Categories,
   },
+  {
+    path: '/category/:categoryId/subcategory/:subcategoryId/service/:serviceId',
+    component: Categories,
+  },
   // {
   //   path: `category/:id/subcategory/:id2`,
   //   component: Categories,
