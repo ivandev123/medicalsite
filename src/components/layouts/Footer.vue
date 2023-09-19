@@ -51,21 +51,21 @@ export default defineComponent({
           </div>
           <nav class="footer__info footer__info_mt-30">
             <div class="footer__item">
-              <span>Лечение наркомании</span>
+<!--              <span>Лечение наркомании</span>-->
 
               <ul>
                 <li
                     v-for="category in categories"
                     :key="category.id"
-                    @click.stop="$router.push('/category/' + category.id)"
+                    @click.stop="$router.push('/category/' + category.slug)"
                 >
-                  {{ category.name }}
+                  <span>{{ category.name }}</span>
 
                   <ul>
                     <li
                         v-for="subcategory in category.subcategories"
                         :key="subcategory.id"
-                        @click.stop="$router.push(`/category/${category.id}/subcategory/${subcategory.id}`)"
+                        @click.stop="$router.push(`/category/${category.slug}/${subcategory.slug}`)"
                     >
                       {{ subcategory.name }}
 
@@ -73,7 +73,7 @@ export default defineComponent({
                         <li
                             v-for="service in subcategory.item"
                             :key="service.id"
-                            @click.stop="$router.push(`/category/${category.id}/subcategory/${subcategory.id}/service/${service.id}`)"
+                            @click.stop="$router.push(`/category/${category.slug}/${subcategory.slug}/${service.slug}`)"
                         >{{ service.name }}</li>
                       </ul>
                     </li>
@@ -82,22 +82,28 @@ export default defineComponent({
               </ul>
             </div>
             <div class="footer__item">
-              <span>Полезная информация</span>
+<!--              <span>Полезная информация</span>-->
 
               <ul>
-                <li>История клиники</li>
-                <li>Специалисты</li>
-                <li>Сертификаты и лицензии</li>
-                <li>Цены</li>
-                <li>Отзывы</li>
-                <li>Фото</li>
-                <li>Статьи</li>
-                <li>СМИ о нас</li>
-                <li>Акции</li>
-                <li>Видео лекции</li>
-                <li>Блог</li>
-                <li>Контакты</li>
-                <li>Контролирующие органы</li>
+                <li>
+                  <span>Полезная информация</span>
+
+                  <ul>
+                    <li>История клиники</li>
+                    <li>Специалисты</li>
+                    <li>Сертификаты и лицензии</li>
+                    <li>Цены</li>
+                    <li>Отзывы</li>
+                    <li>Фото</li>
+                    <li>Статьи</li>
+                    <li>СМИ о нас</li>
+                    <li>Акции</li>
+                    <li>Видео лекции</li>
+                    <li>Блог</li>
+                    <li>Контакты</li>
+                    <li>Контролирующие органы</li>
+                  </ul>
+                </li>
               </ul>
             </div>
           </nav>

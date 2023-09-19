@@ -16,7 +16,8 @@ export default {
         },
         getSubcategoryById({ commit }, subcategoryId) {
             getSubcategoryById(subcategoryId).then(response => commit('SET_SUBCATEGORY', response))
-        }
+        },
+
     },
     mutations: {
         SET_CATEGORIES(state, categories) {

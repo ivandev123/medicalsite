@@ -35,17 +35,17 @@ export default defineComponent({
       let categoriesNav = this.categories.map(category => new Object({
         id: category.id,
         title: category.name,
-        path: '/category/' + category.id,
+        path: '/category/' + category.slug,
 
         dropdown: category.subcategories.map(subcategory => new Object({
           id: subcategory.id,
           name: subcategory.name,
-          path: `/category/${category.id}/subcategory/${subcategory.id}`,
+          path: `/category/${category.slug}/${subcategory.slug}`,
 
           dropdown: subcategory.item.map(service => new Object({
             id: service.id,
             name: service.name,
-            path: `/category/${category.id}/subcategory/${subcategory.id}/service/${service.id}`
+            path: `/category/${category.slug}/${subcategory.slug}/${service.slug}`
           }))
         })),
       }))

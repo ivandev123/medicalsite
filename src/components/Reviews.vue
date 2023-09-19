@@ -46,6 +46,7 @@
       </template>
     </Carousel>
   </div>
+  <WatchingVideoModal :video="selectedVideo" @close="selectedVideo = null" v-if="selectedVideo"/>
 </template>
 
 <script>
@@ -57,14 +58,16 @@ import Button from "@/components/utils/Button.vue";
 import Avatar from "@/components/Avatar.vue";
 import { getReviews } from "@/api";
 import Preloader from "@/components/Preloader.vue";
+import WatchingVideoModal from "@/components/modals/WatchingVideoModal.vue";
 
 export default {
   name: "Reviews",
   props: ['pageWidth'],
-  components: {Preloader, Avatar, Button, SliderButtons, Carousel, Slide, Pagination },
+  components: {WatchingVideoModal, Preloader, Avatar, Button, SliderButtons, Carousel, Slide, Pagination },
   data() {
     return {
-      reviews: []
+      reviews: [],
+      selectedVideo: null,
     }
   },
   computed: {
@@ -81,8 +84,8 @@ export default {
     }
   },
   methods: {
-    goToVideo(href) {
-      window.location.href = href
+    goToVideo(video) {
+      this.selectedVideo = video
     }
   },
   mounted() {

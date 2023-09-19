@@ -8,15 +8,15 @@ import VideoLectures from "@/views/InfoLayout/VideoLectures.vue";
 
 export default [
   {
-    path: 'category/:categoryId',
+    path: 'category/:categorySlug',
     component: Categories,
   },
   {
-    path: '/category/:categoryId/subcategory/:subcategoryId',
+    path: '/category/:categorySlug/:subcategorySlug',
     component: Categories,
   },
   {
-    path: '/category/:categoryId/subcategory/:subcategoryId/service/:serviceId',
+    path: '/category/:categorySlug/:subcategorySlug/:serviceSlug',
     component: Categories,
   },
   // {

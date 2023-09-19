@@ -15,6 +15,9 @@
       />
     </div>
 
+    <Preloader
+        v-if="activeReviewType === 'text' && !reviews.text?.data || activeReviewType === 'video' && !reviews.video?.data"
+    />
     <div class="reviews-page__texts reviews-page__texts_mt-20" v-if="activeReviewType === 'text'">
       <TextReview
           v-for="review in reviews.text.data"
@@ -24,9 +27,10 @@
     </div>
     <div class="reviews-page__videos reviews-page__videos_mt-20" v-if="activeReviewType === 'video'">
       <VideoReview
-          v-for="video in reviews.video"
+          v-for="video in reviews.video.data"
           :key="video.id"
           :link="video.video"
+          @go-to-video="goToVideo"
       />
     </div>
     <Pagination
@@ -35,6 +39,7 @@
         :links="getInfo(getLinksTextReviews, getLinksVideoReviews)"
     />
   </div>
+  <WatchingVideoModal :video="selectedVideo" @close="selectedVideo = null" v-if="selectedVideo"/>
 </template>
 
 <script>
@@ -45,13 +50,16 @@ import VideoReview from "@/assets/scss/components/reviews/VideoReview.vue";
 import { getReviews } from "@/api";
 import Pagination from "@/components/utils/Pagination.vue";
 import {mapActions, mapState} from "vuex";
+import Preloader from "@/components/Preloader.vue";
+import WatchingVideoModal from "@/components/modals/WatchingVideoModal.vue";
 
 export default {
   name: "Reviews",
-  components: {Pagination, VideoReview, TextReview, Button2},
+  components: {WatchingVideoModal, Preloader, Pagination, VideoReview, TextReview, Button2},
   data() {
     return {
       activeReviewType: 'text', //text, video
+      selectedVideo: null,
     }
   },
   methods: {
@@ -64,6 +72,9 @@ export default {
         case 'video':
           return videoReviews
       }
+    },
+    goToVideo(video) {
+      this.selectedVideo = video
     }
   },
   computed: {
@@ -77,14 +88,18 @@ export default {
           ?.slice(1, this.reviews.video.links.length - 1)
           .map(link => new Object({
             ...link,
-            url: link.url.split('/api')[1]
+            url: '/reviews?page=' + link.url.split('?page=')[1]
           }));
     },
     getPrevPageVideoReviews() {
-      return this.reviews.video?.links?.[0].url?.split('/api')[1]
+      const page = this.reviews.video?.links?.[0].url?.split('?page=')[1]
+
+      return page ? '/reviews?page=' + page : null
     },
     getNextPageVideoReviews() {
-      return this.reviews.video?.links?.at(-1).url?.split('/api')[1]
+      const page = this.reviews.video?.links?.at(-1).url?.split('?page=')[1]
+
+      return page ? '/reviews?page=' + page : null
     },
     getLinksTextReviews() {
       return this.reviews.text.links
@@ -107,9 +122,11 @@ export default {
   },
   watch: {
     getPage() {
-      this.getTextReviews(this.getPage)
+      if (this.activeReviewType === 'text') this.getTextReviews(this.getPage)
+      if (this.activeReviewType === 'video') this.getVideoReviews(this.getPage)
     },
     activeReviewType() {
+      this.$router.push('/reviews?page=1')
       if (!this.reviews.video.length) this.getVideoReviews(this.getPage ? this.getPage : 1)
     }
   },

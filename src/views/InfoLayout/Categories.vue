@@ -56,55 +56,55 @@ export default defineComponent({
     ...mapState('category', ['category', 'subcategory']),
     ...mapState('services', ['service']),
 
-    getCategoryId() {
-      return this.$route.params.categoryId
+    getCategorySlug() {
+      return this.$route.params.categorySlug
     },
-    getSubcategoryId() {
-      return this.$route.params.subcategoryId
+    getSubcategorySlug() {
+      return this.$route.params.subcategorySlug
     },
-    getServiceId() {
-      return this.$route.params.serviceId
+    getServiceSlug() {
+      return this.$route.params.serviceSlug
     },
     getBreadcrumbs() {
-      const category = { name: this.category?.name, path: `/category/${this.category.id}` }
+      const category = { name: this.category?.name, path: `/category/${this.category?.slug}` }
       const subcategory = {
-        name: this.subcategory.name,
-        path: `/category/${this.getCategoryId}/subcategory/${this.subcategory.id}`
+        name: this.subcategory?.name,
+        path: `/category/${this.getCategorySlug}/subcategory/${this.subcategory?.slug}`
       }
       const service = {
-        name: this.service.name,
-        path: `/category/${this.getCategoryId}/subcategory/${this.subcategory.id}/service/${this.getServiceId}`
+        name: this.service?.name,
+        path: `/category/${this.getCategorySlug}/subcategory/${this.subcategory?.slug}/service/${this.getServiceSlug}`
       }
 
       switch (true) {
-        case !!this.getServiceId:
+        case !!this.getServiceSlug:
           return [category, subcategory, service]
-        case !!this.getSubcategoryId:
+        case !!this.getSubcategorySlug:
           return [category, subcategory]
-        case !!this.getCategoryId:
+        case !!this.getCategorySlug:
           return [category]
       }
     },
     getContent() {
       switch (true) {
-        case !!this.getSubcategoryId:
+        case !!this.getSubcategorySlug:
           return this.subcategory.content
-        case !!this.getCategoryId:
+        case !!this.getCategorySlug:
           return this.category.content
       }
     },
     getShowBanner() {
       switch (true) {
-        case !!this.getSubcategoryId:
+        case !!this.getSubcategorySlug:
           return this.subcategory.banner
-        case !!this.getCategoryId:
+        case !!this.getCategorySlug:
           return this.category.banner
       }
     },
     getPrices() {
       return this.category.subcategories?.map(subcategory => new Object({
         ...subcategory,
-        path: `/category/${this.getCategoryId}/subcategory/${subcategory.id}`
+        path: `/category/${this.getCategorySlug}/subcategory/${subcategory.slug}`
       }))
     },
     getAnchors() {
@@ -172,13 +172,13 @@ export default defineComponent({
 <!--  <div style="margin-top: 30px;" v-html="getContent"></div>-->
   <Preloader style="margin-top: 30px;" v-if="!getContent"/>
   <div class="categories-content" v-html="getContent"/>
-  <OurPrograms id="programs" :services="subcategory.item" v-if="getSubcategoryId && subcategory.item?.length"/>
+  <OurPrograms id="programs" :services="subcategory.item" v-if="getSubcategorySlug && subcategory.item?.length"/>
   <StagesOfTreatment id="stagesOfTreatment"/>
   <OurSpecialists id="specialists" class="little"/>
   <CallToAction/>
   <OurAchievements id="statistics"/>
   <GuaranteesAndBenefits id="guarantees"/>
-  <TypesOfTreatment :prices="getPrices" v-if="getCategoryId && !getSubcategoryId"/>
+  <TypesOfTreatment :prices="getPrices" v-if="getCategorySlug && !getSubcategorySlug"/>
   <ChambersInOurClinic/>
   <OurCertificates id="certificates" type="small" :page-width="pageWidth"/>
   <Reviews id="reviews"/>

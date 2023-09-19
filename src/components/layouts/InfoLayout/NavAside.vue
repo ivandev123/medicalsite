@@ -18,23 +18,23 @@ export default defineComponent({
     ...mapActions('services', ['getServiceById']),
 
     loadNav() {
-      if (this.getServiceId) this.getServiceById(this.getServiceId)
-      if (this.getCategoryId) this.getCategoryById(this.getCategoryId)
-      if (this.getSubcategoryId) this.getSubcategoryById(this.getSubcategoryId)
+      if (this.getServiceSlug) this.getServiceById(this.getServiceSlug)
+      if (this.getCategorySlug) this.getCategoryById(this.getCategorySlug)
+      if (this.getSubcategorySlug) this.getSubcategoryById(this.getSubcategorySlug)
     }
   },
   computed: {
     ...mapState('category', ['category', 'subcategory']),
     ...mapState('services', ['service']),
 
-    getCategoryId() {
-      return this.$route.params.categoryId
+    getCategorySlug() {
+      return this.$route.params.categorySlug
     },
-    getSubcategoryId() {
-      return this.$route.params.subcategoryId
+    getSubcategorySlug() {
+      return this.$route.params.subcategorySlug
     },
-    getServiceId() {
-      return this.$route.params.serviceId
+    getServiceSlug() {
+      return this.$route.params.serviceSlug
     },
     getStaticNav() {
       return [
@@ -118,23 +118,18 @@ export default defineComponent({
     getNavigation() {
       const subcategories = this.category.subcategories?.map(subcategory => new Object({
         ...subcategory,
-        slug: `/category/${this.getCategoryId}/subcategory/${subcategory.id}`
+        slug: `/category/${this.getCategorySlug}/subcategory/${subcategory.slug}`
       }))
 
       switch (true) {
-        case !!this.getServiceId:
-          return [{
-            ...this.service,
-            slug: `/category/${this.getCategoryId}/subcategory/${this.getSubcategoryId}/service/${this.getServiceId}`
-          }]
-        case !!this.getSubcategoryId:
+        case !!this.getSubcategorySlug || !!this.getServiceSlug:
           const services = this.subcategory.item?.map(item => new Object({
             ...item,
-            slug: `/category/${this.getCategoryId}/subcategory/${this.getSubcategoryId}/service/${item.id}`
+            slug: `/category/${this.getCategorySlug}/subcategory/${this.getSubcategorySlug}/service/${item.slug}`
           }))
 
           return this.subcategory.item?.length ? services : subcategories
-        case !!this.getCategoryId:
+        case !!this.getCategorySlug:
           return subcategories
         default:
           return this.getStaticNav
@@ -142,10 +137,10 @@ export default defineComponent({
     },
   },
   watch: {
-    getCategoryId() {
+    getCategorySlug() {
       this.loadNav()
     },
-    getSubcategoryId() {
+    getSubcategorySlug() {
       this.loadNav()
     }
   },

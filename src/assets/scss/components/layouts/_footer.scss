@@ -158,8 +158,8 @@
 
       & > li {
         padding: 5px 0;
-        font-weight: 500;
-        font-size: 14px;
+        font-weight: 700;
+        font-size: 16px;
         line-height: 19px;
         color: #4b535a;
         cursor: pointer;
@@ -169,15 +169,19 @@
         }
 
         &:before {
-          border-radius: 50%;
+          display: none;
         }
 
         & > ul {
-          padding: 3px 0 3px 15px;
+          padding: 3px 0 3px 10px;
           list-style-type: square;
 
           & > li {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 19px;
             color: #4b535a;
+            cursor: pointer;
 
             &:hover {
               color: #24c8bc;
