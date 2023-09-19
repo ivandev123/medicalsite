@@ -1,5 +1,6 @@
 <template>
   <div class="block-of-video-lectures">
+    <Breadcrumbs :page-parent="{ name: 'Главная', path: '/' }" :breadcrumbs="[{ name: 'Видео лекции', path: '/video-lectures' }]"/>
     <h1>Видео лекции</h1>
 
     <Preloader style="margin-top: 20px;" v-if="!videoLectures.data?.length"/>
@@ -21,10 +22,11 @@ import VideoReview from "@/assets/scss/components/reviews/VideoReview.vue";
 import Pagination from "@/components/utils/Pagination.vue";
 import Preloader from "@/components/Preloader.vue";
 import {mapActions, mapState} from "vuex";
+import Breadcrumbs from "@/components/utils/Breadcrumbs.vue";
 
 export default {
   name: "BlockOfVideoLectures",
-  components: {Preloader, Pagination, VideoReview},
+  components: {Breadcrumbs, Preloader, Pagination, VideoReview},
   methods: {
     ...mapActions('videoLectures', ['getVideoLectures']),
 

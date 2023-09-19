@@ -32,7 +32,7 @@ export default defineComponent({
     ...mapState('category', ['categories']),
 
     headerLinks() {
-      let categoriesNav = this.categories.map(category => new Object({
+      let categoriesNav = this.categories?.map(category => new Object({
         id: category.id,
         title: category.name,
         path: '/category/' + category.slug,
@@ -49,7 +49,7 @@ export default defineComponent({
           }))
         })),
       }))
-      categoriesNav.push(this.otherLinks)
+      categoriesNav?.push(this.otherLinks)
       return categoriesNav
     },
     otherLinks() {
@@ -102,7 +102,7 @@ export default defineComponent({
           {
             id: 9,
             name: 'Акции',
-            path: '/stock'
+            path: '/stocks'
           },
           {
             id: 10,

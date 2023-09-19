@@ -5,8 +5,8 @@ const BASE_URL = 'http://158.160.18.123:8081/api' // позже будет в .e
 
 
 ///////////GET
-export async function getServices() {
-  return await getAsync('/services');
+export async function getServices(page) {
+  return await getAsync(`/services?page=${page}`);
 }
 
 export async function getServiceById(id) {
@@ -61,8 +61,8 @@ export async function getBlogArticleCommentsById(blogArticleId) {
   return await getAsync(`/comments/${blogArticleId}`)
 }
 
-export async function getStocks() {
-  return await getAsync('/stocks')
+export async function getStocks(page) {
+  return await getAsync(`/stocks?page=${page}`)
 }
 
 export async function getStock(id) {

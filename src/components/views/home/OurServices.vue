@@ -11,7 +11,8 @@
           :key="service.id"
       >
         <div class="our-services__picture">
-          <img src="../../../assets/images/our-service.jpg" alt="service">
+          <img alt="service" :src="service.image">
+<!--          src="../../../assets/images/our-service.jpg"-->
         </div>
         <div class="our-services__info">
           <div class="our-services__info-title">{{ service.name }}</div>
@@ -20,23 +21,54 @@
         </div>
       </RouterLink>
     </div>
-    <Pagination/>
+    <Pagination :prev-page="getPrevPage" :next-page="getNextPage" :links="getLinks"/>
   </section>
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 import Preloader from "@/components/Preloader.vue";
 import Pagination from "@/components/utils/Pagination.vue";
 
 export default {
   name: "OurServices",
   components: {Pagination, Preloader},
+  methods: {
+    ...mapActions('services', ['getServices']),
+  },
   computed: {
     ...mapState('services', ['services']),
+
+    getPage() {
+      return this.$route.query['services-page']
+    },
+    getLinks() {
+      return this.services.links
+          ?.slice(1, this.services.links.length - 1)
+          .map(link => new Object({
+            ...link,
+            url: '/?services-page=' + link.url.split('?page=')[1]
+          }));
+    },
+    getPrevPage() {
+      const page = this.services.links?.[0].url?.split('?page=')[1]
+
+      return '/?services-page=' + page
+      // return this.blogArticles?.links[0]?.url?.split('/api')[1]
+    },
+    getNextPage() {
+      const page = this.services.links?.at(-1).url?.split('?page=')[1]
+
+      return '/?services-page=' + page
+    }
+  },
+  watch: {
+    getPage() {
+      this.getServices(this.getPage)
+    }
   },
   mounted() {
-    if (!this.services?.length) this.$store.dispatch('services/getServices')
+    this.getServices(this.getPage ? this.getPage : 1)
   }
 }
 </script>

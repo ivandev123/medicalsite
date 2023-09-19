@@ -1,5 +1,6 @@
 <template>
   <div class="price-page">
+    <Breadcrumbs :page-parent="{ name: 'Главная', path: '/' }" :breadcrumbs="[{ name: 'Цены', path: '/price' }]"/>
     <h1 class="price-page__title">Цены</h1>
 
     <Preloader style="margin-top: 20px;" v-if="!subcategories.length"/>
@@ -20,10 +21,11 @@ import InformationalArticles from "@/components/InformationalArticles.vue";
 import CardWithDropdown from "@/components/utils/CardWithDropdown.vue";
 import Preloader from "@/components/Preloader.vue";
 import {mapActions, mapState} from "vuex";
+import Breadcrumbs from "@/components/utils/Breadcrumbs.vue";
 
 export default {
   name: "Price",
-  components: {Preloader, CardWithDropdown, InformationalArticles},
+  components: {Breadcrumbs, Preloader, CardWithDropdown, InformationalArticles},
   data() {
     return {
       pageWidth: 0,

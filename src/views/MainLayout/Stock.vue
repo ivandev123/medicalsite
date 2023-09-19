@@ -3,17 +3,17 @@
     <div class="container">
       <h1>Акция</h1>
 
-      <Preloader style="margin-top: 20px;" v-if="!stocks.length"/>
+      <Preloader style="margin-top: 20px;" v-if="!stocks.data?.length"/>
 
-      <template v-if="stocks.length">
+      <template v-if="stocks.data?.length">
         <div class="stock-page__content stock-page__content_mt-20">
           <StockItem
-              v-for="stock in stocks"
+              v-for="stock in stocks.data"
               :key="stock.id"
               :stock="stock"
           />
         </div>
-        <Pagination :count="10"/>
+        <Pagination :prev-page="getPrevPage" :next-page="getNextPage" :links="getLinks"/>
       </template>
       <InformationalArticles :page-width="pageWidth"/>
     </div>
@@ -46,13 +46,37 @@ export default {
   },
   computed: {
     ...mapState('stocks', ['stocks']),
+
+    getPage() {
+      return this.$route.query.page
+    },
+    getLinks() {
+      return this.stocks.links
+          ?.slice(1, this.stocks.links.length - 1)
+          .map(link => new Object({
+            ...link,
+            url: link.url.split('/api')[1]
+          }));
+    },
+    getPrevPage() {
+      return this.stocks.links?.[0].url?.split('/api')[1]
+      // return this.blogArticles?.links[0]?.url?.split('/api')[1]
+    },
+    getNextPage() {
+      return this.stocks.links?.at(-1).url?.split('/api')[1]
+    }
+  },
+  watch: {
+    getPage() {
+      this.getStocks(this.getPage)
+    }
   },
   created() {
     this.setWidth()
     window.onresize = () => this.setWidth()
   },
   mounted() {
-    this.getStocks()
+    this.getStocks(this.getPage ? this.getPage : 1)
   }
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div class="regulatory-bodies">
     <div class="container">
+      <Breadcrumbs :page-parent="{ name: 'Главная', path: '/' }" :breadcrumbs="[{ name: 'Контролирующие органы', path: '/regulatory-bodies' }]"/>
       <h1>Контролирующие органы</h1>
 
       <Preloader style="margin-top: 20px;" v-if="!regulatoryBodies.content"/>
@@ -20,10 +21,11 @@
 <script>
 import Preloader from "@/components/Preloader.vue";
 import {mapActions, mapState} from "vuex";
+import Breadcrumbs from "@/components/utils/Breadcrumbs.vue";
 
 export default {
   name: "RegulatoryBodies",
-  components: {Preloader},
+  components: {Breadcrumbs, Preloader},
   methods: {
     ...mapActions('regulatoryBodies', ['getRegulatoryBodies']),
   },

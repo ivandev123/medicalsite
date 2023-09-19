@@ -63,7 +63,7 @@ export default {
           :key="article.id"
       >
         <div class="preview-of-info-articles__item-image" @click="$router.push(`/blog/${article.id}`)">
-          <img alt="image" :src="article.image">
+          <img alt="image" :src="article.blog_image">
         </div>
         <div class="preview-of-info-articles__item-info">
           <h3

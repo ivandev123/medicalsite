@@ -5,7 +5,7 @@
     <div class="stock-item__info">
       <div class="stock-item__title">{{ stock.title }}</div>
       <p class="stock-item__description">{{ stock.description }}</p>
-      <Button name="Подробнее" bg="orange" @click="$router.push(`/stock/${stock.id}`)"/>
+      <Button name="Подробнее" bg="orange" @click="$router.push(`/stocks/${stock.id}`)"/>
       <div class="stock-item__date">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 467.029 467.03" style="enable-background:new 0 0 467.029 467.03;" xml:space="preserve">
             <g>

@@ -1,5 +1,6 @@
 <template>
   <div class="reviews-page">
+    <Breadcrumbs :page-parent="{ name: 'Главная', path: '/' }" :breadcrumbs="[{ name: 'Отзывы', path: '/reviews' }]"/>
     <h1 class="reviews-page__title reviews-page__title_mb-20">Отзывы</h1>
 
     <div class="reviews-page__tabs">
@@ -52,10 +53,11 @@ import Pagination from "@/components/utils/Pagination.vue";
 import {mapActions, mapState} from "vuex";
 import Preloader from "@/components/Preloader.vue";
 import WatchingVideoModal from "@/components/modals/WatchingVideoModal.vue";
+import Breadcrumbs from "@/components/utils/Breadcrumbs.vue";
 
 export default {
   name: "Reviews",
-  components: {WatchingVideoModal, Preloader, Pagination, VideoReview, TextReview, Button2},
+  components: {Breadcrumbs, WatchingVideoModal, Preloader, Pagination, VideoReview, TextReview, Button2},
   data() {
     return {
       activeReviewType: 'text', //text, video

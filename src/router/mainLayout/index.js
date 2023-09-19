@@ -39,7 +39,7 @@ export default [
     component: MassMediaAboutUs
   },
   {
-    path: 'stock',
+    path: 'stocks',
 
     children: [
       {

@@ -668,7 +668,7 @@ export default [
             {
                 id: 9,
                 name: 'Акции',
-                path: '/stock'
+                path: '/stocks'
             },
             {
                 id: 10,

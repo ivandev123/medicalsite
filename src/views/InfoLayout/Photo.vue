@@ -1,5 +1,6 @@
 <template>
   <div class="photo-page">
+    <Breadcrumbs :page-parent="{ name: 'Главная', path: '/' }" :breadcrumbs="[{ name: 'Фотогалерея', path: '/photo' }]"/>
     <h1 class="photo-page__title">Фотогалерея</h1>
 
     <Preloader style="margin-top: 20px;" v-if="!gallery.length"/>
@@ -22,10 +23,11 @@ import Reviews from "@/components/Reviews.vue";
 import InformationalArticles from "@/components/InformationalArticles.vue";
 import Preloader from "@/components/Preloader.vue";
 import {mapActions, mapState} from "vuex";
+import Breadcrumbs from "@/components/utils/Breadcrumbs.vue";
 
 export default {
   name: "Photo",
-  components: {Preloader, InformationalArticles, Reviews, PhotoItem},
+  components: {Breadcrumbs, Preloader, InformationalArticles, Reviews, PhotoItem},
   data() {
     return {
       pageWidth: 0,

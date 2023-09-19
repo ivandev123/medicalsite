@@ -7,8 +7,8 @@ export default {
     stock: {},
   },
   actions: {
-    getStocks({ commit }) {
-      getStocks().then(response => commit('SET_STOCKS', response))
+    getStocks({ commit }, page) {
+      getStocks(page).then(response => commit('SET_STOCKS', response))
     },
     getStock({ commit }, id) {
       getStock(id).then(response => commit('SET_STOCK', response))

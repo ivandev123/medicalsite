@@ -8,8 +8,8 @@ export default {
     subcategories: [],
   },
   actions: {
-    getServices({ commit }) {
-      getServices().then(response => commit('SET_SERVICES', response))
+    getServices({ commit }, page) {
+      getServices(page).then(response => commit('SET_SERVICES', response))
     },
     getServiceById({ commit }, id) {
       getServiceById(id).then(response => commit('SET_SERVICE', response))

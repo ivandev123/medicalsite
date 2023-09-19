@@ -68,15 +68,15 @@ export default defineComponent({
       </div>
     </div>
 
-    <Preloader v-if="!blogArticles.data?.length"/>
-    <Carousel ref="carousel" :items-to-show="getCountSlides" v-if="blogArticles.data?.length">
-      <Slide v-for="article in blogArticles.data" :key="article.id">
+    <Preloader v-if="!blogArticles?.data?.length"/>
+    <Carousel ref="carousel" :items-to-show="getCountSlides" v-if="blogArticles?.data?.length">
+      <Slide v-for="article in blogArticles?.data" :key="article.id">
         <ArticleItem
             :image="article.blog_image"
             :title="article.title"
             :date="article.created_at"
             :views="article.views"
-            @click="$router.push(`/stock/${article.id}`)"
+            @click="$router.push(`/stocks/${article.id}`)"
         />
       </Slide>
     </Carousel>

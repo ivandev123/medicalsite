@@ -17,6 +17,91 @@ export default defineComponent({
   },
   computed: {
     ...mapState('category', ['categories']),
+
+    getSecondNav() {
+      return {
+        title: 'О клинике',
+        path: '/history',
+
+        dropdown: [
+          {
+            id: 1,
+            name: 'История клиники',
+            path: '/history'
+          },
+          {
+            id: 2,
+            name: 'Специалисты',
+            path: '/specialists'
+          },
+          {
+            id: 3,
+            name: 'Сертификаты и лицензии',
+            path: '/certificates'
+          },
+          {
+            id: 4,
+            name: 'Цены',
+            path: '/price'
+          },
+          {
+            id: 5,
+            name: 'Отзывы',
+            path: '/reviews'
+          },
+          {
+            id: 6,
+            name: 'Фото',
+            path: '/photo'
+          },
+          {
+            id: 7,
+            name: 'Статьи',
+            path: '/blog?page=1'
+          },
+          {
+            id: 8,
+            name: 'СМИ о нас',
+            path: '/media'
+          },
+          {
+            id: 9,
+            name: 'Акции',
+            path: '/stocks'
+          },
+          {
+            id: 10,
+            name: 'Видео лекции',
+            path: '/video-lectures'
+          },
+          {
+            id: 11,
+            name: 'Контролирующие органы',
+            path: '/regulatory-bodies'
+          },
+          {
+            id: 12,
+            name: 'Полезная информация',
+            path: '/helpful-info'
+          },
+          {
+            id: 13,
+            name: 'Контакты',
+            path: '/contacts'
+          },
+          {
+            id: 14,
+            name: 'Политика конфиденциальности',
+            path: '/policy'
+          },
+          {
+            id: 15,
+            name: 'Пользовательское соглашение',
+            path: '/terms'
+          },
+        ]
+      }
+    }
   },
   mounted() {
     this.getCategories()
@@ -51,8 +136,6 @@ export default defineComponent({
           </div>
           <nav class="footer__info footer__info_mt-30">
             <div class="footer__item">
-<!--              <span>Лечение наркомании</span>-->
-
               <ul>
                 <li
                     v-for="category in categories"
@@ -82,26 +165,16 @@ export default defineComponent({
               </ul>
             </div>
             <div class="footer__item">
-<!--              <span>Полезная информация</span>-->
-
               <ul>
                 <li>
-                  <span>Полезная информация</span>
+                  <span @click="$router.push(getSecondNav.path)">{{ getSecondNav.title }}</span>
 
                   <ul>
-                    <li>История клиники</li>
-                    <li>Специалисты</li>
-                    <li>Сертификаты и лицензии</li>
-                    <li>Цены</li>
-                    <li>Отзывы</li>
-                    <li>Фото</li>
-                    <li>Статьи</li>
-                    <li>СМИ о нас</li>
-                    <li>Акции</li>
-                    <li>Видео лекции</li>
-                    <li>Блог</li>
-                    <li>Контакты</li>
-                    <li>Контролирующие органы</li>
+                    <li
+                        v-for="link in getSecondNav.dropdown"
+                        :key="link.id"
+                        @click="$router.push(link.path)"
+                    >{{ link.name }}</li>
                   </ul>
                 </li>
               </ul>

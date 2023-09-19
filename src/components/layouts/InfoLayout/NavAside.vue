@@ -81,7 +81,7 @@ export default defineComponent({
         {
           id: 9,
           name: 'Акции',
-          slug: '/stock'
+          slug: '/stocks'
         },
         {
           id: 10,
