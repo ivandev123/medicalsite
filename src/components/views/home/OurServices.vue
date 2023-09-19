@@ -2,12 +2,12 @@
   <section class="our-services">
     <h2 class="our-services__title">Наши услуги</h2>
 
-    <Preloader style="margin-top: 42px;" v-if="!services.length"/>
-    <div class="our-services__content our-services__content_mt-42" v-if="services.length">
+    <Preloader style="margin-top: 42px;" v-if="!services.data?.length"/>
+    <div class="our-services__content our-services__content_mt-42" v-if="services.data?.length">
       <RouterLink
           class="our-services__service"
           to="/"
-          v-for="(service, idx) in services"
+          v-for="(service, idx) in services.data"
           :key="service.id"
       >
         <div class="our-services__picture">
@@ -20,16 +20,18 @@
         </div>
       </RouterLink>
     </div>
+    <Pagination/>
   </section>
 </template>
 
 <script>
 import {mapState} from "vuex";
 import Preloader from "@/components/Preloader.vue";
+import Pagination from "@/components/utils/Pagination.vue";
 
 export default {
   name: "OurServices",
-  components: {Preloader},
+  components: {Pagination, Preloader},
   computed: {
     ...mapState('services', ['services']),
   },

@@ -3,6 +3,7 @@ import MainLayout from "@/layouts/MainLayout.vue";
 import InfoLayout from "@/layouts/InfoLayout.vue";
 import infoLayoutRoutes from "@/router/infoLayout";
 import mainLayoutRoutes from "@/router/mainLayout";
+import Error404 from "@/views/Error404.vue";
 
 const routes = [
   {
@@ -16,6 +17,10 @@ const routes = [
     component: InfoLayout,
 
     children: [...infoLayoutRoutes],
+  },
+  {
+    path: '/404',
+    component: Error404,
   }
 ]
 
