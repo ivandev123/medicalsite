@@ -31,6 +31,7 @@
           v-for="video in reviews.video.data"
           :key="video.id"
           :link="video.video"
+          :title="video.video_title"
           @go-to-video="goToVideo"
       />
     </div>
