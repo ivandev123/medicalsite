@@ -69,11 +69,11 @@ export default defineComponent({
       const category = { name: this.category?.name, path: `/category/${this.category?.slug}` }
       const subcategory = {
         name: this.subcategory?.name,
-        path: `/category/${this.getCategorySlug}/subcategory/${this.subcategory?.slug}`
+        path: `/category/${this.getCategorySlug}/${this.subcategory?.slug}`
       }
       const service = {
         name: this.service?.name,
-        path: `/category/${this.getCategorySlug}/subcategory/${this.subcategory?.slug}/service/${this.getServiceSlug}`
+        path: `/category/${this.getCategorySlug}/${this.subcategory?.slug}/${this.getServiceSlug}`
       }
 
       switch (true) {
@@ -87,6 +87,8 @@ export default defineComponent({
     },
     getContent() {
       switch (true) {
+        case !!this.getServiceSlug:
+          return this.service.content
         case !!this.getSubcategorySlug:
           return this.subcategory.content
         case !!this.getCategorySlug:
@@ -95,6 +97,8 @@ export default defineComponent({
     },
     getShowBanner() {
       switch (true) {
+        case !!this.getServiceSlug:
+          return this.service.banner
         case !!this.getSubcategorySlug:
           return this.subcategory.banner
         case !!this.getCategorySlug:
@@ -104,7 +108,7 @@ export default defineComponent({
     getPrices() {
       return this.category.subcategories?.map(subcategory => new Object({
         ...subcategory,
-        path: `/category/${this.getCategorySlug}/subcategory/${subcategory.slug}`
+        path: `/category/${this.getCategorySlug}/${subcategory.slug}`
       }))
     },
     getAnchors() {

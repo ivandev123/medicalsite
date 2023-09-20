@@ -118,14 +118,14 @@ export default defineComponent({
     getNavigation() {
       const subcategories = this.category.subcategories?.map(subcategory => new Object({
         ...subcategory,
-        slug: `/category/${this.getCategorySlug}/subcategory/${subcategory.slug}`
+        slug: `/category/${this.getCategorySlug}/${subcategory.slug}`
       }))
 
       switch (true) {
         case !!this.getSubcategorySlug || !!this.getServiceSlug:
           const services = this.subcategory.item?.map(item => new Object({
             ...item,
-            slug: `/category/${this.getCategorySlug}/subcategory/${this.getSubcategorySlug}/service/${item.slug}`
+            slug: `/category/${this.getCategorySlug}/${this.getSubcategorySlug}/${item.slug}`
           }))
 
           return this.subcategory.item?.length ? services : subcategories
@@ -141,6 +141,9 @@ export default defineComponent({
       this.loadNav()
     },
     getSubcategorySlug() {
+      this.loadNav()
+    },
+    getServiceSlug() {
       this.loadNav()
     }
   },
